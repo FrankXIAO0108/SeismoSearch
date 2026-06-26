@@ -1,0 +1,365 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SeismoSearch Evidence Pack Schema",
+  "description": "A structured evidence contract used before answer generation. It organizes retrieved event evidence, document evidence, computed statistics, tool calls, and safety constraints.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "query_id",
+    "user_query",
+    "query_type",
+    "created_at_utc",
+    "router_output",
+    "tool_calls",
+    "event_evidence",
+    "doc_evidence",
+    "computed_evidence",
+    "safety_evidence",
+    "answer_constraints"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Evidence pack schema version.",
+      "examples": ["0.1.0"]
+    },
+    "query_id": {
+      "type": "string",
+      "description": "Unique ID of the user query or evaluation sample.",
+      "examples": ["mixed_001"]
+    },
+    "user_query": {
+      "type": "string",
+      "description": "Original user query."
+    },
+    "query_type": {
+      "type": "string",
+      "description": "Routed query type.",
+      "enum": ["catalog", "concept", "mixed", "safety"]
+    },
+    "created_at_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Evidence pack creation time in UTC."
+    },
+    "router_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["predicted_type", "confidence", "rationale"],
+      "properties": {
+        "predicted_type": {
+          "type": "string",
+          "enum": ["catalog", "concept", "mixed", "safety"]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "rationale": {
+          "type": "string"
+        }
+      }
+    },
+    "planner_output": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional planner output, such as planned tool sequence or decomposition.",
+      "properties": {
+        "planned_tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "plan_rationale": {
+          "type": "string"
+        }
+      }
+    },
+    "tool_calls": {
+      "type": "array",
+      "description": "Executed tool calls used to build the evidence pack.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tool_name", "tool_args", "status"],
+        "properties": {
+          "tool_name": {
+            "type": "string",
+            "enum": [
+              "event_search",
+              "event_statistics",
+              "doc_retrieval",
+              "safety_check"
+            ]
+          },
+          "tool_args": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "status": {
+            "type": "string",
+            "enum": ["success", "failed", "skipped"]
+          },
+          "latency_ms": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "error_message": {
+            "type": "string"
+          },
+          "result_summary": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "event_evidence": {
+      "type": "array",
+      "description": "Structured earthquake event evidence retrieved from the events table.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "event_id",
+          "source",
+          "event_time_utc",
+          "longitude",
+          "latitude",
+          "magnitude",
+          "evidence_fields"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "source_event_id": {
+            "type": "string"
+          },
+          "event_time_utc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "place": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "depth_km": {
+            "type": ["number", "null"]
+          },
+          "magnitude": {
+            "type": ["number", "null"]
+          },
+          "magnitude_type": {
+            "type": ["string", "null"]
+          },
+          "alert": {
+            "type": ["string", "null"]
+          },
+          "tsunami": {
+            "type": ["integer", "null"]
+          },
+          "significance": {
+            "type": ["integer", "null"]
+          },
+          "status": {
+            "type": ["string", "null"]
+          },
+          "source_url": {
+            "type": ["string", "null"]
+          },
+          "detail_url": {
+            "type": ["string", "null"]
+          },
+          "evidence_fields": {
+            "type": "array",
+            "description": "Fields from this event that are used as evidence.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "doc_evidence": {
+      "type": "array",
+      "description": "Document chunk evidence retrieved from the document index.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "chunk_id",
+          "doc_id",
+          "title",
+          "source_name",
+          "content_span",
+          "retrieval_score",
+          "used_for"
+        ],
+        "properties": {
+          "chunk_id": {
+            "type": "string"
+          },
+          "doc_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "source_name": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": ["string", "null"]
+          },
+          "section_title": {
+            "type": ["string", "null"]
+          },
+          "section_path": {
+            "type": ["string", "null"]
+          },
+          "content_span": {
+            "type": "string",
+            "description": "Relevant text span used as evidence."
+          },
+          "retrieval_score": {
+            "type": "number"
+          },
+          "used_for": {
+            "type": "string",
+            "description": "How this chunk is used, such as concept explanation, field interpretation, or safety communication."
+          }
+        }
+      }
+    },
+    "computed_evidence": {
+      "type": "array",
+      "description": "Computed statistics derived from structured event queries.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "value", "method"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "examples": ["event_count", "max_magnitude", "monthly_count"]
+          },
+          "value": {
+            "description": "Computed value. It may be a number, string, array, object, boolean, or null."
+          },
+          "method": {
+            "type": "string",
+            "description": "Computation method, such as SQL aggregation over filtered events."
+          },
+          "source_event_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "safety_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "is_prediction_request",
+        "requires_disclaimer",
+        "blocked_claims",
+        "allowed_response_scope"
+      ],
+      "properties": {
+        "is_prediction_request": {
+          "type": "boolean"
+        },
+        "requires_disclaimer": {
+          "type": "boolean"
+        },
+        "blocked_claims": {
+          "type": "array",
+          "description": "Claims that the generator must not make.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowed_response_scope": {
+          "type": "array",
+          "description": "Allowed response directions under the safety boundary.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "safety_labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "prediction_inducement": {
+              "type": "boolean"
+            },
+            "pseudoscience": {
+              "type": "boolean"
+            },
+            "panic_risk": {
+              "type": "boolean"
+            },
+            "unsafe_decision_request": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "answer_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "must_cite_event_ids",
+        "must_cite_doc_chunks",
+        "must_not_predict_future_events",
+        "must_explain_uncertainty"
+      ],
+      "properties": {
+        "must_cite_event_ids": {
+          "type": "boolean"
+        },
+        "must_cite_doc_chunks": {
+          "type": "boolean"
+        },
+        "must_not_predict_future_events": {
+          "type": "boolean"
+        },
+        "must_explain_uncertainty": {
+          "type": "boolean"
+        },
+        "max_answer_sentences": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "required_sections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden_phrases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
