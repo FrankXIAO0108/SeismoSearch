@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SeismoSearch Evaluation Sample Schema",
+  "description": "Schema for one evaluation sample in SeismoSearch. Each sample defines the user query, expected tools, gold evidence requirements, expected behavior, and evaluation metrics.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "query_id",
+    "query",
+    "query_type",
+    "language",
+    "gold_tools",
+    "expected_behavior",
+    "metrics"
+  ],
+  "properties": {
+    "query_id": {
+      "type": "string",
+      "description": "Unique evaluation sample ID.",
+      "examples": ["catalog_001", "concept_001", "mixed_001", "safety_001"]
+    },
+    "query": {
+      "type": "string",
+      "description": "User-facing evaluation query."
+    },
+    "query_type": {
+      "type": "string",
+      "description": "Gold query type label.",
+      "enum": ["catalog", "concept", "mixed", "safety"]
+    },
+    "language": {
+      "type": "string",
+      "description": "Query language.",
+      "enum": ["zh", "en", "mixed"]
+    },
+    "difficulty": {
+      "type": "string",
+      "description": "Evaluation difficulty level.",
+      "enum": ["easy", "medium", "hard"]
+    },
+    "gold_tools": {
+      "type": "array",
+      "description": "Tools expected to be used for this query.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "event_search",
+          "event_statistics",
+          "doc_retrieval",
+          "safety_check"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "gold_event_constraints": {
+      "type": "object",
+      "description": "Expected structured event query constraints for catalog or mixed questions.",
+      "additionalProperties": false,
+      "properties": {
+        "start_time_utc": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "end_time_utc": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "relative_time": {
+          "type": ["string", "null"],
+          "description": "Relative time expression such as last_7_days or last_30_days."
+        },
+        "min_magnitude": {
+          "type": ["number", "null"]
+        },
+        "max_magnitude": {
+          "type": ["number", "null"]
+        },
+        "min_depth_km": {
+          "type": ["number", "null"]
+        },
+        "max_depth_km": {
+          "type": ["number", "null"]
+        },
+        "region": {
+          "type": ["string", "null"]
+        },
+        "country": {
+          "type": ["string", "null"]
+        },
+        "bbox": {
+          "type": ["object", "null"],
+          "description": "Bounding box for spatial filtering.",
+          "additionalProperties": false,
+          "required": ["min_lon", "max_lon", "min_lat", "max_lat"],
+          "properties": {
+            "min_lon": {
+              "type": "number"
+            },
+            "max_lon": {
+              "type": "number"
+            },
+            "min_lat": {
+              "type": "number"
+            },
+            "max_lat": {
+              "type": "number"
+            }
+          }
+        },
+        "event_type": {
+          "type": ["string", "null"]
+        },
+        "alert": {
+          "type": ["string", "null"]
+        },
+        "tsunami": {
+          "type": ["integer", "null"],
+          "enum": [0, 1, null]
+        },
+        "status": {
+          "type": ["string", "null"]
+        },
+        "sort_by": {
+          "type": ["string", "null"],
+          "enum": [
+            "time_asc",
+            "time_desc",
+            "magnitude_asc",
+            "magnitude_desc",
+            "depth_asc",
+            "depth_desc",
+            null
+          ]
+        },
+        "limit": {
+          "type": ["integer", "null"],
+          "minimum": 1
+        }
+      }
+    },
+    "gold_event_ids": {
+      "type": "array",
+      "description": "Expected event IDs if exact event matching is available.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gold_doc_requirements": {
+      "type": "object",
+      "description": "Expected document retrieval requirements for concept or mixed questions.",
+      "additionalProperties": false,
+      "properties": {
+        "gold_doc_topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gold_chunk_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "must_include_points": {
+          "type": "array",
+          "description": "Key factual points that the answer should include.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "must_not_include_points": {
+          "type": "array",
+          "description": "Claims that the answer should not include.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "safety_labels": {
+      "type": "object",
+      "description": "Safety labels for prediction inducement, misinformation, panic, and unsafe decision requests.",
+      "additionalProperties": false,
+      "properties": {
+        "prediction_inducement": {
+          "type": "boolean"
+        },
+        "pseudoscience": {
+          "type": "boolean"
+        },
+        "panic_risk": {
+          "type": "boolean"
+        },
+        "unsafe_decision_request": {
+          "type": "boolean"
+        }
+      }
+    },
+    "expected_behavior": {
+      "type": "object",
+      "description": "Expected behavior of the final system response.",
+      "additionalProperties": false,
+      "required": [
+        "answer_type",
+        "must_refuse",
+        "must_cite_evidence",
+        "must_avoid_prediction"
+      ],
+      "properties": {
+        "answer_type": {
+          "type": "string",
+          "enum": [
+            "event_list",
+            "statistics",
+            "concept_explanation",
+            "mixed_report",
+            "safety_refusal",
+            "misinformation_correction"
+          ]
+        },
+        "must_refuse": {
+          "type": "boolean"
+        },
+        "must_cite_evidence": {
+          "type": "boolean"
+        },
+        "must_avoid_prediction": {
+          "type": "boolean"
+        },
+        "must_explain_uncertainty": {
+          "type": "boolean"
+        },
+        "allowed_response_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden_response": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "description": "Metrics used to evaluate this sample.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "router_accuracy",
+          "tool_selection_accuracy",
+          "event_condition_match",
+          "event_precision",
+          "event_recall",
+          "event_exact_match",
+          "statistics_accuracy",
+          "doc_recall_at_3",
+          "doc_recall_at_5",
+          "answer_fact_coverage",
+          "citation_precision",
+          "evidence_alignment",
+          "hallucination_rate",
+          "unsafe_claim_rate",
+          "refusal_correctness",
+          "helpfulness_after_refusal"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes for dataset construction or error analysis."
+    }
+  }
+}
