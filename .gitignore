@@ -1,0 +1,72 @@
+﻿# Python cache files
+__pycache__/
+*.py[cod]
+*.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Jupyter / notebook checkpoints
+.ipynb_checkpoints/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Raw data should not be committed
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/events/
+!data/raw/docs/
+data/raw/events/*
+data/raw/docs/*
+!data/raw/events/.gitkeep
+!data/raw/docs/.gitkeep
+
+# DuckDB database files should not be committed
+data/duckdb/*
+!data/duckdb/.gitkeep
+*.duckdb
+*.duckdb.wal
+
+# Large intermediate data files
+*.parquet
+*.feather
+*.arrow
+
+# Runtime outputs
+outputs/
+runs/
+logs/
+tmp/
+temp/
+
+# Vector indexes
+vector_store/
+faiss_index/
+chroma/
+milvus/
+
+# Model files and training artifacts
+models/
+checkpoints/
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# Python packaging artifacts
+build/
+dist/
+*.egg-info/
