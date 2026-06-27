@@ -1,13 +1,14 @@
 """
 Tests for SeismoSearch Evidence Builder.
 
-These tests verify that build_evidence_pack correctly organizes tool outputs
-into controlled context for the future answer generator.
+These tests verify that build_evidence_pack correctly organizes planner outputs
+and tool outputs into controlled context for the future answer generator.
 
 The key behaviors are:
 - catalog questions should produce event evidence and computed evidence;
 - safety questions should not trigger event search or event statistics;
-- answer constraints should match the query type.
+- concept questions should not fabricate document evidence before doc retrieval exists;
+- Evidence Builder should use planner.py automatically when manual params are not provided.
 """
 
 from __future__ import annotations
@@ -95,7 +96,7 @@ def test_safety_evidence_pack_does_not_call_event_tools() -> None:
         user_query="明天东京会不会发生大地震？",
     )
 
-    # The heuristic router should classify this as a safety query.
+    # The planner should classify this as a safety query.
     assert pack["query_type"] == "safety"
 
     # Safety queries should only call safety_check.
@@ -142,8 +143,84 @@ def test_concept_evidence_pack_marks_doc_retrieval_as_not_implemented() -> None:
     # The pack should explicitly warn that document retrieval is not ready.
     assert "doc_retrieval_not_implemented_yet" in pack["warnings"]
 
+    # Planner-generated retrieval rewrites should be visible for future doc retrieval.
+    assert "震级和烈度有什么区别？" in pack["doc_retrieval_queries"]
+    assert "震级 烈度 区别" in pack["doc_retrieval_queries"]
+    assert "seismic magnitude vs intensity" in pack["doc_retrieval_queries"]
+
     # Concept mode should not require event citations.
     constraints = pack["answer_constraints"]
     assert constraints["must_cite_event_evidence_when_using_event_facts"] is False
     assert constraints["must_cite_doc_evidence_when_using_document_facts"] is False
     assert constraints["response_mode"] == "concept_answer"
+
+
+def test_evidence_builder_uses_planner_for_catalog_query() -> None:
+    """Evidence Builder should use planner output when params are not manually provided."""
+    pack = build_evidence_pack(
+        user_query="最近 M6.5 以上地震有哪些？",
+    )
+
+    assert pack["query_type"] == "catalog"
+
+    planner_output = pack["router_output"]["planner_output"]
+
+    assert planner_output["query_type"] == "catalog"
+    assert planner_output["event_search_params"]["min_magnitude"] == 6.5
+    assert planner_output["event_search_params"]["order_by"] == "event_time_utc"
+    assert planner_output["event_search_params"]["descending"] is True
+
+    tool_names = [tool_call["tool_name"] for tool_call in pack["tool_calls"]]
+
+    assert tool_names == [
+        "safety_check",
+        "event_search",
+        "event_statistics",
+    ]
+
+    # Current local sample has 7 M6.5+ events.
+    assert len(pack["event_evidence"]) == 7
+    assert len(pack["computed_evidence"]) == 1
+
+    statistics = pack["computed_evidence"][0]["statistics"]
+    magnitude_summary = statistics["magnitude_summary"]
+
+    assert statistics["event_count_matching_filters"] == 7
+    assert magnitude_summary["event_count"] == 7
+    assert magnitude_summary["min_magnitude"] >= 6.5
+
+    constraints = pack["answer_constraints"]
+
+    assert constraints["must_use_evidence_pack"] is True
+    assert constraints["must_cite_event_evidence_when_using_event_facts"] is True
+    assert constraints["should_state_sample_limitations"] is True
+    assert constraints["response_mode"] == "catalog_answer"
+
+
+def test_evidence_builder_uses_planner_for_safety_query() -> None:
+    """Evidence Builder should not call event tools for planner-classified safety queries."""
+    pack = build_evidence_pack(
+        user_query="明天东京会不会发生大地震？",
+    )
+
+    assert pack["query_type"] == "safety"
+
+    planner_output = pack["router_output"]["planner_output"]
+
+    assert planner_output["query_type"] == "safety"
+    assert planner_output["safety_intent"] == "future_specific_earthquake_prediction"
+    assert planner_output["event_search_params"] is None
+    assert planner_output["event_statistics_params"] is None
+
+    tool_names = [tool_call["tool_name"] for tool_call in pack["tool_calls"]]
+
+    assert tool_names == ["safety_check"]
+
+    assert pack["event_evidence"] == []
+    assert pack["computed_evidence"] == []
+
+    constraints = pack["answer_constraints"]
+
+    assert constraints["must_not_predict_future_earthquakes"] is True
+    assert constraints["should_offer_safe_alternatives"] is True
+    assert constraints["response_mode"] == "safe_refusal_with_alternatives"

@@ -1,20 +1,24 @@
 """
 Evidence builder for SeismoSearch.
 
-This module converts tool outputs into a structured Evidence Pack.
+This module converts planner outputs and tool outputs into a structured
+Evidence Pack.
 
 The Evidence Pack is the controlled context passed to the future answer
 generator. It separates:
 - user query metadata;
-- router output;
+- planner / router output;
 - tool call records;
 - event evidence;
 - computed evidence;
+- document evidence;
 - safety evidence;
 - answer constraints.
 
-This module does NOT generate the final answer.
-It only prepares evidence for grounded answer generation.
+Important design choice:
+- The Evidence Builder now calls planner.py by default.
+- Manual query_type and tool params are still supported for debugging and tests.
+- The Generator should consume Evidence Pack instead of raw tool outputs.
 """
 
 from __future__ import annotations
@@ -23,6 +27,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any
 
+from seismosearch.planner import plan_query
 from seismosearch.tools import (
     event_search_tool,
     event_statistics_tool,
@@ -45,23 +50,14 @@ def make_query_id(prefix: str = "query") -> str:
 
 def infer_query_type(user_query: str, safety_result: dict[str, Any]) -> str:
     """
-    Infer a coarse query type.
+    Fallback query-type inference.
 
-    This is a lightweight placeholder before we implement router.py.
-
-    Current query types:
-    - safety: future earthquake prediction or unsafe request;
-    - catalog: structured historical earthquake event query;
-    - concept: concept explanation query;
-    - mixed: event query plus concept explanation.
-
-    The current heuristic is intentionally simple and should later be replaced
-    by a real Query Router.
+    This function is kept for backward compatibility.
+    The preferred path is now planner.plan_query().
     """
     safety_labels = safety_result.get("safety_labels", {})
     prediction_inducement = safety_labels.get("prediction_inducement", False)
 
-    # Safety has priority over other query types.
     if prediction_inducement:
         return "safety"
 
@@ -72,7 +68,6 @@ def infer_query_type(user_query: str, safety_result: dict[str, Any]) -> str:
         "earthquake",
         "magnitude",
         "震级",
-        "m",
         "m6",
         "m7",
         "最近",
@@ -95,7 +90,6 @@ def infer_query_type(user_query: str, safety_result: dict[str, Any]) -> str:
     has_event_intent = any(keyword.lower() in query_lower for keyword in event_keywords)
     has_concept_intent = any(keyword.lower() in query_lower for keyword in concept_keywords)
 
-    # If the query asks for both events and explanation, treat it as mixed.
     if has_event_intent and has_concept_intent:
         return "mixed"
 
@@ -105,8 +99,6 @@ def infer_query_type(user_query: str, safety_result: dict[str, Any]) -> str:
     if has_concept_intent:
         return "concept"
 
-    # Default to concept because pure free-form questions are more likely to
-    # need document retrieval later.
     return "concept"
 
 
@@ -136,7 +128,6 @@ def build_event_evidence(search_result: dict[str, Any] | None) -> list[dict[str,
     event_evidence: list[dict[str, Any]] = []
 
     for rank, event in enumerate(events, start=1):
-        # Keep a stable evidence_id so generator and evaluator can cite it.
         evidence_item = {
             "evidence_id": f"event_{rank:03d}",
             "evidence_type": "earthquake_event",
@@ -242,41 +233,106 @@ def build_answer_constraints(
     return constraints
 
 
+def resolve_planner_output(
+    user_query: str,
+    planner_output: dict[str, Any] | None,
+    use_planner: bool,
+) -> dict[str, Any] | None:
+    """
+    Resolve planner output.
+
+    If caller provides planner_output, use it directly.
+    Otherwise, call plan_query() when use_planner is True.
+    """
+    if planner_output is not None:
+        return planner_output
+
+    if use_planner:
+        return plan_query(user_query)
+
+    return None
+
+
+def build_router_output(
+    resolved_query_type: str,
+    planner_output: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Build router/planner metadata for Evidence Pack."""
+    if planner_output is not None:
+        return {
+            "query_type": resolved_query_type,
+            "router_version": planner_output.get("planner_version"),
+            "planner_output": planner_output,
+            "notes": [
+                "Query type and tool parameters were resolved through planner.py."
+            ],
+        }
+
+    return {
+        "query_type": resolved_query_type,
+        "router_version": "heuristic_0.1.0",
+        "notes": [
+            "Planner was disabled or not provided; query type was resolved by fallback heuristic."
+        ],
+    }
+
+
 def build_evidence_pack(
     user_query: str,
     query_id: str | None = None,
     query_type: str | None = None,
     event_search_params: dict[str, Any] | None = None,
     event_statistics_params: dict[str, Any] | None = None,
+    planner_output: dict[str, Any] | None = None,
+    use_planner: bool = True,
 ) -> dict[str, Any]:
     """
     Build an Evidence Pack for one user query.
 
+    Preferred usage:
+        build_evidence_pack(user_query="最近 M6.5 以上地震有哪些？")
+
+    Debugging / test usage:
+        build_evidence_pack(
+            user_query="最近 M6.5 以上地震有哪些？",
+            query_type="catalog",
+            event_search_params={...},
+            event_statistics_params={...},
+        )
+
     Parameters:
     - user_query: original user question;
     - query_id: optional external query ID;
-    - query_type: optional pre-routed query type;
-    - event_search_params: optional parameters for event_search_tool;
-    - event_statistics_params: optional parameters for event_statistics_tool.
-
-    This function currently supports event and safety evidence.
-    Document evidence will be added after doc_retriever.py is implemented.
+    - query_type: optional manual query type override;
+    - event_search_params: optional manual event_search_tool params override;
+    - event_statistics_params: optional manual event_statistics_tool params override;
+    - planner_output: optional precomputed planner output;
+    - use_planner: whether to call planner.py automatically.
     """
     query_id = query_id or make_query_id()
 
-    # Always run safety check first.
+    resolved_planner_output = resolve_planner_output(
+        user_query=user_query,
+        planner_output=planner_output,
+        use_planner=use_planner,
+    )
+
+    # Always run safety check.
+    # The planner is used for routing and tool parameters, while safety_check_tool
+    # is still recorded as explicit safety evidence.
     safety_result = safety_check_tool(user_query)
 
-    # Use provided query_type if available; otherwise use placeholder inference.
-    resolved_query_type = query_type or infer_query_type(user_query, safety_result)
+    if query_type is not None:
+        resolved_query_type = query_type
+    elif resolved_planner_output is not None:
+        resolved_query_type = resolved_planner_output.get("query_type", "concept")
+    else:
+        resolved_query_type = infer_query_type(user_query, safety_result)
 
-    router_output = {
-        "query_type": resolved_query_type,
-        "router_version": "heuristic_0.1.0",
-        "notes": [
-            "This router output is produced by a lightweight heuristic placeholder."
-        ],
-    }
+    router_output = build_router_output(
+        resolved_query_type=resolved_query_type,
+        planner_output=resolved_planner_output,
+    )
 
     tool_calls: list[dict[str, Any]] = [
         build_tool_call_record("safety_check", safety_result)
@@ -287,13 +343,27 @@ def build_evidence_pack(
 
     warnings: list[str] = []
 
-    # Safety questions should not trigger event search by default.
-    # They should first produce answer constraints.
+    if resolved_planner_output is not None:
+        warnings.extend(resolved_planner_output.get("warnings", []))
+
+    # Manual parameters have priority.
+    # If manual parameters are not provided, use planner-generated parameters.
+    resolved_event_search_params = event_search_params
+    resolved_event_statistics_params = event_statistics_params
+
+    if resolved_event_search_params is None and resolved_planner_output is not None:
+        resolved_event_search_params = resolved_planner_output.get("event_search_params")
+
+    if resolved_event_statistics_params is None and resolved_planner_output is not None:
+        resolved_event_statistics_params = resolved_planner_output.get(
+            "event_statistics_params"
+        )
+
     should_run_event_tools = resolved_query_type in {"catalog", "mixed"}
 
     if should_run_event_tools:
-        search_params = event_search_params or {}
-        statistics_params = event_statistics_params or {}
+        search_params = resolved_event_search_params or {}
+        statistics_params = resolved_event_statistics_params or {}
 
         search_result = event_search_tool(**search_params)
         statistics_result = event_statistics_tool(**statistics_params)
@@ -303,6 +373,11 @@ def build_evidence_pack(
 
         warnings.extend(search_result.get("warnings", []))
         warnings.extend(statistics_result.get("warnings", []))
+
+    doc_retrieval_queries: list[str] = []
+
+    if resolved_planner_output is not None:
+        doc_retrieval_queries = resolved_planner_output.get("doc_retrieval_queries", [])
 
     if resolved_query_type in {"concept", "mixed"}:
         warnings.append("doc_retrieval_not_implemented_yet")
@@ -338,4 +413,9 @@ def build_evidence_pack(
         "warnings": warnings,
     }
 
+    # Keep retrieval rewrites visible even before doc_retriever.py is implemented.
+    # This allows evaluator and future pipeline tests to inspect query rewrite behavior.
+    evidence_pack["doc_retrieval_queries"] = doc_retrieval_queries
+
     return evidence_pack
+
