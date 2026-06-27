@@ -1,0 +1,335 @@
+"""
+Event store for SeismoSearch.
+
+This module provides a typed access layer over the DuckDB `events` table.
+
+It is responsible for:
+- searching historical earthquake events;
+- filtering by time, magnitude, depth, and bounding box;
+- returning normalized event dictionaries;
+- computing basic event statistics.
+
+This module does NOT perform earthquake prediction.
+It only queries already recorded earthquake catalog events.
+"""
+
+from __future__ import annotations
+
+from datetime import date, datetime
+from pathlib import Path
+from typing import Any
+
+import duckdb
+
+
+DEFAULT_DB_PATH = Path("data/duckdb/seismosearch.duckdb")
+DEFAULT_TABLE_NAME = "events"
+
+
+class EventStore:
+    """DuckDB-backed event store for normalized earthquake catalog records."""
+
+    def __init__(
+        self,
+        db_path: str | Path = DEFAULT_DB_PATH,
+        table_name: str = DEFAULT_TABLE_NAME,
+    ) -> None:
+        """Initialize the event store with a DuckDB path and table name."""
+        self.db_path = Path(db_path)
+        self.table_name = self._validate_table_name(table_name)
+
+        if not self.db_path.exists():
+            raise FileNotFoundError(
+                f"DuckDB database does not exist: {self.db_path}. "
+                "Run scripts/build_event_db.py first."
+            )
+
+    @staticmethod
+    def _validate_table_name(table_name: str) -> str:
+        """Validate table name to avoid unsafe SQL interpolation."""
+        if not table_name:
+            raise ValueError("table_name must not be empty.")
+
+        if not table_name.replace("_", "").isalnum():
+            raise ValueError(f"Unsafe table name: {table_name}")
+
+        return table_name
+
+    @staticmethod
+    def _normalize_value(value: Any) -> Any:
+        """Convert DuckDB/Python values into JSON-friendly values."""
+        if isinstance(value, datetime):
+            return value.isoformat()
+
+        if isinstance(value, date):
+            return value.isoformat()
+
+        return value
+
+    def _connect(self) -> duckdb.DuckDBPyConnection:
+        """Open a DuckDB connection."""
+        return duckdb.connect(str(self.db_path), read_only=True)
+
+    def _fetch_dicts(
+        self,
+        connection: duckdb.DuckDBPyConnection,
+        sql: str,
+        params: list[Any] | None = None,
+    ) -> list[dict[str, Any]]:
+        """Execute SQL and return rows as dictionaries."""
+        result = connection.execute(sql, params or [])
+
+        column_names = [column[0] for column in result.description]
+        rows = result.fetchall()
+
+        records: list[dict[str, Any]] = []
+
+        for row in rows:
+            record = {
+                column_name: self._normalize_value(value)
+                for column_name, value in zip(column_names, row)
+            }
+            records.append(record)
+
+        return records
+
+    def get_event_by_id(self, event_id: str) -> dict[str, Any] | None:
+        """Return one event by its internal event_id."""
+        sql = f"""
+        SELECT *
+        FROM {self.table_name}
+        WHERE event_id = ?
+        LIMIT 1
+        """
+
+        with self._connect() as connection:
+            rows = self._fetch_dicts(connection, sql, [event_id])
+
+        return rows[0] if rows else None
+
+    def search_events(
+        self,
+        start_time: str | None = None,
+        end_time: str | None = None,
+        min_magnitude: float | None = None,
+        max_magnitude: float | None = None,
+        min_depth_km: float | None = None,
+        max_depth_km: float | None = None,
+        min_latitude: float | None = None,
+        max_latitude: float | None = None,
+        min_longitude: float | None = None,
+        max_longitude: float | None = None,
+        event_type: str | None = "earthquake",
+        reviewed_only: bool | None = None,
+        order_by: str = "event_time_utc",
+        descending: bool = True,
+        limit: int = 20,
+    ) -> list[dict[str, Any]]:
+        """Search historical earthquake events with structured filters."""
+        if limit <= 0:
+            raise ValueError("limit must be positive.")
+
+        allowed_order_by = {
+            "event_time_utc",
+            "magnitude",
+            "depth_km",
+            "significance",
+        }
+
+        if order_by not in allowed_order_by:
+            raise ValueError(f"Unsupported order_by field: {order_by}")
+
+        where_clauses: list[str] = []
+        params: list[Any] = []
+
+        if start_time is not None:
+            where_clauses.append("event_time_utc >= ?")
+            params.append(start_time)
+
+        if end_time is not None:
+            where_clauses.append("event_time_utc <= ?")
+            params.append(end_time)
+
+        if min_magnitude is not None:
+            where_clauses.append("magnitude >= ?")
+            params.append(min_magnitude)
+
+        if max_magnitude is not None:
+            where_clauses.append("magnitude <= ?")
+            params.append(max_magnitude)
+
+        if min_depth_km is not None:
+            where_clauses.append("depth_km >= ?")
+            params.append(min_depth_km)
+
+        if max_depth_km is not None:
+            where_clauses.append("depth_km <= ?")
+            params.append(max_depth_km)
+
+        if min_latitude is not None:
+            where_clauses.append("latitude >= ?")
+            params.append(min_latitude)
+
+        if max_latitude is not None:
+            where_clauses.append("latitude <= ?")
+            params.append(max_latitude)
+
+        if min_longitude is not None:
+            where_clauses.append("longitude >= ?")
+            params.append(min_longitude)
+
+        if max_longitude is not None:
+            where_clauses.append("longitude <= ?")
+            params.append(max_longitude)
+
+        if event_type is not None:
+            where_clauses.append("event_type = ?")
+            params.append(event_type)
+
+        if reviewed_only is True:
+            where_clauses.append("is_reviewed = TRUE")
+
+        if reviewed_only is False:
+            where_clauses.append("(is_reviewed = FALSE OR is_reviewed IS NULL)")
+
+        where_sql = " AND ".join(where_clauses) if where_clauses else "TRUE"
+        direction_sql = "DESC" if descending else "ASC"
+
+        sql = f"""
+        SELECT
+            event_id,
+            source,
+            source_event_id,
+            event_time_utc,
+            updated_time_utc,
+            event_date_utc,
+            longitude,
+            latitude,
+            depth_km,
+            place,
+            region,
+            country,
+            magnitude,
+            magnitude_type,
+            event_type,
+            status,
+            is_reviewed,
+            alert,
+            tsunami,
+            significance,
+            source_url,
+            detail_url,
+            data_quality_note
+        FROM {self.table_name}
+        WHERE {where_sql}
+        ORDER BY {order_by} {direction_sql} NULLS LAST
+        LIMIT ?
+        """
+
+        params.append(limit)
+
+        with self._connect() as connection:
+            return self._fetch_dicts(connection, sql, params)
+
+    def count_events(
+        self,
+        start_time: str | None = None,
+        end_time: str | None = None,
+        min_magnitude: float | None = None,
+        event_type: str | None = "earthquake",
+    ) -> int:
+        """Count events matching common catalog filters."""
+        where_clauses: list[str] = []
+        params: list[Any] = []
+
+        if start_time is not None:
+            where_clauses.append("event_time_utc >= ?")
+            params.append(start_time)
+
+        if end_time is not None:
+            where_clauses.append("event_time_utc <= ?")
+            params.append(end_time)
+
+        if min_magnitude is not None:
+            where_clauses.append("magnitude >= ?")
+            params.append(min_magnitude)
+
+        if event_type is not None:
+            where_clauses.append("event_type = ?")
+            params.append(event_type)
+
+        where_sql = " AND ".join(where_clauses) if where_clauses else "TRUE"
+
+        sql = f"""
+        SELECT COUNT(*) AS event_count
+        FROM {self.table_name}
+        WHERE {where_sql}
+        """
+
+        with self._connect() as connection:
+            result = connection.execute(sql, params).fetchone()
+
+        return int(result[0])
+
+    def get_magnitude_summary(
+        self,
+        start_time: str | None = None,
+        end_time: str | None = None,
+        event_type: str | None = "earthquake",
+    ) -> dict[str, Any]:
+        """Return basic magnitude statistics for matching events."""
+        where_clauses: list[str] = []
+        params: list[Any] = []
+
+        if start_time is not None:
+            where_clauses.append("event_time_utc >= ?")
+            params.append(start_time)
+
+        if end_time is not None:
+            where_clauses.append("event_time_utc <= ?")
+            params.append(end_time)
+
+        if event_type is not None:
+            where_clauses.append("event_type = ?")
+            params.append(event_type)
+
+        where_sql = " AND ".join(where_clauses) if where_clauses else "TRUE"
+
+        sql = f"""
+        SELECT
+            COUNT(*) AS event_count,
+            MIN(magnitude) AS min_magnitude,
+            MAX(magnitude) AS max_magnitude,
+            AVG(magnitude) AS avg_magnitude
+        FROM {self.table_name}
+        WHERE {where_sql}
+        """
+
+        with self._connect() as connection:
+            row = connection.execute(sql, params).fetchone()
+
+        return {
+            "event_count": int(row[0]),
+            "min_magnitude": self._normalize_value(row[1]),
+            "max_magnitude": self._normalize_value(row[2]),
+            "avg_magnitude": self._normalize_value(row[3]),
+        }
+
+    def get_time_range(self) -> dict[str, Any]:
+        """Return the event time range available in the database."""
+        sql = f"""
+        SELECT
+            MIN(event_time_utc) AS min_event_time_utc,
+            MAX(event_time_utc) AS max_event_time_utc,
+            COUNT(*) AS event_count
+        FROM {self.table_name}
+        """
+
+        with self._connect() as connection:
+            row = connection.execute(sql).fetchone()
+
+        return {
+            "min_event_time_utc": self._normalize_value(row[0]),
+            "max_event_time_utc": self._normalize_value(row[1]),
+            "event_count": int(row[2]),
+        }
