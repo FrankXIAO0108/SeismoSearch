@@ -13,6 +13,7 @@ The generator must:
 - use only evidence contained in the Evidence Pack;
 - respect answer_constraints;
 - refuse future earthquake prediction requests;
+- correct pseudoscience earthquake-prediction claims;
 - state sample limitations for catalog answers;
 - cite event evidence when using event facts;
 - cite document evidence when using document facts;
@@ -43,7 +44,9 @@ def _format_float(value: Any, digits: int = 3, fallback: str = "unknown") -> str
         return str(value)
 
 
-def _get_first_computed_statistics(evidence_pack: dict[str, Any]) -> dict[str, Any] | None:
+def _get_first_computed_statistics(
+    evidence_pack: dict[str, Any],
+) -> dict[str, Any] | None:
     """Return the first computed statistics block, if available."""
     computed_evidence = evidence_pack.get("computed_evidence", [])
 
@@ -93,10 +96,9 @@ def _render_catalog_answer(evidence_pack: dict[str, Any]) -> str:
 
     lines.append(f"针对你的问题：{user_query}")
     lines.append("")
-
-    # Catalog answers must explicitly state that the answer is based on the
-    # current local sample, not a full global catalog.
-    lines.append("根据当前本地样例库检索，结果如下。注意：这不是完整全球地震目录统计，不能表述为全球全部结果。")
+    lines.append(
+        "根据当前本地样例库检索，结果如下。注意：这不是完整全球地震目录统计，不能表述为全球全部结果。"
+    )
     lines.append("")
 
     if statistics is not None:
@@ -139,28 +141,48 @@ def _render_catalog_answer(evidence_pack: dict[str, Any]) -> str:
 
 
 def _render_safety_answer(evidence_pack: dict[str, Any]) -> str:
-    """Render a safe answer for future earthquake prediction requests."""
+    """Render a safe answer for future earthquake prediction or pseudoscience requests."""
     user_query = evidence_pack.get("user_query", "")
     safety_evidence = evidence_pack.get("safety_evidence", {})
     safety_labels = safety_evidence.get("safety_labels", {})
+
     matched_keywords = safety_labels.get("matched_keywords", [])
+    is_pseudoscience = safety_labels.get("pseudoscience_prediction_claim", False)
 
     lines: list[str] = []
 
     lines.append(f"针对你的问题：{user_query}")
     lines.append("")
-    lines.append("我不能预测某个具体地点在未来某一天是否会发生大地震，也不能把历史地震记录当成未来地震的确定性判断依据。")
+
+    if is_pseudoscience:
+        lines.append(
+            "不能把动物异常、地震云、所谓预兆或其他异常现象当作可靠的地震预测依据。"
+        )
+        lines.append(
+            "当前系统不能预测某地是否马上会发生地震，也不应该根据这类现象判断未来具体地震风险。"
+        )
+        lines.append(
+            "这类问题属于伪科学预测诱导：它试图用不可靠信号推断未来具体地震风险。"
+        )
+    else:
+        lines.append(
+            "我不能预测某个具体地点在未来某一天是否会发生大地震，"
+            "也不能把历史地震记录当成未来地震的确定性判断依据。"
+        )
 
     if matched_keywords:
-        lines.append(f"这个问题被识别为未来地震预测类请求，触发关键词包括：{matched_keywords}。")
+        lines.append(f"这个问题触发的安全关键词包括：{matched_keywords}。")
 
     lines.append("")
     lines.append("更安全、可用的替代方向是：")
     lines.append("- 查看官方地震监测机构发布的实时地震信息和预警信息；")
     lines.append("- 了解当地应急避难场所、家庭应急包和建筑抗震安全建议；")
-    lines.append("- 如果你关心东京附近历史地震活动，可以改问“东京附近过去一年 M5+ 地震有哪些？”。")
+    lines.append("- 如果你关心某地历史地震活动，可以改问“某地附近过去一年 M5+ 地震有哪些？”。")
     lines.append("")
-    lines.append("当前回答遵守 Evidence Pack 中的安全约束：不预测未来具体地震，只提供风险沟通和安全替代建议。")
+    lines.append(
+        "当前回答遵守 Evidence Pack 中的安全约束：不预测未来具体地震，"
+        "不确认伪科学预兆，只提供风险沟通和安全替代建议。"
+    )
 
     return "\n".join(lines)
 
@@ -181,7 +203,6 @@ def _render_concept_answer(evidence_pack: dict[str, Any]) -> str:
     lines.append(f"针对你的问题：{user_query}")
     lines.append("")
 
-    # If document retrieval failed or returned nothing, keep conservative behavior.
     if not doc_evidence:
         lines.append("当前 Evidence Pack 中没有 doc_evidence。")
         lines.append("为了避免无依据生成，这一版 Generator 不会编造地震学概念解释。")
@@ -195,9 +216,6 @@ def _render_concept_answer(evidence_pack: dict[str, Any]) -> str:
     lines.append("根据当前检索到的文档证据，可以回答如下：")
     lines.append("")
 
-    # First deterministic version:
-    # Use the top retrieved chunk as the main evidence.
-    # This is intentionally simple and testable before adding LLM generation.
     top_doc = doc_evidence[0]
     top_doc_id = _as_text(top_doc.get("evidence_id"))
     top_text = _as_text(top_doc.get("text"), fallback="")
@@ -208,7 +226,6 @@ def _render_concept_answer(evidence_pack: dict[str, Any]) -> str:
     lines.append("引用证据：")
     lines.append(_format_doc_item(top_doc))
 
-    # If more evidence exists, list it as supporting evidence without expanding it.
     if len(doc_evidence) > 1:
         lines.append("")
         lines.append("其他候选文档证据：")
@@ -241,7 +258,7 @@ def _render_mixed_answer(evidence_pack: dict[str, Any]) -> str:
 
 
 def _collect_used_evidence_ids(evidence_pack: dict[str, Any]) -> list[str]:
-    """Collect all evidence IDs used by the deterministic generator."""
+    """Collect all evidence IDs available to the deterministic generator."""
     used_evidence_ids: list[str] = []
 
     for item in evidence_pack.get("event_evidence", []):
@@ -279,8 +296,6 @@ def generate_answer(evidence_pack: dict[str, Any]) -> dict[str, Any]:
     query_type = evidence_pack.get("query_type")
     answer_constraints = evidence_pack.get("answer_constraints", {})
 
-    # Hard safety gate: if the Evidence Pack says not to predict future
-    # earthquakes, always use the safety answer path.
     if answer_constraints.get("must_not_predict_future_earthquakes") is True:
         answer = _render_safety_answer(evidence_pack)
     elif query_type == "catalog":
@@ -290,9 +305,7 @@ def generate_answer(evidence_pack: dict[str, Any]) -> dict[str, Any]:
     elif query_type == "concept":
         answer = _render_concept_answer(evidence_pack)
     else:
-        answer = (
-            "当前 Evidence Pack 的 query_type 无法识别，因此不能生成可靠回答。"
-        )
+        answer = "当前 Evidence Pack 的 query_type 无法识别，因此不能生成可靠回答。"
 
     used_evidence_ids = _collect_used_evidence_ids(evidence_pack)
 

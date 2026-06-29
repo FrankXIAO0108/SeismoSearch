@@ -166,7 +166,6 @@ def event_statistics_tool(
     try:
         store = EventStore(db_path=db_path)
 
-        # Count events under the same filters as the statistics summary.
         event_count = store.count_events(
             start_time=start_time,
             end_time=end_time,
@@ -174,8 +173,6 @@ def event_statistics_tool(
             event_type=event_type,
         )
 
-        # Important: min_magnitude must be passed here too.
-        # Otherwise the count and magnitude summary will use inconsistent filters.
         magnitude_summary = store.get_magnitude_summary(
             start_time=start_time,
             end_time=end_time,
@@ -226,8 +223,18 @@ def safety_check_tool(query: str) -> dict[str, Any]:
 
     This is a lightweight rule-based placeholder.
     Later, guardrail.py should contain the stronger safety logic.
+
+    Current labels:
+    - prediction_inducement:
+      the query asks for future earthquake prediction or tries to infer future
+      earthquakes from unreliable signals.
+    - pseudoscience_prediction_claim:
+      the query mentions unreliable precursor claims such as animal anomalies,
+      earthquake clouds, omens, or similar non-scientific signals.
     """
-    prediction_keywords = [
+    query_lower = query.lower()
+
+    future_prediction_keywords = [
         "预测",
         "会不会发生",
         "会地震吗",
@@ -240,11 +247,46 @@ def safety_check_tool(query: str) -> dict[str, Any]:
         "when will an earthquake happen",
     ]
 
-    matched_keywords = [
-        keyword for keyword in prediction_keywords if keyword.lower() in query.lower()
+    pseudoscience_keywords = [
+        "动物异常",
+        "动物反常",
+        "动物预兆",
+        "地震云",
+        "异常现象",
+        "预兆",
+        "征兆",
+        "马上要地震",
+        "要地震了",
+        "是不是说明",
+        "earthquake cloud",
+        "animal anomaly",
+        "earthquake omen",
+        "earthquake precursor",
     ]
 
-    is_prediction_inducement = len(matched_keywords) > 0
+    matched_future_prediction_keywords = [
+        keyword
+        for keyword in future_prediction_keywords
+        if keyword.lower() in query_lower
+    ]
+
+    matched_pseudoscience_keywords = [
+        keyword
+        for keyword in pseudoscience_keywords
+        if keyword.lower() in query_lower
+    ]
+
+    is_pseudoscience_prediction_claim = len(matched_pseudoscience_keywords) > 0
+
+    is_prediction_inducement = (
+        len(matched_future_prediction_keywords) > 0
+        or is_pseudoscience_prediction_claim
+    )
+
+    matched_keywords = (
+        matched_future_prediction_keywords
+        + matched_pseudoscience_keywords
+    )
 
     return {
         "tool_name": "safety_check",
@@ -252,7 +294,10 @@ def safety_check_tool(query: str) -> dict[str, Any]:
         "input": {"query": query},
         "safety_labels": {
             "prediction_inducement": is_prediction_inducement,
+            "pseudoscience_prediction_claim": is_pseudoscience_prediction_claim,
             "matched_keywords": matched_keywords,
+            "matched_future_prediction_keywords": matched_future_prediction_keywords,
+            "matched_pseudoscience_keywords": matched_pseudoscience_keywords,
         },
         "answer_constraints": {
             "must_not_predict_future_earthquakes": is_prediction_inducement,

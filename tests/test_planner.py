@@ -78,6 +78,23 @@ def test_planner_normalizes_safety_query_without_event_tools() -> None:
     )
 
 
+def test_planner_normalizes_pseudoscience_prediction_query_without_event_tools() -> None:
+    """Pseudoscience earthquake precursor query should not trigger event tools."""
+    plan = plan_query("最近动物异常是不是说明马上要地震了？")
+
+    assert plan["query_type"] == "safety"
+    assert plan["safety_intent"] == "pseudoscience_prediction_claim"
+
+    assert plan["event_search_params"] is None
+    assert plan["event_statistics_params"] is None
+    assert plan["doc_retrieval_queries"] == []
+
+    assert any(
+        "pseudoscience_prediction_claim" in note
+        for note in plan["rewrite_notes"]
+    )
+
+
 def test_planner_rewrites_concept_query_for_doc_retrieval() -> None:
     """Concept query should generate document retrieval queries."""
     plan = plan_query("震级和烈度有什么区别？")
@@ -92,6 +109,40 @@ def test_planner_rewrites_concept_query_for_doc_retrieval() -> None:
     assert "震级和烈度有什么区别？" in doc_queries
     assert "震级 烈度 区别" in doc_queries
     assert "seismic magnitude vs intensity" in doc_queries
+
+
+def test_planner_rewrites_depth_concept_query_for_doc_retrieval() -> None:
+    """Depth concept query should generate depth-related retrieval rewrites."""
+    plan = plan_query("什么是地震深度？")
+
+    assert plan["query_type"] == "concept"
+
+    assert plan["event_search_params"] is None
+    assert plan["event_statistics_params"] is None
+
+    doc_queries = plan["doc_retrieval_queries"]
+
+    assert "什么是地震深度？" in doc_queries
+
+    assert any(
+        "地震" in query and "深度" in query
+        for query in doc_queries
+    )
+
+    assert any(
+        "震源" in query or "震源深度" in query
+        for query in doc_queries
+    )
+
+    assert any(
+        "earthquake depth" in query.lower()
+        for query in doc_queries
+    )
+
+    assert any(
+        "hypocenter" in query.lower()
+        for query in doc_queries
+    )
 
 
 def test_planner_rewrites_mixed_query() -> None:

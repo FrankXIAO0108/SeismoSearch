@@ -22,9 +22,12 @@ The planner currently supports three types of query rewrite:
       ]
 
 3. Safety-intent normalization
-   Example:
+   Examples:
    "明天东京会不会发生大地震？"
    -> query_type="safety", safety_intent="future_specific_earthquake_prediction"
+
+   "最近动物异常是不是说明马上要地震了？"
+   -> query_type="safety", safety_intent="pseudoscience_prediction_claim"
 
 This first version is deterministic and rule-based.
 It does NOT call an LLM.
@@ -122,16 +125,24 @@ def parse_year_range(user_query: str) -> tuple[str | None, str | None, list[str]
 
 def detect_safety_intent(user_query: str) -> tuple[str | None, list[str]]:
     """
-    Detect future-specific earthquake prediction requests.
+    Detect unsafe earthquake prediction or pseudoscience-prediction requests.
 
-    This is safety-intent normalization, not factual answering.
+    This function is safety-intent normalization, not factual answering.
 
     If triggered, downstream tools should NOT use historical event search to
     imply a future earthquake prediction.
+
+    Supported safety intents:
+    - future_specific_earthquake_prediction:
+      direct requests about whether / when a future earthquake will happen.
+    - pseudoscience_prediction_claim:
+      requests that try to infer future earthquakes from unreliable signs such
+      as animal anomalies, earthquake clouds, omens, or other non-scientific
+      signals.
     """
     notes: list[str] = []
 
-    safety_patterns = [
+    future_prediction_patterns = [
         "明天.*会不会.*地震",
         "明天.*会不会发生.*地震",
         "未来.*会不会.*地震",
@@ -144,9 +155,40 @@ def detect_safety_intent(user_query: str) -> tuple[str | None, list[str]]:
         "earthquake prediction",
     ]
 
-    for pattern in safety_patterns:
+    for pattern in future_prediction_patterns:
         if re.search(pattern, user_query, flags=re.IGNORECASE):
             safety_intent = "future_specific_earthquake_prediction"
+            notes.append(
+                f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
+            )
+            return safety_intent, notes
+
+    pseudoscience_patterns = [
+        "动物异常.*地震",
+        "动物反常.*地震",
+        "动物.*异常.*地震",
+        "动物.*反常.*地震",
+        "动物.*预兆.*地震",
+        "地震云.*地震",
+        "地震云.*说明",
+        "地震云.*预示",
+        "异常现象.*地震",
+        "预兆.*地震",
+        "征兆.*地震",
+        "是不是说明.*要地震",
+        "是不是说明.*马上.*地震",
+        "说明.*马上.*地震",
+        "马上要地震",
+        "要地震了",
+        "earthquake cloud",
+        "animal.*earthquake",
+        "earthquake omen",
+        "earthquake precursor",
+    ]
+
+    for pattern in pseudoscience_patterns:
+        if re.search(pattern, user_query, flags=re.IGNORECASE):
+            safety_intent = "pseudoscience_prediction_claim"
             notes.append(
                 f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
             )
@@ -204,8 +246,11 @@ def has_concept_intent(user_query: str) -> bool:
         "why",
         "震级和烈度",
         "烈度",
+        "地震深度",
+        "震源深度",
         "magnitude vs intensity",
         "seismic intensity",
+        "earthquake depth",
     ]
 
     query_lower = user_query.lower()
@@ -288,7 +333,7 @@ def build_event_params(
 
 def build_doc_retrieval_queries(user_query: str) -> tuple[list[str], list[str]]:
     """
-    Build retrieval-oriented query rewrites for future doc_retriever.py.
+    Build retrieval-oriented query rewrites for doc_retriever.py.
 
     The first query remains close to the user query.
     Additional queries expand domain terms in Chinese and English.
@@ -313,10 +358,13 @@ def build_doc_retrieval_queries(user_query: str) -> tuple[list[str], list[str]]:
         queries.append("震级 烈度 区别")
         queries.append("seismic magnitude vs intensity")
 
+    if "深度" in user_query or "depth" in query_lower:
+        queries.append("地震 深度 震源深度")
+        queries.append("earthquake depth hypocenter depth")
+
     if "海啸" in user_query or "tsunami" in query_lower:
         queries.append("earthquake tsunami warning explanation")
 
-    # Remove duplicates while preserving order.
     deduplicated_queries = list(dict.fromkeys(queries))
 
     if len(deduplicated_queries) > 1:
@@ -396,7 +444,6 @@ def plan_query(
     event_statistics_params: dict[str, Any] | None = None
     doc_retrieval_queries: list[str] = []
 
-    # Safety questions should not trigger historical event search by default.
     if query_type in {"catalog", "mixed"}:
         event_search_params, event_statistics_params, event_notes = build_event_params(
             user_query=normalized_query,
