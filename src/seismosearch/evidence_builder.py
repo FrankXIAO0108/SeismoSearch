@@ -19,6 +19,8 @@ Important design choice:
 - The Evidence Builder now calls planner.py by default.
 - Manual query_type and tool params are still supported for debugging and tests.
 - The Generator should consume Evidence Pack instead of raw tool outputs.
+- Document retrieval is now connected through doc_retriever.py for concept
+  and mixed queries.
 """
 
 from __future__ import annotations
@@ -27,6 +29,8 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any
 
+# 新增：Evidence Builder 需要调用 doc_retriever，把文档检索结果转成 doc_evidence。
+from seismosearch.doc_retriever import retrieve_docs
 from seismosearch.planner import plan_query
 from seismosearch.tools import (
     event_search_tool,
@@ -180,6 +184,60 @@ def build_computed_evidence(
             "warnings": statistics_result.get("warnings", []),
         }
     ]
+
+
+def build_doc_evidence(
+    doc_result: dict[str, Any] | None,
+) -> list[dict[str, Any]]:
+    """
+    Convert doc_retriever output into Evidence Pack doc_evidence.
+
+    doc_retriever.py returns raw retrieval chunks.
+    Evidence Builder converts those chunks into stable, citation-friendly
+    evidence items for the Generator and future Evaluator.
+    """
+    # 如果这次 query 没有走文档检索，就没有 doc evidence。
+    if doc_result is None:
+        return []
+
+    # 如果文档检索工具失败，不把失败结果伪装成证据。
+    if doc_result.get("status") != "ok":
+        return []
+
+    # retrieve_docs() 返回的候选 chunk 列表。
+    chunks = doc_result.get("chunks", [])
+
+    # 防御性检查，避免异常数据结构进入 Evidence Pack。
+    if not isinstance(chunks, list):
+        return []
+
+    doc_evidence: list[dict[str, Any]] = []
+
+    for rank, chunk in enumerate(chunks, start=1):
+        evidence_item = {
+            # 稳定证据 ID，Generator 后面用 [doc_001] 这样的形式引用。
+            "evidence_id": f"doc_{rank:03d}",
+
+            # 明确这是文档 chunk 证据。
+            "evidence_type": "document_chunk",
+
+            # 检索排序位置。
+            "rank": rank,
+
+            # 原始 chunk 信息，来自 doc_retriever.py。
+            "chunk_id": chunk.get("chunk_id"),
+            "source_path": chunk.get("source_path"),
+            "source_type": chunk.get("source_type"),
+            "doc_title": chunk.get("doc_title"),
+            "heading": chunk.get("heading"),
+            "text": chunk.get("text"),
+            "score": chunk.get("score"),
+            "matched_terms": chunk.get("matched_terms", []),
+        }
+
+        doc_evidence.append(evidence_item)
+
+    return doc_evidence
 
 
 def build_safety_evidence(safety_result: dict[str, Any]) -> dict[str, Any]:
@@ -340,6 +398,7 @@ def build_evidence_pack(
 
     search_result: dict[str, Any] | None = None
     statistics_result: dict[str, Any] | None = None
+    doc_result: dict[str, Any] | None = None
 
     warnings: list[str] = []
 
@@ -379,15 +438,21 @@ def build_evidence_pack(
     if resolved_planner_output is not None:
         doc_retrieval_queries = resolved_planner_output.get("doc_retrieval_queries", [])
 
-    if resolved_query_type in {"concept", "mixed"}:
-        warnings.append("doc_retrieval_not_implemented_yet")
+    should_run_doc_retrieval = resolved_query_type in {"concept", "mixed"}
+
+    if should_run_doc_retrieval:
+        doc_result = retrieve_docs(
+            queries=doc_retrieval_queries or [user_query],
+            top_k=5,
+        )
+
+        tool_calls.append(build_tool_call_record("doc_retrieval", doc_result))
+
+        warnings.extend(doc_result.get("warnings", []))
 
     event_evidence = build_event_evidence(search_result)
     computed_evidence = build_computed_evidence(statistics_result)
-
-    # Document evidence is intentionally empty until doc_retriever.py is implemented.
-    doc_evidence: list[dict[str, Any]] = []
-
+    doc_evidence = build_doc_evidence(doc_result)
     safety_evidence = build_safety_evidence(safety_result)
 
     answer_constraints = build_answer_constraints(
@@ -413,9 +478,7 @@ def build_evidence_pack(
         "warnings": warnings,
     }
 
-    # Keep retrieval rewrites visible even before doc_retriever.py is implemented.
-    # This allows evaluator and future pipeline tests to inspect query rewrite behavior.
+    # Keep retrieval rewrites visible for evaluator and pipeline tests.
     evidence_pack["doc_retrieval_queries"] = doc_retrieval_queries
 
     return evidence_pack
-

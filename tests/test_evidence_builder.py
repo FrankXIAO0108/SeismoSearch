@@ -2,12 +2,12 @@
 Tests for SeismoSearch Evidence Builder.
 
 These tests verify that build_evidence_pack correctly organizes planner outputs
-and tool outputs into controlled context for the future answer generator.
+and tool outputs into controlled context for the answer generator.
 
 The key behaviors are:
 - catalog questions should produce event evidence and computed evidence;
 - safety questions should not trigger event search or event statistics;
-- concept questions should not fabricate document evidence before doc retrieval exists;
+- concept questions should call doc_retrieval and produce doc_evidence;
 - Evidence Builder should use planner.py automatically when manual params are not provided.
 """
 
@@ -85,13 +85,17 @@ def test_catalog_evidence_pack_contains_event_and_computed_evidence() -> None:
     constraints = pack["answer_constraints"]
     assert constraints["must_use_evidence_pack"] is True
     assert constraints["must_cite_event_evidence_when_using_event_facts"] is True
+    assert constraints["must_cite_doc_evidence_when_using_document_facts"] is False
     assert constraints["should_state_sample_limitations"] is True
     assert constraints["should_not_claim_full_global_coverage"] is True
     assert constraints["response_mode"] == "catalog_answer"
 
+    # Catalog-only query should not produce document evidence.
+    assert pack["doc_evidence"] == []
 
-def test_safety_evidence_pack_does_not_call_event_tools() -> None:
-    """Safety queries should not call event search or event statistics."""
+
+def test_safety_evidence_pack_does_not_call_event_or_doc_tools() -> None:
+    """Safety queries should not call event search, event statistics, or doc retrieval."""
     pack = build_evidence_pack(
         user_query="明天东京会不会发生大地震？",
     )
@@ -109,6 +113,9 @@ def test_safety_evidence_pack_does_not_call_event_tools() -> None:
     # No computed earthquake statistics should be produced either.
     assert pack["computed_evidence"] == []
 
+    # No document evidence is needed for this first safety baseline.
+    assert pack["doc_evidence"] == []
+
     # The safety label should detect prediction inducement.
     safety_labels = pack["safety_evidence"]["safety_labels"]
     assert safety_labels["prediction_inducement"] is True
@@ -120,11 +127,12 @@ def test_safety_evidence_pack_does_not_call_event_tools() -> None:
     assert constraints["must_not_predict_future_earthquakes"] is True
     assert constraints["should_offer_safe_alternatives"] is True
     assert constraints["must_cite_event_evidence_when_using_event_facts"] is False
+    assert constraints["must_cite_doc_evidence_when_using_document_facts"] is False
     assert constraints["response_mode"] == "safe_refusal_with_alternatives"
 
 
-def test_concept_evidence_pack_marks_doc_retrieval_as_not_implemented() -> None:
-    """Concept queries should not fabricate document evidence before retrieval exists."""
+def test_concept_evidence_pack_calls_doc_retrieval_and_builds_doc_evidence() -> None:
+    """Concept queries should call doc_retrieval and produce document evidence."""
     pack = build_evidence_pack(
         user_query="震级和烈度有什么区别？",
         query_type="concept",
@@ -133,25 +141,56 @@ def test_concept_evidence_pack_marks_doc_retrieval_as_not_implemented() -> None:
     # Concept queries are routed to concept mode.
     assert pack["query_type"] == "concept"
 
-    # At this stage only safety_check is available for concept questions.
+    # Concept query should now call:
+    # 1. safety_check;
+    # 2. doc_retrieval.
     tool_names = [tool_call["tool_name"] for tool_call in pack["tool_calls"]]
-    assert tool_names == ["safety_check"]
 
-    # Since doc_retriever.py is not implemented yet, doc evidence must be empty.
-    assert pack["doc_evidence"] == []
+    assert tool_names == [
+        "safety_check",
+        "doc_retrieval",
+    ]
 
-    # The pack should explicitly warn that document retrieval is not ready.
-    assert "doc_retrieval_not_implemented_yet" in pack["warnings"]
+    # Since doc_retriever.py is connected, doc evidence should no longer be empty.
+    doc_evidence = pack["doc_evidence"]
 
-    # Planner-generated retrieval rewrites should be visible for future doc retrieval.
+    assert len(doc_evidence) >= 1
+
+    top_doc = doc_evidence[0]
+
+    # Document evidence should have stable evidence IDs for later citation.
+    assert top_doc["evidence_id"] == "doc_001"
+    assert top_doc["evidence_type"] == "document_chunk"
+    assert top_doc["rank"] == 1
+
+    # The evidence should come from the local Markdown seed document.
+    assert top_doc["source_type"] == "local_markdown"
+    assert top_doc["source_path"].endswith("seismology_concepts.md")
+
+    # The retrieved chunk should be relevant to magnitude / intensity.
+    combined_text = (
+        str(top_doc.get("heading", ""))
+        + "\n"
+        + str(top_doc.get("text", ""))
+        + "\n"
+        + " ".join(top_doc.get("matched_terms", []))
+    )
+
+    assert "震级" in combined_text
+    assert "烈度" in combined_text
+
+    # The old warning should be gone because doc retrieval is now implemented.
+    assert "doc_retrieval_not_implemented_yet" not in pack["warnings"]
+
+    # Planner-generated retrieval rewrites should still be visible.
     assert "震级和烈度有什么区别？" in pack["doc_retrieval_queries"]
     assert "震级 烈度 区别" in pack["doc_retrieval_queries"]
     assert "seismic magnitude vs intensity" in pack["doc_retrieval_queries"]
 
-    # Concept mode should not require event citations.
+    # Concept mode should now require document citation when using document facts.
     constraints = pack["answer_constraints"]
     assert constraints["must_cite_event_evidence_when_using_event_facts"] is False
-    assert constraints["must_cite_doc_evidence_when_using_document_facts"] is False
+    assert constraints["must_cite_doc_evidence_when_using_document_facts"] is True
     assert constraints["response_mode"] == "concept_answer"
 
 
@@ -181,6 +220,7 @@ def test_evidence_builder_uses_planner_for_catalog_query() -> None:
     # Current local sample has 7 M6.5+ events.
     assert len(pack["event_evidence"]) == 7
     assert len(pack["computed_evidence"]) == 1
+    assert pack["doc_evidence"] == []
 
     statistics = pack["computed_evidence"][0]["statistics"]
     magnitude_summary = statistics["magnitude_summary"]
@@ -193,12 +233,13 @@ def test_evidence_builder_uses_planner_for_catalog_query() -> None:
 
     assert constraints["must_use_evidence_pack"] is True
     assert constraints["must_cite_event_evidence_when_using_event_facts"] is True
+    assert constraints["must_cite_doc_evidence_when_using_document_facts"] is False
     assert constraints["should_state_sample_limitations"] is True
     assert constraints["response_mode"] == "catalog_answer"
 
 
 def test_evidence_builder_uses_planner_for_safety_query() -> None:
-    """Evidence Builder should not call event tools for planner-classified safety queries."""
+    """Evidence Builder should not call event or doc tools for planner-classified safety queries."""
     pack = build_evidence_pack(
         user_query="明天东京会不会发生大地震？",
     )
@@ -211,6 +252,7 @@ def test_evidence_builder_uses_planner_for_safety_query() -> None:
     assert planner_output["safety_intent"] == "future_specific_earthquake_prediction"
     assert planner_output["event_search_params"] is None
     assert planner_output["event_statistics_params"] is None
+    assert planner_output["doc_retrieval_queries"] == []
 
     tool_names = [tool_call["tool_name"] for tool_call in pack["tool_calls"]]
 
@@ -218,6 +260,7 @@ def test_evidence_builder_uses_planner_for_safety_query() -> None:
 
     assert pack["event_evidence"] == []
     assert pack["computed_evidence"] == []
+    assert pack["doc_evidence"] == []
 
     constraints = pack["answer_constraints"]
 

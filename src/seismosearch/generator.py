@@ -14,6 +14,8 @@ The generator must:
 - respect answer_constraints;
 - refuse future earthquake prediction requests;
 - state sample limitations for catalog answers;
+- cite event evidence when using event facts;
+- cite document evidence when using document facts;
 - avoid claiming full global coverage.
 """
 
@@ -69,6 +71,16 @@ def _format_event_item(event: dict[str, Any]) -> str:
         f"M{magnitude}（{magnitude_type}），深度 {depth_km} km，"
         f"坐标 ({latitude}, {longitude})，状态：{status}。"
     )
+
+
+def _format_doc_item(doc: dict[str, Any]) -> str:
+    """Format one document evidence item into a citation line."""
+    evidence_id = _as_text(doc.get("evidence_id"))
+    doc_title = _as_text(doc.get("doc_title"))
+    heading = _as_text(doc.get("heading"))
+    source_path = _as_text(doc.get("source_path"))
+
+    return f"- [{evidence_id}] {doc_title} / {heading} / {source_path}"
 
 
 def _render_catalog_answer(evidence_pack: dict[str, Any]) -> str:
@@ -154,25 +166,100 @@ def _render_safety_answer(evidence_pack: dict[str, Any]) -> str:
 
 
 def _render_concept_answer(evidence_pack: dict[str, Any]) -> str:
-    """Render a conservative answer for concept questions before doc retrieval exists."""
+    """
+    Render an answer for concept questions.
+
+    If doc_evidence exists, answer strictly from retrieved document evidence.
+    If doc_evidence is missing, refuse to fabricate an explanation.
+    """
     user_query = evidence_pack.get("user_query", "")
+    doc_evidence = evidence_pack.get("doc_evidence", [])
     warnings = evidence_pack.get("warnings", [])
 
     lines: list[str] = []
 
     lines.append(f"针对你的问题：{user_query}")
     lines.append("")
-    lines.append("当前系统还没有接入文档检索模块，因此 Evidence Pack 中没有 doc_evidence。")
-    lines.append("为了避免无依据生成，这一版 Generator 不会编造地震学概念解释。")
 
-    if warnings:
+    # If document retrieval failed or returned nothing, keep conservative behavior.
+    if not doc_evidence:
+        lines.append("当前 Evidence Pack 中没有 doc_evidence。")
+        lines.append("为了避免无依据生成，这一版 Generator 不会编造地震学概念解释。")
+
+        if warnings:
+            lines.append("")
+            lines.append(f"当前警告信息：{warnings}")
+
+        return "\n".join(lines)
+
+    lines.append("根据当前检索到的文档证据，可以回答如下：")
+    lines.append("")
+
+    # First deterministic version:
+    # Use the top retrieved chunk as the main evidence.
+    # This is intentionally simple and testable before adding LLM generation.
+    top_doc = doc_evidence[0]
+    top_doc_id = _as_text(top_doc.get("evidence_id"))
+    top_text = _as_text(top_doc.get("text"), fallback="")
+
+    lines.append(top_text)
+    lines.append("")
+
+    lines.append("引用证据：")
+    lines.append(_format_doc_item(top_doc))
+
+    # If more evidence exists, list it as supporting evidence without expanding it.
+    if len(doc_evidence) > 1:
         lines.append("")
-        lines.append(f"当前警告信息：{warnings}")
+        lines.append("其他候选文档证据：")
+
+        for doc in doc_evidence[1:3]:
+            lines.append(_format_doc_item(doc))
 
     lines.append("")
-    lines.append("下一步接入 doc_retriever.py 后，这类问题应由文档证据支持，再生成带引用的解释。")
+    lines.append(f"以上解释仅基于 Evidence Pack 中的文档证据 [{top_doc_id}]，未使用外部未检索知识。")
 
     return "\n".join(lines)
+
+
+def _render_mixed_answer(evidence_pack: dict[str, Any]) -> str:
+    """
+    Render a mixed answer with both event evidence and document evidence.
+
+    This first version concatenates catalog-style evidence and concept-style
+    evidence. Later versions can use an LLM, but only after eval is ready.
+    """
+    lines: list[str] = []
+
+    lines.append(_render_catalog_answer(evidence_pack))
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append(_render_concept_answer(evidence_pack))
+
+    return "\n".join(lines)
+
+
+def _collect_used_evidence_ids(evidence_pack: dict[str, Any]) -> list[str]:
+    """Collect all evidence IDs used by the deterministic generator."""
+    used_evidence_ids: list[str] = []
+
+    for item in evidence_pack.get("event_evidence", []):
+        evidence_id = item.get("evidence_id")
+        if evidence_id is not None:
+            used_evidence_ids.append(evidence_id)
+
+    for item in evidence_pack.get("computed_evidence", []):
+        evidence_id = item.get("evidence_id")
+        if evidence_id is not None:
+            used_evidence_ids.append(evidence_id)
+
+    for item in evidence_pack.get("doc_evidence", []):
+        evidence_id = item.get("evidence_id")
+        if evidence_id is not None:
+            used_evidence_ids.append(evidence_id)
+
+    return used_evidence_ids
 
 
 def generate_answer(evidence_pack: dict[str, Any]) -> dict[str, Any]:
@@ -199,9 +286,7 @@ def generate_answer(evidence_pack: dict[str, Any]) -> dict[str, Any]:
     elif query_type == "catalog":
         answer = _render_catalog_answer(evidence_pack)
     elif query_type == "mixed":
-        # Mixed mode currently has event evidence but no document evidence.
-        # Use catalog answer for the event part and explicitly preserve warnings.
-        answer = _render_catalog_answer(evidence_pack)
+        answer = _render_mixed_answer(evidence_pack)
     elif query_type == "concept":
         answer = _render_concept_answer(evidence_pack)
     else:
@@ -209,17 +294,7 @@ def generate_answer(evidence_pack: dict[str, Any]) -> dict[str, Any]:
             "当前 Evidence Pack 的 query_type 无法识别，因此不能生成可靠回答。"
         )
 
-    used_evidence_ids = [
-        item.get("evidence_id")
-        for item in evidence_pack.get("event_evidence", [])
-        if item.get("evidence_id") is not None
-    ]
-
-    used_evidence_ids.extend(
-        item.get("evidence_id")
-        for item in evidence_pack.get("computed_evidence", [])
-        if item.get("evidence_id") is not None
-    )
+    used_evidence_ids = _collect_used_evidence_ids(evidence_pack)
 
     return {
         "status": "ok",

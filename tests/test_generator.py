@@ -5,7 +5,7 @@ These tests verify that the generator:
 - uses Evidence Pack content;
 - states sample limitations for catalog answers;
 - refuses future earthquake prediction requests;
-- does not fabricate concept answers before document retrieval exists.
+- uses doc_evidence for concept answers after doc retrieval is connected.
 """
 
 from __future__ import annotations
@@ -82,8 +82,8 @@ def test_safety_generator_refuses_future_prediction() -> None:
     assert constraints["response_mode"] == "safe_refusal_with_alternatives"
 
 
-def test_concept_generator_does_not_fabricate_without_doc_evidence() -> None:
-    """Concept answer should not fabricate explanations before doc retrieval exists."""
+def test_concept_generator_uses_doc_evidence() -> None:
+    """Concept answer should use retrieved document evidence."""
     pack = build_evidence_pack(
         user_query="震级和烈度有什么区别？",
         query_type="concept",
@@ -96,10 +96,49 @@ def test_concept_generator_does_not_fabricate_without_doc_evidence() -> None:
 
     answer = result["answer"]
 
-    # Since doc_retriever.py is not implemented yet, generator should not
-    # invent a seismology explanation.
-    assert "还没有接入文档检索模块" in answer
-    assert "不会编造地震学概念解释" in answer
+    # The answer should now be based on doc evidence.
+    assert "根据当前检索到的文档证据" in answer
+    assert "震级" in answer
+    assert "烈度" in answer
 
-    # There should be no event or computed evidence used.
+    # The answer should cite stable document evidence IDs.
+    assert "[doc_001]" in answer
+
+    # The old conservative message should no longer appear when doc evidence exists.
+    assert "还没有接入文档检索模块" not in answer
+    assert "不会编造地震学概念解释" not in answer
+
+    # The generator should report document evidence usage.
+    assert "doc_001" in result["used_evidence_ids"]
+
+    constraints = result["answer_constraints"]
+    assert constraints["must_cite_doc_evidence_when_using_document_facts"] is True
+
+
+def test_concept_generator_stays_conservative_without_doc_evidence() -> None:
+    """Concept answer should still refuse to fabricate if doc_evidence is missing."""
+    pack = {
+        "query_id": "test_query",
+        "query_type": "concept",
+        "user_query": "震级和烈度有什么区别？",
+        "doc_evidence": [],
+        "event_evidence": [],
+        "computed_evidence": [],
+        "warnings": ["no_document_evidence_for_test"],
+        "answer_constraints": {
+            "must_use_evidence_pack": True,
+            "must_not_predict_future_earthquakes": False,
+            "must_cite_doc_evidence_when_using_document_facts": False,
+            "response_mode": "concept_answer",
+        },
+    }
+
+    result = generate_answer(pack)
+
+    answer = result["answer"]
+
+    assert result["status"] == "ok"
+    assert result["query_type"] == "concept"
+    assert "当前 Evidence Pack 中没有 doc_evidence" in answer
+    assert "不会编造地震学概念解释" in answer
     assert result["used_evidence_ids"] == []
