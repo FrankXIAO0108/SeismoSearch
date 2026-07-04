@@ -6,36 +6,14 @@ This module performs the first version of query rewrite / query planning.
 It converts a user's natural-language query into a structured plan that can
 drive downstream tools.
 
-The planner currently supports three types of query rewrite:
-
-1. Structured tool-argument rewrite
-   Example:
-   "最近 M6.5 以上地震有哪些？"
-   -> event_search_params={"min_magnitude": 6.5, "order_by": "event_time_utc"}
-
-2. Retrieval query rewrite
-   Example:
-   "震级和烈度有什么区别？"
-   -> doc_retrieval_queries=[
-        "震级 烈度 区别",
-        "seismic magnitude vs intensity"
-      ]
-
-3. Safety-intent normalization
-   Examples:
-   "明天东京会不会发生大地震？"
-   -> query_type="safety", safety_intent="future_specific_earthquake_prediction"
-
-   "最近动物异常是不是说明马上要地震了？"
-   -> query_type="safety", safety_intent="pseudoscience_prediction_claim"
+The planner currently supports:
+- catalog query planning;
+- concept query planning;
+- mixed query planning;
+- safety query planning.
 
 This first version is deterministic and rule-based.
 It does NOT call an LLM.
-
-Reason:
-- deterministic planning is easier to test;
-- errors are easier to locate;
-- later LLM-based planning can be evaluated against this baseline.
 """
 
 from __future__ import annotations
@@ -64,9 +42,6 @@ def parse_min_magnitude(user_query: str) -> tuple[float | None, list[str]]:
     - 6.5 级以上
     - magnitude 6.5
     - magnitude >= 6.5
-
-    This function treats parsed magnitude as a lower-bound threshold because
-    most catalog queries ask for "M6+" or "M6.5 以上" style filtering.
     """
     notes: list[str] = []
 
@@ -79,6 +54,7 @@ def parse_min_magnitude(user_query: str) -> tuple[float | None, list[str]]:
 
     for pattern in patterns:
         match = re.search(pattern, user_query, flags=re.IGNORECASE)
+
         if match:
             magnitude = float(match.group(1))
             notes.append(f"Parsed magnitude threshold as min_magnitude={magnitude}.")
@@ -95,8 +71,6 @@ def parse_year_range(user_query: str) -> tuple[str | None, str | None, list[str]
     - 2025 年
     - 2024
     - 2024 到 2025
-
-    Output uses ISO-like strings accepted by DuckDB comparisons.
     """
     notes: list[str] = []
 
@@ -136,33 +110,52 @@ def detect_safety_intent(user_query: str) -> tuple[str | None, list[str]]:
     - future_specific_earthquake_prediction:
       direct requests about whether / when a future earthquake will happen.
     - pseudoscience_prediction_claim:
-      requests that try to infer future earthquakes from unreliable signs such
-      as animal anomalies, earthquake clouds, omens, or other non-scientific
-      signals.
+      requests that try to infer future earthquakes from unreliable signs,
+      such as animal anomalies or earthquake clouds.
+    - historical_activity_prediction_claim:
+      requests that try to infer future large earthquakes from recent small
+      earthquakes or frequent historical seismic activity.
     """
     notes: list[str] = []
 
-    future_prediction_patterns = [
-        "明天.*会不会.*地震",
-        "明天.*会不会发生.*地震",
-        "未来.*会不会.*地震",
-        "什么时候.*地震",
-        "会不会发生.*大地震",
-        "大地震.*要来了吗",
-        "预测.*地震",
-        "will there be an earthquake",
-        "when will an earthquake happen",
-        "earthquake prediction",
+    # 先识别“历史活动推断未来风险”。
+    #
+    # 这类问题很容易被 “最近 / 地震” 误吸进 catalog。
+    # 所以必须放在直接未来预测规则之前。
+    historical_activity_prediction_patterns = [
+        "小震.*大震",
+        "小震.*大地震",
+        "小震很多.*大震",
+        "小震很多.*大地震",
+        "最近小震.*大震",
+        "最近小震.*大地震",
+        "频繁地震.*大震",
+        "频繁地震.*大地震",
+        "地震频繁.*大震",
+        "地震频繁.*大地震",
+        "最近.*地震.*大震",
+        "最近.*地震.*大地震",
+        "是不是说明.*大震",
+        "是不是说明.*大地震",
+        "说明.*大震.*要来",
+        "说明.*大地震.*要来",
+        "大震要来了",
+        "大地震要来了",
+        "foreshock",
+        "small earthquakes.*big earthquake",
+        "many small earthquakes",
+        "frequent earthquakes.*big earthquake",
     ]
 
-    for pattern in future_prediction_patterns:
+    for pattern in historical_activity_prediction_patterns:
         if re.search(pattern, user_query, flags=re.IGNORECASE):
-            safety_intent = "future_specific_earthquake_prediction"
+            safety_intent = "historical_activity_prediction_claim"
             notes.append(
                 f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
             )
             return safety_intent, notes
 
+    # 再识别动物异常、地震云等伪科学预兆类表达。
     pseudoscience_patterns = [
         "动物异常.*地震",
         "动物反常.*地震",
@@ -194,6 +187,29 @@ def detect_safety_intent(user_query: str) -> tuple[str | None, list[str]]:
             )
             return safety_intent, notes
 
+    # 最后识别直接未来预测类问题。
+    future_prediction_patterns = [
+        "明天.*会不会.*地震",
+        "明天.*会不会发生.*地震",
+        "未来.*会不会.*地震",
+        "什么时候.*地震",
+        "会不会发生.*大地震",
+        "预测.*地震",
+        "今年.*还会不会.*地震",
+        "今年.*会不会.*大地震",
+        "will there be an earthquake",
+        "when will an earthquake happen",
+        "earthquake prediction",
+    ]
+
+    for pattern in future_prediction_patterns:
+        if re.search(pattern, user_query, flags=re.IGNORECASE):
+            safety_intent = "future_specific_earthquake_prediction"
+            notes.append(
+                f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
+            )
+            return safety_intent, notes
+
     return None, notes
 
 
@@ -201,9 +217,8 @@ def has_event_intent(user_query: str, min_magnitude: float | None) -> bool:
     """
     Decide whether the query likely needs structured event tools.
 
-    This is intentionally conservative.
-    Concept-only questions such as "震级和烈度有什么区别？" should not trigger
-    event search just because they contain seismology terms.
+    Concept-only questions should not trigger event search just because they
+    contain seismology terms.
     """
     event_keywords = [
         "地震有哪些",
