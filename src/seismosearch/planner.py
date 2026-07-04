@@ -1,10 +1,8 @@
 """
 Query planner for SeismoSearch.
 
-This module performs the first version of query rewrite / query planning.
-
-It converts a user's natural-language query into a structured plan that can
-drive downstream tools.
+This module converts a user's natural-language query into a deterministic
+execution plan.
 
 The planner currently supports:
 - catalog query planning;
@@ -26,7 +24,7 @@ PLANNER_VERSION = "deterministic_0.1.0"
 
 
 def normalize_query(user_query: str) -> str:
-    """Normalize whitespace in user query."""
+    """Normalize whitespace in a user query."""
     return " ".join(user_query.strip().split())
 
 
@@ -40,6 +38,7 @@ def parse_min_magnitude(user_query: str) -> tuple[float | None, list[str]]:
     - M6+
     - 6.5级以上
     - 6.5 级以上
+    - 震级大于等于 6
     - magnitude 6.5
     - magnitude >= 6.5
     """
@@ -99,9 +98,9 @@ def parse_year_range(user_query: str) -> tuple[str | None, str | None, list[str]
 
 def detect_safety_intent(user_query: str) -> tuple[str | None, list[str]]:
     """
-    Detect unsafe earthquake prediction or pseudoscience-prediction requests.
+    Detect unsafe earthquake-prediction or pseudoscience-prediction requests.
 
-    This function is safety-intent normalization, not factual answering.
+    This is safety-intent normalization, not factual answering.
 
     If triggered, downstream tools should NOT use historical event search to
     imply a future earthquake prediction.
@@ -110,100 +109,140 @@ def detect_safety_intent(user_query: str) -> tuple[str | None, list[str]]:
     - future_specific_earthquake_prediction:
       direct requests about whether / when a future earthquake will happen.
     - pseudoscience_prediction_claim:
-      requests that try to infer future earthquakes from unreliable signs,
-      such as animal anomalies or earthquake clouds.
+      requests that infer future earthquakes from unreliable signs, such as
+      animal anomalies, dog barking, fish anomalies, earthquake clouds, or
+      earthquake-omen claims.
     - historical_activity_prediction_claim:
-      requests that try to infer future large earthquakes from recent small
-      earthquakes or frequent historical seismic activity.
+      requests that infer future large earthquakes or future risk from recent
+      small earthquakes, frequent earthquakes, or historical earthquake records.
     """
     notes: list[str] = []
 
-    # 先识别“历史活动推断未来风险”。
-    #
-    # 这类问题很容易被 “最近 / 地震” 误吸进 catalog。
-    # 所以必须放在直接未来预测规则之前。
+    normalized = normalize_query(user_query)
+
     historical_activity_prediction_patterns = [
-        "小震.*大震",
-        "小震.*大地震",
-        "小震很多.*大震",
-        "小震很多.*大地震",
-        "最近小震.*大震",
-        "最近小震.*大地震",
-        "频繁地震.*大震",
-        "频繁地震.*大地震",
-        "地震频繁.*大震",
-        "地震频繁.*大地震",
-        "最近.*地震.*大震",
-        "最近.*地震.*大地震",
-        "是不是说明.*大震",
-        "是不是说明.*大地震",
-        "说明.*大震.*要来",
-        "说明.*大地震.*要来",
-        "大震要来了",
-        "大地震要来了",
-        "foreshock",
-        "small earthquakes.*big earthquake",
-        "many small earthquakes",
-        "frequent earthquakes.*big earthquake",
+        r"小震.*大震",
+        r"小震.*大地震",
+        r"小震很多.*大震",
+        r"小震很多.*大地震",
+        r"最近小震.*大震",
+        r"最近小震.*大地震",
+        r"频繁地震.*大震",
+        r"频繁地震.*大地震",
+        r"地震频繁.*大震",
+        r"地震频繁.*大地震",
+        r"最近.*地震.*大震",
+        r"最近.*地震.*大地震",
+        r"是不是说明.*大震",
+        r"是不是说明.*大地震",
+        r"说明.*大震.*要来",
+        r"说明.*大地震.*要来",
+        r"大震要来了",
+        r"大地震要来了",
+        r"根据.*历史地震.*预测",
+        r"历史地震.*预测.*风险",
+        r"历史地震.*预测.*下周",
+        r"历史地震.*预测.*未来",
+        r"历史地震.*未来.*风险",
+        r"地震.*很多.*更危险",
+        r"地震.*很多.*危险",
+        r"地震.*很多.*风险",
+        r"最近.*地震.*很多.*更危险",
+        r"最近.*地震.*很多.*危险",
+        r"最近.*地震.*很多.*风险",
+        r"近期.*地震.*很多.*更危险",
+        r"近期.*地震.*很多.*风险",
+        r"地震.*频繁.*更危险",
+        r"地震.*频繁.*风险",
+        r"foreshock",
+        r"small earthquakes.*big earthquake",
+        r"many small earthquakes",
+        r"frequent earthquakes.*big earthquake",
+        r"historical earthquakes.*predict",
+        r"earthquake history.*predict",
     ]
 
     for pattern in historical_activity_prediction_patterns:
-        if re.search(pattern, user_query, flags=re.IGNORECASE):
+        if re.search(pattern, normalized, flags=re.IGNORECASE):
             safety_intent = "historical_activity_prediction_claim"
             notes.append(
                 f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
             )
             return safety_intent, notes
 
-    # 再识别动物异常、地震云等伪科学预兆类表达。
     pseudoscience_patterns = [
-        "动物异常.*地震",
-        "动物反常.*地震",
-        "动物.*异常.*地震",
-        "动物.*反常.*地震",
-        "动物.*预兆.*地震",
-        "地震云.*地震",
-        "地震云.*说明",
-        "地震云.*预示",
-        "异常现象.*地震",
-        "预兆.*地震",
-        "征兆.*地震",
-        "是不是说明.*要地震",
-        "是不是说明.*马上.*地震",
-        "说明.*马上.*地震",
-        "马上要地震",
-        "要地震了",
-        "earthquake cloud",
-        "animal.*earthquake",
-        "earthquake omen",
-        "earthquake precursor",
+        r"动物异常.*地震",
+        r"动物反常.*地震",
+        r"动物.*异常.*地震",
+        r"动物.*反常.*地震",
+        r"动物.*预兆.*地震",
+        r"动物.*前兆.*地震",
+        r"狗.*叫.*地震",
+        r"狗.*叫.*前兆",
+        r"狗.*地震前兆",
+        r"猫.*异常.*地震",
+        r"猫.*反常.*地震",
+        r"鱼群.*异常.*地震",
+        r"鱼群异常.*地震",
+        r"鱼群.*要地震",
+        r"地震云.*地震",
+        r"地震云.*说明",
+        r"地震云.*预示",
+        r"异常现象.*地震",
+        r"地震前兆",
+        r"地震预兆",
+        r"预兆.*地震",
+        r"征兆.*地震",
+        r"是不是说明.*要地震",
+        r"是不是说明.*马上.*地震",
+        r"说明.*马上.*地震",
+        r"马上要地震",
+        r"要地震了",
+        r"earthquake cloud",
+        r"animal.*earthquake",
+        r"dog.*earthquake",
+        r"fish.*earthquake",
+        r"earthquake omen",
+        r"earthquake precursor",
     ]
 
     for pattern in pseudoscience_patterns:
-        if re.search(pattern, user_query, flags=re.IGNORECASE):
+        if re.search(pattern, normalized, flags=re.IGNORECASE):
             safety_intent = "pseudoscience_prediction_claim"
             notes.append(
                 f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
             )
             return safety_intent, notes
 
-    # 最后识别直接未来预测类问题。
     future_prediction_patterns = [
-        "明天.*会不会.*地震",
-        "明天.*会不会发生.*地震",
-        "未来.*会不会.*地震",
-        "什么时候.*地震",
-        "会不会发生.*大地震",
-        "预测.*地震",
-        "今年.*还会不会.*地震",
-        "今年.*会不会.*大地震",
-        "will there be an earthquake",
-        "when will an earthquake happen",
-        "earthquake prediction",
+        r"明天.*会不会.*地震",
+        r"明天.*会不会发生.*地震",
+        r"未来.*会不会.*地震",
+        r"什么时候.*地震",
+        r"会不会发生.*大地震",
+        r"会不会.*大地震",
+        r"预测.*地震",
+        r"预测.*大地震",
+        r"今年.*还会不会.*地震",
+        r"今年.*还会不会.*大地震",
+        r"今年.*会不会.*大地震",
+        r"提前.*知道.*地震",
+        r"提前.*知道.*大地震",
+        r"提前.*预测.*地震",
+        r"提前.*预测.*大地震",
+        r"有没有办法.*提前.*知道.*地震",
+        r"有没有办法.*提前.*知道.*大地震",
+        r"有没有办法.*知道.*大地震",
+        r"能不能.*提前.*知道.*地震",
+        r"能不能.*提前.*知道.*大地震",
+        r"will there be an earthquake",
+        r"when will an earthquake happen",
+        r"earthquake prediction",
+        r"predict.*earthquake",
     ]
 
     for pattern in future_prediction_patterns:
-        if re.search(pattern, user_query, flags=re.IGNORECASE):
+        if re.search(pattern, normalized, flags=re.IGNORECASE):
             safety_intent = "future_specific_earthquake_prediction"
             notes.append(
                 f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
@@ -263,6 +302,9 @@ def has_concept_intent(user_query: str) -> bool:
         "烈度",
         "地震深度",
         "震源深度",
+        "海啸",
+        "tsunami",
+        "alert",
         "magnitude vs intensity",
         "seismic intensity",
         "earthquake depth",
@@ -289,6 +331,7 @@ def infer_order_by(user_query: str) -> tuple[str, bool, list[str]]:
         "最大",
         "最强",
         "震级最高",
+        "最高震级",
         "strongest",
         "largest",
         "highest magnitude",
@@ -378,6 +421,8 @@ def build_doc_retrieval_queries(user_query: str) -> tuple[list[str], list[str]]:
         queries.append("earthquake depth hypocenter depth")
 
     if "海啸" in user_query or "tsunami" in query_lower:
+        queries.append("地震 海啸 tsunami alert 含义")
+        queries.append("earthquake tsunami alert meaning")
         queries.append("earthquake tsunami warning explanation")
 
     deduplicated_queries = list(dict.fromkeys(queries))
@@ -479,7 +524,7 @@ def plan_query(
     if query_type in {"catalog", "mixed"} and min_magnitude is None:
         warnings.append("catalog_query_without_magnitude_filter")
 
-    if "东京" in normalized_query or "japan" in normalized_query.lower():
+    if "东京" in normalized_query or "日本" in normalized_query or "japan" in normalized_query.lower():
         warnings.append(
             "location_parsing_not_implemented_yet; no latitude_longitude_bbox_applied"
         )

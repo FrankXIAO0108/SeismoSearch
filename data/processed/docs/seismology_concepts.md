@@ -23,6 +23,14 @@ In short, magnitude characterizes the earthquake source, while intensity charact
 
 地震深度表示震源位于地表以下的距离，通常以 km 为单位。浅源地震一般更容易造成明显地表震感，但实际影响还取决于震级、距离、地质条件和建筑抗震能力。
 
-## 海啸提示
+Earthquake depth describes how far the hypocenter is below the Earth's surface. Shallow earthquakes are often felt more strongly near the surface, but actual impact also depends on magnitude, distance, local geology, and building vulnerability.
 
-并不是所有海底地震都会引发海啸。海啸风险通常与地震震级、震源机制、海底垂直位移、震源深度和海域条件有关。是否存在海啸威胁应以官方机构发布的信息为准。
+## 海啸提示 / Tsunami Alert
+
+海啸提示，也可以对应英文表达 tsunami alert、tsunami warning、tsunami advisory 或 tsunami information statement，表示地震事件可能需要关注海啸相关信息。
+
+并不是所有海底地震都会引发海啸。海啸风险通常与地震震级、震源机制、海底垂直位移、震源深度和海域条件有关。
+
+在地震目录或事件信息中，tsunami alert 通常不应该被理解为“已经确定会发生海啸”。它更适合作为一个提示字段或风险沟通信号，提醒用户查看官方机构发布的海啸预警、海啸提示或海啸信息公告。
+
+是否存在海啸威胁，应以官方地震和海啸监测机构发布的信息为准。SeismoSearch 不能基于单个 catalog 字段自行判断未来海啸风险，也不能替代官方预警。
