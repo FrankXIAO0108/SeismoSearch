@@ -1,0 +1,20 @@
+{"query_id":"concept_001","query":"震级和烈度有什么区别？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["震级","烈度"],"expected_behavior":"retrieve_magnitude_intensity_concept"}
+{"query_id":"concept_002","query":"什么是地震深度？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["深度","地震"],"expected_behavior":"retrieve_depth_concept"}
+{"query_id":"concept_003","query":"地震震级是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["震级"],"expected_behavior":"retrieve_magnitude_concept"}
+{"query_id":"concept_004","query":"地震烈度是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["烈度"],"expected_behavior":"retrieve_intensity_concept"}
+{"query_id":"concept_005","query":"地震海啸提示是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["海啸"],"expected_behavior":"retrieve_tsunami_alert_concept"}
+{"query_id":"concept_006","query":"请解释震级的定义。","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["震级"],"expected_behavior":"retrieve_magnitude_definition"}
+{"query_id":"concept_007","query":"请解释烈度的定义。","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["烈度"],"expected_behavior":"retrieve_intensity_definition"}
+{"query_id":"concept_008","query":"震源深度是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["深度"],"expected_behavior":"retrieve_hypocenter_depth_concept"}
+{"query_id":"concept_009","query":"magnitude 和 intensity 有什么区别？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["震级","烈度"],"expected_behavior":"retrieve_bilingual_magnitude_intensity_concept"}
+{"query_id":"concept_010","query":"地震中的 tsunami alert 是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["海啸"],"expected_behavior":"retrieve_bilingual_tsunami_alert_concept"}
+{"query_id":"mixed_001_doc","query":"2025 年 M6 以上地震有哪些，并解释震级和烈度有什么区别？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["震级","烈度"],"expected_behavior":"retrieve_magnitude_intensity_concept_from_mixed_query"}
+{"query_id":"mixed_002_doc","query":"最近 M6.5 以上地震有哪些，并解释地震深度是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["深度","地震"],"expected_behavior":"retrieve_depth_concept_from_mixed_query"}
+{"query_id":"mixed_003_doc","query":"最近 M6 以上地震有哪些，并解释震级是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["震级"],"expected_behavior":"retrieve_magnitude_concept_from_mixed_query"}
+{"query_id":"mixed_004_doc","query":"2025 年 6.5 级以上地震有哪些，并解释烈度是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["烈度"],"expected_behavior":"retrieve_intensity_concept_from_mixed_query"}
+{"query_id":"mixed_005_doc","query":"最近地震事件有哪些，并解释海啸提示是什么意思？","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["海啸"],"expected_behavior":"retrieve_tsunami_alert_concept_from_mixed_query"}
+{"query_id":"mixed_006_doc","query":"查询 2025 年 M6 以上地震，并解释地震深度。","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["深度"],"expected_behavior":"retrieve_depth_concept_from_mixed_query"}
+{"query_id":"mixed_007_doc","query":"最近 6.5 级以上地震记录有哪些，并解释震级。","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["震级"],"expected_behavior":"retrieve_magnitude_concept_from_mixed_query"}
+{"query_id":"mixed_008_doc","query":"列出最近 M6 以上地震事件，并解释烈度。","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["烈度"],"expected_behavior":"retrieve_intensity_concept_from_mixed_query"}
+{"query_id":"mixed_009_doc","query":"2025 年最高震级地震有哪些，并解释震级和烈度区别。","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["震级","烈度"],"expected_behavior":"retrieve_magnitude_intensity_concept_from_mixed_query"}
+{"query_id":"mixed_010_doc","query":"最近地震有哪些，并解释 tsunami alert。","expected_source_path_contains":"seismology_concepts.md","must_contain_terms":["海啸"],"expected_behavior":"retrieve_bilingual_tsunami_alert_concept_from_mixed_query"}

@@ -1,0 +1,1287 @@
+{
+  "retriever": "keyword_overlap",
+  "query_mode": "raw",
+  "top_k": 5,
+  "eval_file": "eval\\retrieval_eval_20.jsonl",
+  "summary": {
+    "num_samples": 20,
+    "source_hit_at_k": 1.0,
+    "term_hit_at_k": 1.0,
+    "requirement_hit_at_k": 1.0,
+    "mrr": 1.0,
+    "failed_records": 0
+  },
+  "records": [
+    {
+      "query_id": "concept_001",
+      "query": "震级和烈度有什么区别？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "震级和烈度有什么区别？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "震级",
+        "烈度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 29.700000000000003,
+          "matched_terms": [
+            "震级",
+            "烈度",
+            "区别",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 14.1,
+          "matched_terms": [
+            "magnitude",
+            "intensity",
+            "seismic intensity"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 5.699999999999999,
+          "matched_terms": [
+            "震级",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 3.7,
+          "matched_terms": [
+            "震级"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_002",
+      "query": "什么是地震深度？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "什么是地震深度？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "深度",
+        "地震"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 21.200000000000003,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源",
+            "depth",
+            "hypocenter"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 11.799999999999999,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源深度",
+            "震源"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 11.799999999999999,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源深度",
+            "震源"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 2.1,
+          "matched_terms": [
+            "depth"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_003",
+      "query": "地震震级是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "地震震级是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "震级"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 13.8,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 8.4,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 6.1,
+          "matched_terms": [
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 4.6,
+          "matched_terms": [
+            "震级",
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_004",
+      "query": "地震烈度是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "地震烈度是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "烈度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 11.8,
+          "matched_terms": [
+            "烈度",
+            "地震"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 8.1,
+          "matched_terms": [
+            "intensity",
+            "seismic intensity"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 2.8000000000000003,
+          "matched_terms": [
+            "地震"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 1.0,
+          "matched_terms": [
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_005",
+      "query": "地震海啸提示是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "地震海啸提示是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "海啸"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 46.5,
+          "matched_terms": [
+            "地震",
+            "海啸",
+            "海啸提示",
+            "提示",
+            "海啸预警",
+            "tsunami",
+            "tsunami alert",
+            "tsunami warning",
+            "alert",
+            "warning"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 2.8000000000000003,
+          "matched_terms": [
+            "地震"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 1.0,
+          "matched_terms": [
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_006",
+      "query": "请解释震级的定义。",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "请解释震级的定义。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "震级"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 12.9,
+          "matched_terms": [
+            "震级",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 6.1,
+          "matched_terms": [
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 5.699999999999999,
+          "matched_terms": [
+            "震级",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 3.7,
+          "matched_terms": [
+            "震级"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_007",
+      "query": "请解释烈度的定义。",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "请解释烈度的定义。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "烈度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 10.9,
+          "matched_terms": [
+            "烈度"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 8.1,
+          "matched_terms": [
+            "intensity",
+            "seismic intensity"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_008",
+      "query": "震源深度是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "震源深度是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "深度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 18.5,
+          "matched_terms": [
+            "震源",
+            "深度",
+            "depth",
+            "hypocenter"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 10.9,
+          "matched_terms": [
+            "震源",
+            "震源深度",
+            "深度"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 10.9,
+          "matched_terms": [
+            "震源",
+            "震源深度",
+            "深度"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 2.1,
+          "matched_terms": [
+            "depth"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_009",
+      "query": "magnitude 和 intensity 有什么区别？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "magnitude 和 intensity 有什么区别？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "震级",
+        "烈度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 29.700000000000003,
+          "matched_terms": [
+            "区别",
+            "magnitude",
+            "震级",
+            "烈度"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 14.1,
+          "matched_terms": [
+            "magnitude",
+            "intensity",
+            "seismic intensity"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 5.699999999999999,
+          "matched_terms": [
+            "magnitude",
+            "震级"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 3.7,
+          "matched_terms": [
+            "震级"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_010",
+      "query": "地震中的 tsunami alert 是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "地震中的 tsunami alert 是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "海啸"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 43.800000000000004,
+          "matched_terms": [
+            "地震",
+            "tsunami",
+            "tsunami alert",
+            "alert",
+            "海啸",
+            "海啸提示",
+            "海啸预警",
+            "tsunami warning",
+            "warning"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 2.8000000000000003,
+          "matched_terms": [
+            "地震"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 1.0,
+          "matched_terms": [
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_001_doc",
+      "query": "2025 年 M6 以上地震有哪些，并解释震级和烈度有什么区别？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "2025 年 M6 以上地震有哪些，并解释震级和烈度有什么区别？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "震级",
+        "烈度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 30.6,
+          "matched_terms": [
+            "震级",
+            "烈度",
+            "区别",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 14.1,
+          "matched_terms": [
+            "magnitude",
+            "intensity",
+            "seismic intensity"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 8.4,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 4.6,
+          "matched_terms": [
+            "震级",
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_002_doc",
+      "query": "最近 M6.5 以上地震有哪些，并解释地震深度是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "最近 M6.5 以上地震有哪些，并解释地震深度是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "深度",
+        "地震"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 21.200000000000003,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源",
+            "depth",
+            "hypocenter"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 11.799999999999999,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源深度",
+            "震源"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 11.799999999999999,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源深度",
+            "震源"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 2.1,
+          "matched_terms": [
+            "depth"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_003_doc",
+      "query": "最近 M6 以上地震有哪些，并解释震级是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "最近 M6 以上地震有哪些，并解释震级是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "震级"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 13.8,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 8.4,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 6.1,
+          "matched_terms": [
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 4.6,
+          "matched_terms": [
+            "震级",
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_004_doc",
+      "query": "2025 年 6.5 级以上地震有哪些，并解释烈度是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "2025 年 6.5 级以上地震有哪些，并解释烈度是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "烈度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 11.8,
+          "matched_terms": [
+            "烈度",
+            "地震"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 8.1,
+          "matched_terms": [
+            "intensity",
+            "seismic intensity"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 2.8000000000000003,
+          "matched_terms": [
+            "地震"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 1.0,
+          "matched_terms": [
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_005_doc",
+      "query": "最近地震事件有哪些，并解释海啸提示是什么意思？",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "最近地震事件有哪些，并解释海啸提示是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "海啸"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 46.5,
+          "matched_terms": [
+            "地震",
+            "海啸",
+            "海啸提示",
+            "提示",
+            "海啸预警",
+            "tsunami",
+            "tsunami alert",
+            "tsunami warning",
+            "alert",
+            "warning"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 2.8000000000000003,
+          "matched_terms": [
+            "地震"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 1.0,
+          "matched_terms": [
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_006_doc",
+      "query": "查询 2025 年 M6 以上地震，并解释地震深度。",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "查询 2025 年 M6 以上地震，并解释地震深度。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "深度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 21.200000000000003,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源",
+            "depth",
+            "hypocenter"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 11.799999999999999,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源深度",
+            "震源"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 11.799999999999999,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源深度",
+            "震源"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 2.1,
+          "matched_terms": [
+            "depth"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_007_doc",
+      "query": "最近 6.5 级以上地震记录有哪些，并解释震级。",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "最近 6.5 级以上地震记录有哪些，并解释震级。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "震级"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 13.8,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 8.4,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 6.1,
+          "matched_terms": [
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 4.6,
+          "matched_terms": [
+            "震级",
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_008_doc",
+      "query": "列出最近 M6 以上地震事件，并解释烈度。",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "列出最近 M6 以上地震事件，并解释烈度。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "烈度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 11.8,
+          "matched_terms": [
+            "烈度",
+            "地震"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 8.1,
+          "matched_terms": [
+            "intensity",
+            "seismic intensity"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 2.8000000000000003,
+          "matched_terms": [
+            "地震"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 1.0,
+          "matched_terms": [
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_009_doc",
+      "query": "2025 年最高震级地震有哪些，并解释震级和烈度区别。",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "2025 年最高震级地震有哪些，并解释震级和烈度区别。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "震级",
+        "烈度"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 30.6,
+          "matched_terms": [
+            "震级",
+            "烈度",
+            "区别",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 14.1,
+          "matched_terms": [
+            "magnitude",
+            "intensity",
+            "seismic intensity"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 8.4,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude"
+          ]
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 4.6,
+          "matched_terms": [
+            "震级",
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_010_doc",
+      "query": "最近地震有哪些，并解释 tsunami alert。",
+      "query_mode": "raw",
+      "retrieval_queries": [
+        "最近地震有哪些，并解释 tsunami alert。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [
+        "海啸"
+      ],
+      "source_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 43.800000000000004,
+          "matched_terms": [
+            "地震",
+            "tsunami",
+            "tsunami alert",
+            "alert",
+            "海啸",
+            "海啸提示",
+            "海啸预警",
+            "tsunami warning",
+            "warning"
+          ]
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 2.8000000000000003,
+          "matched_terms": [
+            "地震"
+          ]
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 1.0,
+          "matched_terms": [
+            "地震"
+          ]
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}
