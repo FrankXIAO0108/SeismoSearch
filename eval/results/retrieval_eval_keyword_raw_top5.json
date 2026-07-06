@@ -1,5 +1,5 @@
 {
-  "retriever": "keyword_overlap",
+  "retriever": "keyword",
   "query_mode": "raw",
   "top_k": 5,
   "eval_file": "eval\\retrieval_eval_20.jsonl",
@@ -16,6 +16,7 @@
       "query_id": "concept_001",
       "query": "震级和烈度有什么区别？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "震级和烈度有什么区别？"
       ],
@@ -41,7 +42,8 @@
             "烈度",
             "区别",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -53,7 +55,8 @@
             "magnitude",
             "intensity",
             "seismic intensity"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -64,7 +67,8 @@
           "matched_terms": [
             "震级",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -74,7 +78,8 @@
           "score": 3.7,
           "matched_terms": [
             "震级"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -83,6 +88,7 @@
       "query_id": "concept_002",
       "query": "什么是地震深度？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "什么是地震深度？"
       ],
@@ -109,7 +115,8 @@
             "震源",
             "depth",
             "hypocenter"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -122,7 +129,8 @@
             "深度",
             "震源深度",
             "震源"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -135,7 +143,8 @@
             "深度",
             "震源深度",
             "震源"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -145,7 +154,8 @@
           "score": 2.1,
           "matched_terms": [
             "depth"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -154,6 +164,7 @@
       "query_id": "concept_003",
       "query": "地震震级是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "地震震级是什么意思？"
       ],
@@ -177,7 +188,8 @@
             "震级",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -189,7 +201,8 @@
             "震级",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -199,7 +212,8 @@
           "score": 6.1,
           "matched_terms": [
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -210,7 +224,8 @@
           "matched_terms": [
             "震级",
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -219,6 +234,7 @@
       "query_id": "concept_004",
       "query": "地震烈度是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "地震烈度是什么意思？"
       ],
@@ -241,7 +257,8 @@
           "matched_terms": [
             "烈度",
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -252,7 +269,8 @@
           "matched_terms": [
             "intensity",
             "seismic intensity"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -262,7 +280,8 @@
           "score": 2.8000000000000003,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -272,7 +291,8 @@
           "score": 1.0,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -281,6 +301,7 @@
       "query_id": "concept_005",
       "query": "地震海啸提示是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "地震海啸提示是什么意思？"
       ],
@@ -311,7 +332,8 @@
             "tsunami warning",
             "alert",
             "warning"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -321,7 +343,8 @@
           "score": 2.8000000000000003,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -331,7 +354,8 @@
           "score": 1.0,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -340,6 +364,7 @@
       "query_id": "concept_006",
       "query": "请解释震级的定义。",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "请解释震级的定义。"
       ],
@@ -362,7 +387,8 @@
           "matched_terms": [
             "震级",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -372,7 +398,8 @@
           "score": 6.1,
           "matched_terms": [
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -383,7 +410,8 @@
           "matched_terms": [
             "震级",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -393,7 +421,8 @@
           "score": 3.7,
           "matched_terms": [
             "震级"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -402,6 +431,7 @@
       "query_id": "concept_007",
       "query": "请解释烈度的定义。",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "请解释烈度的定义。"
       ],
@@ -423,7 +453,8 @@
           "score": 10.9,
           "matched_terms": [
             "烈度"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -434,7 +465,8 @@
           "matched_terms": [
             "intensity",
             "seismic intensity"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -443,6 +475,7 @@
       "query_id": "concept_008",
       "query": "震源深度是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "震源深度是什么意思？"
       ],
@@ -467,7 +500,8 @@
             "深度",
             "depth",
             "hypocenter"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -479,7 +513,8 @@
             "震源",
             "震源深度",
             "深度"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -491,7 +526,8 @@
             "震源",
             "震源深度",
             "深度"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -501,7 +537,8 @@
           "score": 2.1,
           "matched_terms": [
             "depth"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -510,6 +547,7 @@
       "query_id": "concept_009",
       "query": "magnitude 和 intensity 有什么区别？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "magnitude 和 intensity 有什么区别？"
       ],
@@ -535,7 +573,8 @@
             "magnitude",
             "震级",
             "烈度"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -547,7 +586,8 @@
             "magnitude",
             "intensity",
             "seismic intensity"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -558,7 +598,8 @@
           "matched_terms": [
             "magnitude",
             "震级"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -568,7 +609,8 @@
           "score": 3.7,
           "matched_terms": [
             "震级"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -577,6 +619,7 @@
       "query_id": "concept_010",
       "query": "地震中的 tsunami alert 是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "地震中的 tsunami alert 是什么意思？"
       ],
@@ -606,7 +649,8 @@
             "海啸预警",
             "tsunami warning",
             "warning"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -616,7 +660,8 @@
           "score": 2.8000000000000003,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -626,7 +671,8 @@
           "score": 1.0,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -635,6 +681,7 @@
       "query_id": "mixed_001_doc",
       "query": "2025 年 M6 以上地震有哪些，并解释震级和烈度有什么区别？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "2025 年 M6 以上地震有哪些，并解释震级和烈度有什么区别？"
       ],
@@ -661,7 +708,8 @@
             "区别",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -673,7 +721,8 @@
             "magnitude",
             "intensity",
             "seismic intensity"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -685,7 +734,8 @@
             "震级",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -696,7 +746,8 @@
           "matched_terms": [
             "震级",
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -705,6 +756,7 @@
       "query_id": "mixed_002_doc",
       "query": "最近 M6.5 以上地震有哪些，并解释地震深度是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "最近 M6.5 以上地震有哪些，并解释地震深度是什么意思？"
       ],
@@ -731,7 +783,8 @@
             "震源",
             "depth",
             "hypocenter"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -744,7 +797,8 @@
             "深度",
             "震源深度",
             "震源"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -757,7 +811,8 @@
             "深度",
             "震源深度",
             "震源"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -767,7 +822,8 @@
           "score": 2.1,
           "matched_terms": [
             "depth"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -776,6 +832,7 @@
       "query_id": "mixed_003_doc",
       "query": "最近 M6 以上地震有哪些，并解释震级是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "最近 M6 以上地震有哪些，并解释震级是什么意思？"
       ],
@@ -799,7 +856,8 @@
             "震级",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -811,7 +869,8 @@
             "震级",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -821,7 +880,8 @@
           "score": 6.1,
           "matched_terms": [
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -832,7 +892,8 @@
           "matched_terms": [
             "震级",
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -841,6 +902,7 @@
       "query_id": "mixed_004_doc",
       "query": "2025 年 6.5 级以上地震有哪些，并解释烈度是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "2025 年 6.5 级以上地震有哪些，并解释烈度是什么意思？"
       ],
@@ -863,7 +925,8 @@
           "matched_terms": [
             "烈度",
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -874,7 +937,8 @@
           "matched_terms": [
             "intensity",
             "seismic intensity"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -884,7 +948,8 @@
           "score": 2.8000000000000003,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -894,7 +959,8 @@
           "score": 1.0,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -903,6 +969,7 @@
       "query_id": "mixed_005_doc",
       "query": "最近地震事件有哪些，并解释海啸提示是什么意思？",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "最近地震事件有哪些，并解释海啸提示是什么意思？"
       ],
@@ -933,7 +1000,8 @@
             "tsunami warning",
             "alert",
             "warning"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -943,7 +1011,8 @@
           "score": 2.8000000000000003,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -953,7 +1022,8 @@
           "score": 1.0,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -962,6 +1032,7 @@
       "query_id": "mixed_006_doc",
       "query": "查询 2025 年 M6 以上地震，并解释地震深度。",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "查询 2025 年 M6 以上地震，并解释地震深度。"
       ],
@@ -987,7 +1058,8 @@
             "震源",
             "depth",
             "hypocenter"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -1000,7 +1072,8 @@
             "深度",
             "震源深度",
             "震源"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -1013,7 +1086,8 @@
             "深度",
             "震源深度",
             "震源"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -1023,7 +1097,8 @@
           "score": 2.1,
           "matched_terms": [
             "depth"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -1032,6 +1107,7 @@
       "query_id": "mixed_007_doc",
       "query": "最近 6.5 级以上地震记录有哪些，并解释震级。",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "最近 6.5 级以上地震记录有哪些，并解释震级。"
       ],
@@ -1055,7 +1131,8 @@
             "震级",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -1067,7 +1144,8 @@
             "震级",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -1077,7 +1155,8 @@
           "score": 6.1,
           "matched_terms": [
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -1088,7 +1167,8 @@
           "matched_terms": [
             "震级",
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -1097,6 +1177,7 @@
       "query_id": "mixed_008_doc",
       "query": "列出最近 M6 以上地震事件，并解释烈度。",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "列出最近 M6 以上地震事件，并解释烈度。"
       ],
@@ -1119,7 +1200,8 @@
           "matched_terms": [
             "烈度",
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -1130,7 +1212,8 @@
           "matched_terms": [
             "intensity",
             "seismic intensity"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -1140,7 +1223,8 @@
           "score": 2.8000000000000003,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -1150,7 +1234,8 @@
           "score": 1.0,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -1159,6 +1244,7 @@
       "query_id": "mixed_009_doc",
       "query": "2025 年最高震级地震有哪些，并解释震级和烈度区别。",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "2025 年最高震级地震有哪些，并解释震级和烈度区别。"
       ],
@@ -1185,7 +1271,8 @@
             "区别",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -1197,7 +1284,8 @@
             "magnitude",
             "intensity",
             "seismic intensity"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -1209,7 +1297,8 @@
             "震级",
             "地震",
             "magnitude"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 4,
@@ -1220,7 +1309,8 @@
           "matched_terms": [
             "震级",
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []
@@ -1229,6 +1319,7 @@
       "query_id": "mixed_010_doc",
       "query": "最近地震有哪些，并解释 tsunami alert。",
       "query_mode": "raw",
+      "retriever": "keyword",
       "retrieval_queries": [
         "最近地震有哪些，并解释 tsunami alert。"
       ],
@@ -1258,7 +1349,8 @@
             "海啸预警",
             "tsunami warning",
             "warning"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 2,
@@ -1268,7 +1360,8 @@
           "score": 2.8000000000000003,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         },
         {
           "rank": 3,
@@ -1278,7 +1371,8 @@
           "score": 1.0,
           "matched_terms": [
             "地震"
-          ]
+          ],
+          "retriever": "keyword"
         }
       ],
       "warnings": []

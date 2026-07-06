@@ -14,15 +14,21 @@ This script focuses only on retrieval:
 - Does the returned top-k evidence contain required terms?
 - At what rank does the first correct chunk appear?
 - Does planner-based query rewriting improve retrieval compared with raw query?
+- Does BM25 improve over the deterministic keyword-overlap baseline?
 
-Current retriever:
-- keyword overlap retriever from src/seismosearch/doc_retriever.py
+Supported retrievers:
+- keyword: weighted keyword-overlap retriever from doc_retriever.py;
+- bm25: lightweight deterministic BM25 retriever from bm25_retriever.py.
 
-Future retrievers:
-- BM25;
-- dense retrieval;
-- hybrid retrieval;
-- rerank.
+Evaluation requirements:
+- expected_source_path_contains:
+  require at least one returned chunk to come from the expected source path.
+- must_contain_terms:
+  exact terms that must all appear.
+- must_contain_any_groups:
+  alias-aware requirements. Each group means "at least one term in this group
+  must appear". This is useful for bilingual retrieval evaluation, e.g.
+  ["magnitude", "震级"] or ["intensity", "烈度"].
 """
 
 from __future__ import annotations
@@ -32,6 +38,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from seismosearch.bm25_retriever import retrieve_docs_bm25
 from seismosearch.doc_retriever import retrieve_docs
 from seismosearch.planner import plan_query
 
@@ -58,7 +65,7 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
 
 
 def normalize_text(text: str) -> str:
-    """Normalize text for simple deterministic matching."""
+    """Normalize text for deterministic matching."""
     return " ".join(str(text).lower().strip().split())
 
 
@@ -92,8 +99,34 @@ def build_retrieval_queries(
     raise ValueError(f"Unsupported query_mode: {query_mode}")
 
 
+def run_retriever(
+    retriever: str,
+    retrieval_queries: list[str],
+    top_k: int,
+) -> dict[str, Any]:
+    """Run the selected retriever."""
+    if retriever == "keyword":
+        return retrieve_docs(
+            queries=retrieval_queries,
+            top_k=top_k,
+        )
+
+    if retriever == "bm25":
+        return retrieve_docs_bm25(
+            queries=retrieval_queries,
+            top_k=top_k,
+        )
+
+    raise ValueError(f"Unsupported retriever: {retriever}")
+
+
 def chunk_to_searchable_text(chunk: dict[str, Any]) -> str:
-    """Combine chunk fields into a single string for requirement checks."""
+    """
+    Combine chunk fields into a single string for requirement checks.
+
+    matched_terms is included because the retriever may have matched aliases
+    that do not always appear literally in the short displayed fields.
+    """
     return "\n".join(
         [
             str(chunk.get("source_path", "")),
@@ -102,6 +135,13 @@ def chunk_to_searchable_text(chunk: dict[str, Any]) -> str:
             str(chunk.get("text", "")),
             " ".join(chunk.get("matched_terms", [])),
         ]
+    )
+
+
+def chunks_to_combined_text(chunks: list[dict[str, Any]]) -> str:
+    """Combine all top-k chunks into normalized searchable text."""
+    return normalize_text(
+        "\n".join(chunk_to_searchable_text(chunk) for chunk in chunks)
     )
 
 
@@ -126,36 +166,124 @@ def check_source_hit(
     return False
 
 
-def check_term_hit(
-    chunks: list[dict[str, Any]],
+def check_exact_terms_in_text(
+    searchable_text: str,
     must_contain_terms: list[str],
 ) -> bool:
     """
-    Check whether returned chunks contain all required terms.
+    Check exact term requirements against one searchable text string.
 
-    The check is performed over the combined top-k retrieved text.
+    Every term in must_contain_terms must appear.
     """
     if not must_contain_terms:
         return True
 
-    combined_text = normalize_text(
-        "\n".join(chunk_to_searchable_text(chunk) for chunk in chunks)
-    )
-
     for term in must_contain_terms:
-        if normalize_text(term) not in combined_text:
+        if normalize_text(term) not in searchable_text:
             return False
 
     return True
+
+
+def check_any_groups_in_text(
+    searchable_text: str,
+    must_contain_any_groups: list[list[str]],
+) -> bool:
+    """
+    Check alias-aware term groups against one searchable text string.
+
+    Each group means:
+    - at least one item in this group must appear.
+
+    Example:
+    [
+      ["magnitude", "震级"],
+      ["intensity", "烈度"]
+    ]
+
+    This allows a Chinese chunk containing "震级" and "烈度" to satisfy an
+    English query requirement for magnitude and intensity.
+    """
+    if not must_contain_any_groups:
+        return True
+
+    for group in must_contain_any_groups:
+        normalized_group = [
+            normalize_text(term)
+            for term in group
+            if normalize_text(term)
+        ]
+
+        if not normalized_group:
+            continue
+
+        if not any(term in searchable_text for term in normalized_group):
+            return False
+
+    return True
+
+
+def check_exact_term_hit(
+    chunks: list[dict[str, Any]],
+    must_contain_terms: list[str],
+) -> bool:
+    """Check exact term requirements over combined top-k retrieved text."""
+    combined_text = chunks_to_combined_text(chunks)
+
+    return check_exact_terms_in_text(
+        searchable_text=combined_text,
+        must_contain_terms=must_contain_terms,
+    )
+
+
+def check_any_group_hit(
+    chunks: list[dict[str, Any]],
+    must_contain_any_groups: list[list[str]],
+) -> bool:
+    """Check alias-aware requirements over combined top-k retrieved text."""
+    combined_text = chunks_to_combined_text(chunks)
+
+    return check_any_groups_in_text(
+        searchable_text=combined_text,
+        must_contain_any_groups=must_contain_any_groups,
+    )
+
+
+def check_term_hit(
+    chunks: list[dict[str, Any]],
+    must_contain_terms: list[str],
+    must_contain_any_groups: list[list[str]],
+) -> bool:
+    """
+    Check all term requirements.
+
+    Backward compatibility:
+    - old eval files can still use must_contain_terms;
+    - new eval files can use must_contain_any_groups;
+    - samples may use both.
+    """
+    exact_term_hit = check_exact_term_hit(
+        chunks=chunks,
+        must_contain_terms=must_contain_terms,
+    )
+
+    any_group_hit = check_any_group_hit(
+        chunks=chunks,
+        must_contain_any_groups=must_contain_any_groups,
+    )
+
+    return exact_term_hit and any_group_hit
 
 
 def chunk_satisfies_requirements(
     chunk: dict[str, Any],
     expected_source_path_contains: str | None,
     must_contain_terms: list[str],
+    must_contain_any_groups: list[list[str]],
 ) -> bool:
     """
-    Check whether one chunk satisfies both source and term requirements.
+    Check whether one chunk satisfies source, exact term, and alias-group
+    requirements.
 
     This is used for MRR calculation.
     """
@@ -167,9 +295,17 @@ def chunk_satisfies_requirements(
         if expected_source_path_contains not in source_path:
             return False
 
-    for term in must_contain_terms:
-        if normalize_text(term) not in searchable_text:
-            return False
+    if not check_exact_terms_in_text(
+        searchable_text=searchable_text,
+        must_contain_terms=must_contain_terms,
+    ):
+        return False
+
+    if not check_any_groups_in_text(
+        searchable_text=searchable_text,
+        must_contain_any_groups=must_contain_any_groups,
+    ):
+        return False
 
     return True
 
@@ -178,6 +314,7 @@ def compute_reciprocal_rank(
     chunks: list[dict[str, Any]],
     expected_source_path_contains: str | None,
     must_contain_terms: list[str],
+    must_contain_any_groups: list[list[str]],
 ) -> float:
     """
     Compute reciprocal rank of the first chunk satisfying requirements.
@@ -189,6 +326,7 @@ def compute_reciprocal_rank(
             chunk=chunk,
             expected_source_path_contains=expected_source_path_contains,
             must_contain_terms=must_contain_terms,
+            must_contain_any_groups=must_contain_any_groups,
         ):
             return 1.0 / rank
 
@@ -198,6 +336,7 @@ def compute_reciprocal_rank(
 def evaluate_sample(
     sample: dict[str, Any],
     query_mode: str,
+    retriever: str,
     top_k: int,
 ) -> dict[str, Any]:
     """Evaluate one retrieval sample."""
@@ -206,8 +345,9 @@ def evaluate_sample(
         query_mode=query_mode,
     )
 
-    retrieval_result = retrieve_docs(
-        queries=retrieval_queries,
+    retrieval_result = run_retriever(
+        retriever=retriever,
+        retrieval_queries=retrieval_queries,
         top_k=top_k,
     )
 
@@ -215,16 +355,24 @@ def evaluate_sample(
 
     expected_source_path_contains = sample.get("expected_source_path_contains")
     must_contain_terms = sample.get("must_contain_terms", [])
+    must_contain_any_groups = sample.get("must_contain_any_groups", [])
 
     source_hit = check_source_hit(
         chunks=chunks,
         expected_source_path_contains=expected_source_path_contains,
     )
 
-    term_hit = check_term_hit(
+    exact_term_hit = check_exact_term_hit(
         chunks=chunks,
         must_contain_terms=must_contain_terms,
     )
+
+    any_group_hit = check_any_group_hit(
+        chunks=chunks,
+        must_contain_any_groups=must_contain_any_groups,
+    )
+
+    term_hit = exact_term_hit and any_group_hit
 
     requirement_hit = source_hit and term_hit
 
@@ -232,6 +380,7 @@ def evaluate_sample(
         chunks=chunks,
         expected_source_path_contains=expected_source_path_contains,
         must_contain_terms=must_contain_terms,
+        must_contain_any_groups=must_contain_any_groups,
     )
 
     top_chunks = []
@@ -245,6 +394,7 @@ def evaluate_sample(
                 "heading": chunk.get("heading"),
                 "score": chunk.get("score"),
                 "matched_terms": chunk.get("matched_terms", []),
+                "retriever": chunk.get("retriever", retriever),
             }
         )
 
@@ -253,8 +403,11 @@ def evaluate_sample(
     if not source_hit:
         failed_checks.append("source_hit")
 
-    if not term_hit:
-        failed_checks.append("term_hit")
+    if not exact_term_hit:
+        failed_checks.append("exact_term_hit")
+
+    if not any_group_hit:
+        failed_checks.append("any_group_hit")
 
     if not requirement_hit:
         failed_checks.append("requirement_hit")
@@ -263,10 +416,14 @@ def evaluate_sample(
         "query_id": sample.get("query_id"),
         "query": sample.get("query"),
         "query_mode": query_mode,
+        "retriever": retriever,
         "retrieval_queries": retrieval_queries,
         "expected_source_path_contains": expected_source_path_contains,
         "must_contain_terms": must_contain_terms,
+        "must_contain_any_groups": must_contain_any_groups,
         "source_hit": source_hit,
+        "exact_term_hit": exact_term_hit,
+        "any_group_hit": any_group_hit,
         "term_hit": term_hit,
         "requirement_hit": requirement_hit,
         "reciprocal_rank": reciprocal_rank,
@@ -287,6 +444,8 @@ def safe_ratio(values: list[bool]) -> float:
 def summarize_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     """Summarize retrieval evaluation records."""
     source_hit_values = [record["source_hit"] for record in records]
+    exact_term_hit_values = [record["exact_term_hit"] for record in records]
+    any_group_hit_values = [record["any_group_hit"] for record in records]
     term_hit_values = [record["term_hit"] for record in records]
     requirement_hit_values = [record["requirement_hit"] for record in records]
     reciprocal_ranks = [record["reciprocal_rank"] for record in records]
@@ -305,6 +464,8 @@ def summarize_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "num_samples": len(records),
         "source_hit_at_k": safe_ratio(source_hit_values),
+        "exact_term_hit_at_k": safe_ratio(exact_term_hit_values),
+        "any_group_hit_at_k": safe_ratio(any_group_hit_values),
         "term_hit_at_k": safe_ratio(term_hit_values),
         "requirement_hit_at_k": safe_ratio(requirement_hit_values),
         "mrr": mrr,
@@ -312,10 +473,16 @@ def summarize_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def print_summary(summary: dict[str, Any], query_mode: str, top_k: int) -> None:
+def print_summary(
+    summary: dict[str, Any],
+    query_mode: str,
+    retriever: str,
+    top_k: int,
+) -> None:
     """Print retrieval eval summary."""
     print("\nRetrieval evaluation summary")
     print("=" * 80)
+    print(f"retriever: {retriever}")
     print(f"query_mode: {query_mode}")
     print(f"top_k: {top_k}")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
@@ -380,6 +547,13 @@ def main() -> None:
     )
 
     parser.add_argument(
+        "--retriever",
+        choices=["keyword", "bm25"],
+        default="keyword",
+        help="Retriever to evaluate.",
+    )
+
+    parser.add_argument(
         "--top-k",
         type=int,
         default=5,
@@ -394,6 +568,7 @@ def main() -> None:
         evaluate_sample(
             sample=sample,
             query_mode=args.query_mode,
+            retriever=args.retriever,
             top_k=args.top_k,
         )
         for sample in samples
@@ -402,7 +577,7 @@ def main() -> None:
     summary = summarize_records(records)
 
     output = {
-        "retriever": "keyword_overlap",
+        "retriever": args.retriever,
         "query_mode": args.query_mode,
         "top_k": args.top_k,
         "eval_file": str(args.eval_file),
@@ -418,6 +593,7 @@ def main() -> None:
     print_summary(
         summary=summary,
         query_mode=args.query_mode,
+        retriever=args.retriever,
         top_k=args.top_k,
     )
 
