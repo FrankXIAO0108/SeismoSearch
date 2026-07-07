@@ -10,7 +10,7 @@
     "any_group_hit_at_k": 1.0,
     "term_hit_at_k": 1.0,
     "requirement_hit_at_k": 1.0,
-    "mrr": 1.0,
+    "mrr": 0.9875,
     "failed_records": 0
   },
   "records": [
@@ -43,7 +43,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 2.9810628793927796,
+          "score": 7.5684998467875735,
           "matched_terms": [
             "震级",
             "地震",
@@ -53,10 +53,35 @@
         },
         {
           "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.240661966508923,
+          "matched_terms": [
+            "震级",
+            "意思",
+            "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 5.617096890245415,
+          "matched_terms": [
+            "震级",
+            "magnitude"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 2.2290922066363943,
+          "score": 5.237659192439796,
           "matched_terms": [
             "震级",
             "地震",
@@ -65,25 +90,15 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.266253764518038,
-          "matched_terms": [
-            "magnitude"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 1.2448297386869807,
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 5.166000430372249,
           "matched_terms": [
             "震级",
-            "地震"
+            "地震",
+            "含义"
           ],
           "retriever": "bm25"
         }
@@ -117,22 +132,10 @@
       "top_chunks": [
         {
           "rank": 1,
-          "chunk_id": "seismology_concepts_002",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "震级和烈度的区别",
-          "score": 5.527187463000497,
-          "matched_terms": [
-            "烈度",
-            "地震"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 2,
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 4.759580965801676,
+          "score": 11.736623608111104,
           "matched_terms": [
             "intensity",
             "seismic intensity"
@@ -140,24 +143,52 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_004",
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 0.5975352314455573,
+          "heading": "震级和烈度的区别",
+          "score": 9.77072423641226,
           "matched_terms": [
+            "烈度",
+            "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.856123115752511,
+          "matched_terms": [
+            "烈度",
+            "意思",
             "地震"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.5142030832671627,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 5.308850007569993,
           "matched_terms": [
+            "烈度",
+            "意思",
             "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "文档目的",
+          "score": 1.9811350947152853,
+          "matched_terms": [
+            "地震",
+            "定义"
           ],
           "retriever": "bm25"
         }
@@ -197,7 +228,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 9.757758523726794,
+          "score": 19.921791513855336,
           "matched_terms": [
             "震级",
             "烈度",
@@ -211,7 +242,7 @@
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 5.925834730319713,
+          "score": 15.934122597305594,
           "matched_terms": [
             "magnitude",
             "intensity",
@@ -221,24 +252,40 @@
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 1.7315569751908368,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 13.752525419486023,
           "matched_terms": [
             "震级",
-            "magnitude"
+            "烈度",
+            "区别",
+            "difference"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.830626655419818,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 10.685075657861026,
           "matched_terms": [
-            "震级"
+            "震级",
+            "烈度",
+            "区别"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 6.92949834738843,
+          "matched_terms": [
+            "区别",
+            "difference"
           ],
           "retriever": "bm25"
         }
@@ -278,7 +325,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 9.757758523726793,
+          "score": 19.92179151385534,
           "matched_terms": [
             "区别",
             "magnitude",
@@ -292,7 +339,7 @@
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 5.925834730319713,
+          "score": 15.934122597305594,
           "matched_terms": [
             "magnitude",
             "intensity",
@@ -302,24 +349,40 @@
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 1.7315569751908368,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 13.752525419486023,
           "matched_terms": [
-            "magnitude",
-            "震级"
+            "区别",
+            "震级",
+            "烈度",
+            "difference"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.830626655419818,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 10.685075657861026,
           "matched_terms": [
-            "震级"
+            "区别",
+            "震级",
+            "烈度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 6.92949834738843,
+          "matched_terms": [
+            "区别",
+            "difference"
           ],
           "retriever": "bm25"
         }
@@ -355,7 +418,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 2.512773578608044,
+          "score": 7.367904618033544,
           "matched_terms": [
             "magnitude",
             "震级"
@@ -364,36 +427,53 @@
         },
         {
           "rank": 2,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 2.3262149854689578,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 7.1096608673916295,
           "matched_terms": [
-            "magnitude",
+            "解释",
+            "earthquake",
+            "震级",
+            "意思"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 5.900422810586164,
+          "matched_terms": [
+            "含义",
+            "解释",
             "earthquake",
             "震级"
           ],
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 2.075167267808719,
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 5.617096890245415,
           "matched_terms": [
             "magnitude",
-            "earthquake"
+            "震级"
           ],
           "retriever": "bm25"
         },
         {
-          "rank": 4,
-          "chunk_id": "seismology_concepts_005",
+          "rank": 5,
+          "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.830626655419818,
+          "heading": "地震深度",
+          "score": 5.256547356297979,
           "matched_terms": [
+            "magnitude",
+            "earthquake",
             "震级"
           ],
           "retriever": "bm25"
@@ -428,22 +508,10 @@
       "top_chunks": [
         {
           "rank": 1,
-          "chunk_id": "seismology_concepts_002",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "震级和烈度的区别",
-          "score": 5.527187463000497,
-          "matched_terms": [
-            "地震",
-            "烈度"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 2,
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 5.506574810066674,
+          "score": 12.276976111577367,
           "matched_terms": [
             "intensity",
             "seismic intensity",
@@ -452,24 +520,51 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_004",
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 0.5975352314455573,
+          "heading": "震级和烈度的区别",
+          "score": 9.77072423641226,
           "matched_terms": [
-            "地震"
+            "地震",
+            "烈度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 4.956410210143563,
+          "matched_terms": [
+            "地震",
+            "烈度"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.5142030832671627,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.592045396118921,
           "matched_terms": [
-            "地震"
+            "地震",
+            "seismic",
+            "烈度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 1.251286531257726,
+          "matched_terms": [
+            "地震",
+            "seismic"
           ],
           "retriever": "bm25"
         }
@@ -507,22 +602,10 @@
       "top_chunks": [
         {
           "rank": 1,
-          "chunk_id": "seismology_concepts_002",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "震级和烈度的区别",
-          "score": 5.527187463000497,
-          "matched_terms": [
-            "烈度",
-            "地震"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 2,
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 4.759580965801676,
+          "score": 11.736623608111104,
           "matched_terms": [
             "intensity",
             "seismic intensity"
@@ -530,22 +613,47 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_004",
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 0.5975352314455573,
+          "heading": "震级和烈度的区别",
+          "score": 9.77072423641226,
           "matched_terms": [
+            "烈度",
+            "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 4.956410210143563,
+          "matched_terms": [
+            "烈度",
             "地震"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.5142030832671627,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.208403968981784,
+          "matched_terms": [
+            "烈度",
+            "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.3206690234003049,
           "matched_terms": [
             "地震"
           ],
@@ -588,7 +696,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 2.512773578608044,
+          "score": 7.367904618033544,
           "matched_terms": [
             "震级",
             "magnitude"
@@ -597,10 +705,10 @@
         },
         {
           "rank": 2,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 1.7315569751908368,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 5.617096890245415,
           "matched_terms": [
             "震级",
             "magnitude"
@@ -609,21 +717,33 @@
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_003",
+          "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.266253764518038,
+          "heading": "地震深度",
+          "score": 5.0221221782468755,
           "matched_terms": [
+            "震级",
             "magnitude"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
+          "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.830626655419818,
+          "heading": "Magnitude and Intensity",
+          "score": 4.297498989194486,
+          "matched_terms": [
+            "magnitude"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 4.149849735006282,
           "matched_terms": [
             "震级"
           ],
@@ -664,24 +784,46 @@
       "top_chunks": [
         {
           "rank": 1,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 11.736623608111104,
+          "matched_terms": [
+            "intensity",
+            "seismic intensity"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 5.058898162215761,
+          "score": 9.570129007658231,
           "matched_terms": [
             "烈度"
           ],
           "retriever": "bm25"
         },
         {
-          "rank": 2,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 4.759580965801676,
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 4.76531088424987,
           "matched_terms": [
-            "intensity",
-            "seismic intensity"
+            "烈度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.019771142361666,
+          "matched_terms": [
+            "烈度"
           ],
           "retriever": "bm25"
         }
@@ -722,7 +864,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 2.9810628793927796,
+          "score": 7.5684998467875735,
           "matched_terms": [
             "震级",
             "地震",
@@ -732,10 +874,22 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 5.617096890245415,
+          "matched_terms": [
+            "震级",
+            "magnitude"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 2.2290922066363943,
+          "score": 5.237659192439796,
           "matched_terms": [
             "震级",
             "地震",
@@ -744,25 +898,25 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.266253764518038,
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 4.340949060899975,
           "matched_terms": [
-            "magnitude"
+            "震级",
+            "地震"
           ],
           "retriever": "bm25"
         },
         {
-          "rank": 4,
-          "chunk_id": "seismology_concepts_005",
+          "rank": 5,
+          "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 1.2448297386869807,
+          "heading": "Magnitude and Intensity",
+          "score": 4.297498989194486,
           "matched_terms": [
-            "震级",
-            "地震"
+            "magnitude"
           ],
           "retriever": "bm25"
         }
@@ -799,7 +953,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 6.012718228748637,
+          "score": 17.942788919407885,
           "matched_terms": [
             "地震",
             "深度",
@@ -814,7 +968,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.8392653515077266,
+          "score": 12.571971754976396,
           "matched_terms": [
             "地震",
             "深度",
@@ -828,7 +982,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.554534257469682,
+          "score": 11.629284232553298,
           "matched_terms": [
             "地震",
             "深度",
@@ -839,12 +993,27 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.1483099180586034,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 5.847749320999609,
           "matched_terms": [
-            "depth"
+            "地震",
+            "深度",
+            "含义"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 5.679260376696413,
+          "matched_terms": [
+            "意思",
+            "地震",
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -889,7 +1058,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 5.515182997303079,
+          "score": 17.727251905214963,
           "matched_terms": [
             "震源",
             "深度",
@@ -903,7 +1072,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.3709760507229904,
+          "score": 12.371376526222365,
           "matched_terms": [
             "震源",
             "震源深度",
@@ -916,7 +1085,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.1403311742025193,
+          "score": 11.454528136479272,
           "matched_terms": [
             "震源",
             "震源深度",
@@ -926,12 +1095,23 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.1483099180586034,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.390181511488085,
           "matched_terms": [
-            "depth"
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 4.099817527334668,
+          "matched_terms": [
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -968,7 +1148,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 6.109841007581199,
+          "score": 17.961677083266068,
           "matched_terms": [
             "earthquake",
             "depth",
@@ -983,7 +1163,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.3709760507229904,
+          "score": 12.371376526222365,
           "matched_terms": [
             "深度",
             "震源深度",
@@ -996,7 +1176,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.1403311742025193,
+          "score": 11.454528136479272,
           "matched_terms": [
             "深度",
             "震源深度",
@@ -1006,13 +1186,25 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.9572234213492847,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.52077380585338,
           "matched_terms": [
             "earthquake",
-            "depth"
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 4.284524474228567,
+          "matched_terms": [
+            "earthquake",
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -1050,7 +1242,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 5.515182997303079,
+          "score": 17.727251905214963,
           "matched_terms": [
             "depth",
             "hypocenter",
@@ -1064,7 +1256,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.3709760507229904,
+          "score": 12.371376526222365,
           "matched_terms": [
             "深度",
             "震源深度",
@@ -1077,7 +1269,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.1403311742025193,
+          "score": 11.454528136479272,
           "matched_terms": [
             "深度",
             "震源深度",
@@ -1087,12 +1279,23 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.1483099180586034,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.390181511488085,
           "matched_terms": [
-            "depth"
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 4.099817527334668,
+          "matched_terms": [
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -1132,7 +1335,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 6.012718228748637,
+          "score": 17.942788919407885,
           "matched_terms": [
             "地震",
             "深度",
@@ -1147,7 +1350,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.8392653515077266,
+          "score": 12.571971754976396,
           "matched_terms": [
             "地震",
             "深度",
@@ -1161,7 +1364,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.554534257469682,
+          "score": 11.629284232553298,
           "matched_terms": [
             "地震",
             "深度",
@@ -1172,12 +1375,26 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.1483099180586034,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 5.032501886059842,
           "matched_terms": [
-            "depth"
+            "解释",
+            "地震",
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.578814338108204,
+          "matched_terms": [
+            "地震",
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -1221,7 +1438,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 7.644275203939474,
+          "score": 22.864911097654762,
           "matched_terms": [
             "震级",
             "地震",
@@ -1238,7 +1455,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 6.25203893011577,
+          "score": 19.839876373009943,
           "matched_terms": [
             "震级",
             "地震",
@@ -1254,7 +1471,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 4.285160912889499,
+          "score": 13.61650534190106,
           "matched_terms": [
             "震级",
             "地震",
@@ -1266,13 +1483,27 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 2.3145636825766416,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 7.706796130388745,
           "matched_terms": [
-            "magnitude",
-            "depth"
+            "震级",
+            "地震",
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 7.609370626744555,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -1309,7 +1540,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 20.94571039960541,
+          "score": 48.56120120853327,
           "matched_terms": [
             "海啸",
             "海啸提示",
@@ -1320,6 +1551,30 @@
             "tsunami warning",
             "alert",
             "warning"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.912147095734422,
+          "matched_terms": [
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
           ],
           "retriever": "bm25"
         }
@@ -1356,7 +1611,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 19.774317403449906,
+          "score": 45.65439245762899,
           "matched_terms": [
             "tsunami",
             "tsunami alert",
@@ -1366,6 +1621,53 @@
             "海啸预警",
             "tsunami warning",
             "warning"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 8.81186000134337,
+          "matched_terms": [
+            "意思",
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "文档目的",
+          "score": 1.7814785264770892,
+          "matched_terms": [
+            "定义"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_002",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "文档目的",
+          "score": 1.6564473309623629,
+          "matched_terms": [
+            "含义"
           ],
           "retriever": "bm25"
         }
@@ -1406,7 +1708,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 20.8182982199771,
+          "score": 48.070260618008376,
           "matched_terms": [
             "tsunami",
             "tsunami warning",
@@ -1417,6 +1719,30 @@
             "海啸预警",
             "tsunami alert",
             "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.912147095734422,
+          "matched_terms": [
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
           ],
           "retriever": "bm25"
         }
@@ -1458,7 +1784,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 19.7743174034499,
+          "score": 45.65439245762899,
           "matched_terms": [
             "海啸",
             "tsunami",
@@ -1468,6 +1794,30 @@
             "海啸预警",
             "tsunami warning",
             "warning"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.912147095734422,
+          "matched_terms": [
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
           ],
           "retriever": "bm25"
         }
@@ -1508,7 +1858,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 20.188520486717067,
+          "score": 45.82914855370301,
           "matched_terms": [
             "地震",
             "海啸",
@@ -1524,21 +1874,46 @@
         },
         {
           "rank": 2,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 0.5975352314455573,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 7.103246421628114,
+          "matched_terms": [
+            "地震",
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.3206690234003049,
           "matched_terms": [
             "地震"
           ],
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_002",
+          "rank": 5,
+          "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "震级和烈度的区别",
-          "score": 0.568289300784736,
+          "heading": "地震深度",
+          "score": 0.31553701419292157,
           "matched_terms": [
             "地震"
           ],
@@ -1585,7 +1960,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 19.774317403449906,
+          "score": 45.65439245762898,
           "matched_terms": [
             "海啸",
             "海啸提示",
@@ -1595,6 +1970,30 @@
             "tsunami warning",
             "alert",
             "warning"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.912147095734422,
+          "matched_terms": [
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
           ],
           "retriever": "bm25"
         }
@@ -1636,7 +2035,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 20.818298219977095,
+          "score": 46.69707457405734,
           "matched_terms": [
             "海啸",
             "tsunami",
@@ -1647,6 +2046,52 @@
             "tsunami warning",
             "alert",
             "warning"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.912147095734422,
+          "matched_terms": [
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 3.6058789108610765,
+          "matched_terms": [
+            "catalog"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 3.0829145549908072,
+          "matched_terms": [
+            "catalog"
           ],
           "retriever": "bm25"
         }
@@ -1691,7 +2136,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 21.15568245642679,
+          "score": 47.17682144560509,
           "matched_terms": [
             "海啸",
             "海啸预警",
@@ -1708,11 +2153,50 @@
         },
         {
           "rank": 2,
-          "chunk_id": "seismology_concepts_001",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Seismology Concepts Seed Document",
-          "score": 1.3755173656811788,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 7.51750483485157,
           "matched_terms": [
+            "seismosearch",
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 4.153925969256016,
+          "matched_terms": [
+            "seismosearch",
+            "tsunami"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 2.2395099189765744,
+          "matched_terms": [
+            "预警",
+            "seismosearch"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_014",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to Evaluation",
+          "score": 1.6625140246906833,
+          "matched_terms": [
+            "预警",
             "seismosearch"
           ],
           "retriever": "bm25"
@@ -1741,28 +2225,30 @@
       "any_group_hit": true,
       "term_hit": true,
       "requirement_hit": true,
-      "reciprocal_rank": 1.0,
+      "reciprocal_rank": 0.5,
       "failed_checks": [],
       "top_chunks": [
         {
           "rank": 1,
-          "chunk_id": "seismology_concepts_002",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "震级和烈度的区别",
-          "score": 2.9810628793927796,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 9.499115285068504,
           "matched_terms": [
             "震级",
+            "意思",
+            "解释",
             "地震",
-            "magnitude"
+            "m6"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 2,
-          "chunk_id": "seismology_concepts_004",
+          "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 2.2290922066363943,
+          "heading": "震级和烈度的区别",
+          "score": 7.5684998467875735,
           "matched_terms": [
             "震级",
             "地震",
@@ -1772,24 +2258,41 @@
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.266253764518038,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 6.735220514285462,
           "matched_terms": [
-            "magnitude"
+            "震级",
+            "意思",
+            "地震",
+            "m6"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 1.2448297386869807,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 5.907200326394845,
           "matched_terms": [
             "震级",
-            "地震"
+            "解释",
+            "地震",
+            "含义"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 5.617096890245415,
+          "matched_terms": [
+            "震级",
+            "magnitude"
           ],
           "retriever": "bm25"
         }
@@ -1829,7 +2332,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 10.226047824511529,
+          "score": 20.122386742609365,
           "matched_terms": [
             "区别",
             "地震",
@@ -1844,7 +2347,7 @@
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 5.925834730319713,
+          "score": 15.934122597305594,
           "matched_terms": [
             "magnitude",
             "intensity",
@@ -1854,26 +2357,43 @@
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 2.2290922066363943,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 13.941158246106143,
           "matched_terms": [
+            "区别",
             "地震",
-            "magnitude",
-            "震级"
+            "震级",
+            "烈度",
+            "difference"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 1.2448297386869807,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 10.876174983754717,
           "matched_terms": [
+            "区别",
             "地震",
-            "震级"
+            "震级",
+            "烈度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 7.123173475785993,
+          "matched_terms": [
+            "区别",
+            "地震",
+            "difference"
           ],
           "retriever": "bm25"
         }
@@ -1913,7 +2433,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 7.939961041608541,
+          "score": 17.038628854445804,
           "matched_terms": [
             "震级",
             "烈度",
@@ -1927,7 +2447,7 @@
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 5.925834730319713,
+          "score": 15.934122597305594,
           "matched_terms": [
             "magnitude",
             "intensity",
@@ -1937,26 +2457,40 @@
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 2.2290922066363943,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 9.910927247473218,
           "matched_terms": [
             "震级",
-            "地震",
-            "magnitude"
+            "烈度",
+            "解释",
+            "地震"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 1.2448297386869807,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 6.55435902598373,
           "matched_terms": [
             "震级",
+            "烈度",
             "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 5.617096890245415,
+          "matched_terms": [
+            "震级",
+            "magnitude"
           ],
           "retriever": "bm25"
         }
@@ -1993,7 +2527,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 6.012718228748636,
+          "score": 17.942788919407885,
           "matched_terms": [
             "地震",
             "震源",
@@ -2008,7 +2542,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.839265351507726,
+          "score": 12.571971754976396,
           "matched_terms": [
             "地震",
             "震源",
@@ -2022,7 +2556,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.554534257469682,
+          "score": 11.6292842325533,
           "matched_terms": [
             "地震",
             "震源",
@@ -2033,12 +2567,29 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.1483099180586034,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 6.588949217022204,
           "matched_terms": [
-            "depth"
+            "含义",
+            "解释",
+            "地震",
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.461326603314783,
+          "matched_terms": [
+            "解释",
+            "地震",
+            "深度",
+            "意思"
           ],
           "retriever": "bm25"
         }
@@ -2082,7 +2633,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 8.106072845642855,
+          "score": 21.76098446975787,
           "matched_terms": [
             "地震",
             "earthquake",
@@ -2099,7 +2650,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.8392653515077266,
+          "score": 12.571971754976396,
           "matched_terms": [
             "地震",
             "深度",
@@ -2113,7 +2664,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.554534257469682,
+          "score": 11.629284232553298,
           "matched_terms": [
             "地震",
             "深度",
@@ -2124,13 +2675,30 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.9572234213492847,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 7.709593224548687,
           "matched_terms": [
+            "地震",
             "earthquake",
-            "depth"
+            "m6",
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 7.07083063839507,
+          "matched_terms": [
+            "解释",
+            "地震",
+            "earthquake",
+            "m6",
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -2167,7 +2735,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 20.188520486717067,
+          "score": 45.829148553703014,
           "matched_terms": [
             "地震",
             "tsunami",
@@ -2183,22 +2751,50 @@
         },
         {
           "rank": 2,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 0.5975352314455573,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 8.007913723951487,
           "matched_terms": [
-            "地震"
+            "解释",
+            "地震",
+            "tsunami",
+            "tsunami alert",
+            "alert"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_002",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "震级和烈度的区别",
-          "score": 0.568289300784736,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
           "matched_terms": [
+            "tsunami"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_014",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 1.320427974266143,
+          "matched_terms": [
+            "解释",
+            "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Safe Explanation",
+          "score": 1.2872628683018452,
+          "matched_terms": [
+            "解释",
             "地震"
           ],
           "retriever": "bm25"
@@ -2240,7 +2836,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 20.188520486717067,
+          "score": 45.829148553703014,
           "matched_terms": [
             "地震",
             "海啸",
@@ -2256,21 +2852,46 @@
         },
         {
           "rank": 2,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 0.5975352314455573,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 7.103246421628114,
+          "matched_terms": [
+            "地震",
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.3206690234003049,
           "matched_terms": [
             "地震"
           ],
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_002",
+          "rank": 5,
+          "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "震级和烈度的区别",
-          "score": 0.568289300784736,
+          "heading": "地震深度",
+          "score": 0.31553701419292157,
           "matched_terms": [
             "地震"
           ],
@@ -2310,22 +2931,10 @@
       "top_chunks": [
         {
           "rank": 1,
-          "chunk_id": "seismology_concepts_002",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "震级和烈度的区别",
-          "score": 5.527187463000497,
-          "matched_terms": [
-            "烈度",
-            "地震"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 2,
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 4.759580965801676,
+          "score": 11.736623608111104,
           "matched_terms": [
             "intensity",
             "seismic intensity"
@@ -2333,23 +2942,50 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_004",
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 0.5975352314455573,
+          "heading": "震级和烈度的区别",
+          "score": 9.77072423641226,
           "matched_terms": [
+            "烈度",
+            "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 5.861077512466935,
+          "matched_terms": [
+            "烈度",
+            "解释",
             "地震"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.5142030832671627,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.208403968981784,
           "matched_terms": [
+            "烈度",
+            "地震"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_014",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 1.320427974266143,
+          "matched_terms": [
+            "解释",
             "地震"
           ],
           "retriever": "bm25"
@@ -2390,7 +3026,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 6.012718228748637,
+          "score": 17.942788919407885,
           "matched_terms": [
             "地震",
             "深度",
@@ -2405,7 +3041,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.8392653515077266,
+          "score": 12.571971754976396,
           "matched_terms": [
             "地震",
             "深度",
@@ -2419,7 +3055,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.554534257469682,
+          "score": 11.629284232553298,
           "matched_terms": [
             "地震",
             "深度",
@@ -2430,12 +3066,26 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.1483099180586034,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 5.032501886059842,
           "matched_terms": [
-            "depth"
+            "解释",
+            "地震",
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.578814338108204,
+          "matched_terms": [
+            "地震",
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -2476,7 +3126,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 20.818298219977095,
+          "score": 46.69707457405734,
           "matched_terms": [
             "tsunami",
             "tsunami alert",
@@ -2487,6 +3137,52 @@
             "海啸预警",
             "tsunami warning",
             "warning"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.912147095734422,
+          "matched_terms": [
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 3.6058789108610765,
+          "matched_terms": [
+            "catalog"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 3.0829145549908072,
+          "matched_terms": [
+            "catalog"
           ],
           "retriever": "bm25"
         }
@@ -2526,7 +3222,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 2.512773578608044,
+          "score": 7.367904618033544,
           "matched_terms": [
             "震级",
             "magnitude"
@@ -2535,10 +3231,10 @@
         },
         {
           "rank": 2,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 1.7315569751908368,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 5.617096890245415,
           "matched_terms": [
             "震级",
             "magnitude"
@@ -2547,21 +3243,33 @@
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_003",
+          "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.266253764518038,
+          "heading": "地震深度",
+          "score": 5.0221221782468755,
           "matched_terms": [
+            "震级",
             "magnitude"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
+          "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.830626655419818,
+          "heading": "Magnitude and Intensity",
+          "score": 4.297498989194486,
+          "matched_terms": [
+            "magnitude"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 4.149849735006282,
           "matched_terms": [
             "震级"
           ],
@@ -2604,7 +3312,7 @@
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 11.984325711382402,
+          "score": 26.750622912600633,
           "matched_terms": [
             "intensity",
             "can",
@@ -2620,9 +3328,45 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 5.058898162215761,
+          "score": 9.570129007658231,
           "matched_terms": [
             "烈度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 9.023136189435142,
+          "matched_terms": [
+            "from",
+            "烈度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 5.669978186573243,
+          "matched_terms": [
+            "解释",
+            "烈度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 4.95967544931963,
+          "matched_terms": [
+            "解释",
+            "place"
           ],
           "retriever": "bm25"
         }
@@ -2666,7 +3410,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 6.012718228748636,
+          "score": 17.942788919407885,
           "matched_terms": [
             "地震",
             "震源",
@@ -2681,7 +3425,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 3.8392653515077266,
+          "score": 12.571971754976394,
           "matched_terms": [
             "地震",
             "震源",
@@ -2695,7 +3439,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.554534257469682,
+          "score": 11.629284232553298,
           "matched_terms": [
             "地震",
             "震源",
@@ -2706,12 +3450,25 @@
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_003",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "Magnitude and Intensity",
-          "score": 1.1483099180586034,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 4.578814338108204,
           "matched_terms": [
-            "depth"
+            "地震",
+            "深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 4.291301990037247,
+          "matched_terms": [
+            "地震",
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -2752,7 +3509,7 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 23.75574524048453,
+          "score": 54.484523831042615,
           "matched_terms": [
             "海啸",
             "海啸提示",
@@ -2766,6 +3523,52 @@
             "tsunami warning",
             "alert",
             "warning"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.912147095734422,
+          "matched_terms": [
+            "tsunami",
+            "tsunami alert",
+            "alert"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 3.3863550726989056,
+          "matched_terms": [
+            "tsunami"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 1.588276444422781,
+          "matched_terms": [
+            "预警"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_014",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to Evaluation",
+          "score": 1.0634860087493807,
+          "matched_terms": [
+            "预警"
           ],
           "retriever": "bm25"
         }
@@ -2815,7 +3618,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 10.742647791546794,
+          "score": 29.10941015191414,
           "matched_terms": [
             "震级",
             "烈度",
@@ -2831,7 +3634,7 @@
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
-          "score": 7.146739972493917,
+          "score": 22.649374083461836,
           "matched_terms": [
             "震级",
             "震源",
@@ -2847,7 +3650,7 @@
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 6.974144648378316,
+          "score": 18.49465133968942,
           "matched_terms": [
             "magnitude",
             "intensity",
@@ -2861,12 +3664,25 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 3.8709578296223373,
+          "score": 13.441749245827035,
           "matched_terms": [
             "震级",
             "震源",
             "深度",
             "震源深度"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 12.181007688744922,
+          "matched_terms": [
+            "震级",
+            "烈度",
+            "深度"
           ],
           "retriever": "bm25"
         }
@@ -2907,7 +3723,7 @@
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 10.469510939839827,
+          "score": 23.583674208269585,
           "matched_terms": [
             "magnitude",
             "earthquake",
@@ -2923,7 +3739,7 @@
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
-          "score": 2.512773578608044,
+          "score": 7.367904618033544,
           "matched_terms": [
             "magnitude",
             "震级"
@@ -2932,24 +3748,37 @@
         },
         {
           "rank": 3,
-          "chunk_id": "seismology_concepts_004",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "地震深度",
-          "score": 2.3262149854689578,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 5.617096890245415,
           "matched_terms": [
             "magnitude",
-            "earthquake",
             "震级"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 0.830626655419818,
+          "chunk_id": "usgs_event_metadata_010",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Evidence Usage",
+          "score": 5.361502097732656,
           "matched_terms": [
+            "magnitude",
+            "source"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 5.256547356297979,
+          "matched_terms": [
+            "magnitude",
+            "earthquake",
             "震级"
           ],
           "retriever": "bm25"
