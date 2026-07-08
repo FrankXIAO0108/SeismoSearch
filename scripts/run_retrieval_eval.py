@@ -15,10 +15,14 @@ This script focuses only on retrieval:
 - At what rank does the first correct chunk appear?
 - Does planner-based query rewriting improve retrieval compared with raw query?
 - Does BM25 improve over the deterministic keyword-overlap baseline?
+- Does dense retrieval improve semantic matching over sparse retrieval?
+- Does hybrid retrieval improve over single retrievers?
 
 Supported retrievers:
 - keyword: weighted keyword-overlap retriever from doc_retriever.py;
-- bm25: lightweight deterministic BM25 retriever from bm25_retriever.py.
+- bm25: lightweight deterministic BM25 retriever from bm25_retriever.py;
+- dense: sentence-transformers dense retriever from dense_retriever.py;
+- hybrid: BM25 + dense RRF retriever from hybrid_retriever.py.
 
 Evaluation requirements:
 - expected_source_path_contains:
@@ -39,7 +43,9 @@ from pathlib import Path
 from typing import Any
 
 from seismosearch.bm25_retriever import retrieve_docs_bm25
+from seismosearch.dense_retriever import retrieve_docs_dense
 from seismosearch.doc_retriever import retrieve_docs
+from seismosearch.hybrid_retriever import retrieve_docs_hybrid
 from seismosearch.planner import plan_query
 
 
@@ -113,6 +119,18 @@ def run_retriever(
 
     if retriever == "bm25":
         return retrieve_docs_bm25(
+            queries=retrieval_queries,
+            top_k=top_k,
+        )
+
+    if retriever == "dense":
+        return retrieve_docs_dense(
+            queries=retrieval_queries,
+            top_k=top_k,
+        )
+
+    if retriever == "hybrid":
+        return retrieve_docs_hybrid(
             queries=retrieval_queries,
             top_k=top_k,
         )
@@ -194,15 +212,6 @@ def check_any_groups_in_text(
 
     Each group means:
     - at least one item in this group must appear.
-
-    Example:
-    [
-      ["magnitude", "震级"],
-      ["intensity", "烈度"]
-    ]
-
-    This allows a Chinese chunk containing "震级" and "烈度" to satisfy an
-    English query requirement for magnitude and intensity.
     """
     if not must_contain_any_groups:
         return True
@@ -395,6 +404,7 @@ def evaluate_sample(
                 "score": chunk.get("score"),
                 "matched_terms": chunk.get("matched_terms", []),
                 "retriever": chunk.get("retriever", retriever),
+                "retriever_ranks": chunk.get("retriever_ranks", {}),
             }
         )
 
@@ -517,7 +527,8 @@ def print_failed_records(records: list[dict[str, Any]]) -> None:
                 f"source={chunk['source_path']} | "
                 f"heading={chunk['heading']} | "
                 f"score={chunk['score']} | "
-                f"matched={chunk['matched_terms']}"
+                f"matched={chunk['matched_terms']} | "
+                f"retriever_ranks={chunk.get('retriever_ranks', {})}"
             )
 
 
@@ -548,7 +559,7 @@ def main() -> None:
 
     parser.add_argument(
         "--retriever",
-        choices=["keyword", "bm25"],
+        choices=["keyword", "bm25", "dense", "hybrid"],
         default="keyword",
         help="Retriever to evaluate.",
     )

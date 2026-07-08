@@ -1,0 +1,5284 @@
+{
+  "retriever": "dense",
+  "query_mode": "raw",
+  "top_k": 5,
+  "eval_file": "eval\\retrieval_eval_60.jsonl",
+  "summary": {
+    "num_samples": 60,
+    "source_hit_at_k": 0.7833333333333333,
+    "exact_term_hit_at_k": 1.0,
+    "any_group_hit_at_k": 0.7833333333333333,
+    "term_hit_at_k": 0.7833333333333333,
+    "requirement_hit_at_k": 0.75,
+    "mrr": 0.5816666666666667,
+    "failed_records": 15
+  },
+  "records": [
+    {
+      "query_id": "concept_001",
+      "query": "地震震级是什么意思？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "地震震级是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级",
+          "magnitude"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6435360908508301,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6339940428733826,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6313781142234802,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 0.6280030608177185,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "文档目的",
+          "score": 0.6274808645248413,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_002",
+      "query": "地震烈度是什么意思？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "地震烈度是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "烈度",
+          "intensity",
+          "seismic intensity"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6333617568016052,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.6316778659820557,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6242627501487732,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_003",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard",
+          "score": 0.6161624193191528,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "文档目的",
+          "score": 0.6117863059043884,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_003",
+      "query": "震级和烈度有什么区别？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "震级和烈度有什么区别？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级",
+          "magnitude"
+        ],
+        [
+          "烈度",
+          "intensity"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6715788841247559,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.5271773338317871,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.48945891857147217,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 0.48602214455604553,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 0.4837096631526947,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_004",
+      "query": "magnitude 和 intensity 的区别是什么？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "magnitude 和 intensity 的区别是什么？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "magnitude",
+          "震级"
+        ],
+        [
+          "intensity",
+          "烈度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.5401957631111145,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.5064896941184998,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 0.3516630232334137,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.342274010181427,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 0.33013108372688293,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_005",
+      "query": "请解释 earthquake magnitude 的含义。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "请解释 earthquake magnitude 的含义。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "magnitude",
+          "震级"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.638745903968811,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6297237873077393,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6226258277893066,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.5948895215988159,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.5940238833427429,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_006",
+      "query": "seismic intensity 是地震本身的属性吗？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "seismic intensity 是地震本身的属性吗？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "intensity",
+          "seismic intensity",
+          "烈度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.6802020072937012,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6653056144714355,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "文档目的",
+          "score": 0.6542253494262695,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6450636982917786,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6438890695571899,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_007",
+      "query": "为什么同一次地震不同地方烈度可能不同？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "为什么同一次地震不同地方烈度可能不同？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "烈度",
+          "intensity"
+        ],
+        [
+          "不同地点",
+          "place to place",
+          "vary"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6393235325813293,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6249849200248718,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 0.6016419529914856,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.587400496006012,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 0.5867675542831421,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_008",
+      "query": "震级是不是表示某个地方震感强弱？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "震级是不是表示某个地方震感强弱？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级",
+          "magnitude"
+        ],
+        [
+          "烈度",
+          "intensity",
+          "震感"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.5742654800415039,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5374704003334045,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.5168303847312927,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.5116037726402283,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.5047832131385803,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_009",
+      "query": "烈度和建筑破坏程度有什么关系？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "烈度和建筑破坏程度有什么关系？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "烈度",
+          "intensity"
+        ],
+        [
+          "建筑",
+          "building",
+          "破坏",
+          "damage"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.5143426656723022,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.5109792351722717,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 0.4809315800666809,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.47402623295783997,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.47158077359199524,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_010",
+      "query": "地震事件为什么通常只有一个主要震级估计？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "地震事件为什么通常只有一个主要震级估计？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级",
+          "magnitude"
+        ],
+        [
+          "一个主要震级",
+          "single value",
+          "single"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.6553612947463989,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.6479507684707642,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6302100419998169,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.6282321810722351,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.6033087372779846,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_011",
+      "query": "地震深度是什么意思？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "地震深度是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "深度",
+          "depth",
+          "震源深度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.6381756067276001,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.5865573883056641,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.5782764554023743,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.5739970803260803,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "文档目的",
+          "score": 0.5670421123504639,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_012",
+      "query": "震源深度和地表震感有什么关系？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "震源深度和地表震感有什么关系？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震源深度",
+          "地震深度",
+          "震源",
+          "depth",
+          "hypocenter"
+        ],
+        [
+          "震感",
+          "地表震感",
+          "felt",
+          "surface"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.6510878801345825,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6267977356910706,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.6080195903778076,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 0.530972957611084,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.5248908996582031,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_013",
+      "query": "earthquake depth means what？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "earthquake depth means what？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "depth",
+          "深度",
+          "震源深度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.6573944091796875,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.6294033527374268,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.6236762404441833,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6067304015159607,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.5974956750869751,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_014",
+      "query": "hypocenter depth 是什么？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "hypocenter depth 是什么？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "hypocenter",
+          "depth",
+          "震源",
+          "深度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.5024111866950989,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.31099551916122437,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_004",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 0.28571826219558716,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.2812366187572479,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_001",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Earthquake Safety Boundaries",
+          "score": 0.2803429961204529,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_015",
+      "query": "浅源地震是不是一定更危险？请解释地震深度。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "浅源地震是不是一定更危险？请解释地震深度。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "深度",
+          "depth"
+        ],
+        [
+          "浅源",
+          "shallow"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.7517473697662354,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.7514068484306335,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.7412217855453491,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.7170478105545044,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.7165598273277283,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_016",
+      "query": "地震深度、震级和距离哪个影响震感？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "地震深度、震级和距离哪个影响震感？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "深度",
+          "depth"
+        ],
+        [
+          "震级",
+          "magnitude"
+        ],
+        [
+          "距离",
+          "distance"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.7252486944198608,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6882095336914062,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.6842803955078125,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.6770604252815247,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.663114607334137,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_017",
+      "query": "什么是海啸提示？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "什么是海啸提示？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "海啸提示",
+          "海啸",
+          "tsunami alert"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.6006518006324768,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.5999093651771545,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.5677157640457153,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.543746292591095,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.534802258014679,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_018",
+      "query": "tsunami alert 是什么意思？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "tsunami alert 是什么意思？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami alert",
+          "海啸提示",
+          "海啸预警"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.5857899785041809,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_catalog_fields_003",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Event ID",
+          "score": 0.5100625157356262,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_003",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard",
+          "score": 0.5059086084365845,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.5000996589660645,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.4965483844280243,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_019",
+      "query": "tsunami warning 和 tsunami advisory 都算什么信息？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "tsunami warning 和 tsunami advisory 都算什么信息？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami warning",
+          "海啸预警"
+        ],
+        [
+          "tsunami advisory",
+          "tsunami information statement",
+          "海啸提示"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.7001872062683105,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5841681957244873,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.5706912279129028,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safe Response Style",
+          "score": 0.5642548203468323,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.5633875131607056,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_020",
+      "query": "看到 tsunami alert 是否代表已经确定会发生海啸？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "看到 tsunami alert 是否代表已经确定会发生海啸？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami alert",
+          "海啸提示"
+        ],
+        [
+          "确定会发生海啸",
+          "已经确定",
+          "not be understood",
+          "不应该被理解"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.25,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.6126220226287842,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.6007304191589355,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.5933765172958374,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.5905323028564453,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.5900053977966309,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_021",
+      "query": "海底地震是不是都会引发海啸？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "海底地震是不是都会引发海啸？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "海啸",
+          "tsunami"
+        ],
+        [
+          "并不是所有",
+          "not all",
+          "不是都会"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6814790964126587,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.680919349193573,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.6334868669509888,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.6315561532974243,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.6313719749450684,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_022",
+      "query": "海啸风险通常和哪些因素有关？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "海啸风险通常和哪些因素有关？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "海啸",
+          "tsunami"
+        ],
+        [
+          "震源深度",
+          "深度",
+          "depth"
+        ],
+        [
+          "震级",
+          "magnitude"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 0.729530930519104,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.7029176354408264,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_003",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard",
+          "score": 0.662829577922821,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.6495768427848816,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.6471331715583801,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_023",
+      "query": "如果 catalog 里面有 tsunami 字段，我能不能自己判断海啸风险？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "如果 catalog 里面有 tsunami 字段，我能不能自己判断海啸风险？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami",
+          "海啸"
+        ],
+        [
+          "官方",
+          "official",
+          "不能",
+          "cannot"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.6289700865745544,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.6011838316917419,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 0.5931205153465271,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_002",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "文档目的",
+          "score": 0.5889339447021484,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.582933247089386,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "concept_024",
+      "query": "SeismoSearch 能不能替代官方海啸预警？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "SeismoSearch 能不能替代官方海啸预警？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "海啸预警",
+          "海啸",
+          "tsunami"
+        ],
+        [
+          "官方",
+          "official"
+        ],
+        [
+          "不能",
+          "cannot"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.6907408833503723,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "文档目的",
+          "score": 0.6873223185539246,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.6828315854072571,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_013",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 0.6740906238555908,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 0.6680859327316284,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_001",
+      "query": "最近 M6 以上地震有哪些？顺便解释一下震级是什么意思。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "最近 M6 以上地震有哪些？顺便解释一下震级是什么意思。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级",
+          "magnitude"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.6580113172531128,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.6481085419654846,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_004",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Time",
+          "score": 0.6283208727836609,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6136279702186584,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.6092031002044678,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_002",
+      "query": "列出最近较强地震，并说明 magnitude 和 intensity 的区别。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "列出最近较强地震，并说明 magnitude 和 intensity 的区别。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "magnitude",
+          "震级"
+        ],
+        [
+          "intensity",
+          "烈度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6877772212028503,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.6479465961456299,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_002",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "文档目的",
+          "score": 0.647097647190094,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.6364544630050659,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6223196387290955,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_003",
+      "query": "找一下最近地震，同时解释为什么震级和烈度不是一回事。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "找一下最近地震，同时解释为什么震级和烈度不是一回事。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级",
+          "magnitude"
+        ],
+        [
+          "烈度",
+          "intensity"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6733443737030029,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.6685897707939148,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.655741274356842,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.6365489363670349,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.6326424479484558,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_004",
+      "query": "最近最大地震的震源深度是多少？也解释一下地震深度的含义。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "最近最大地震的震源深度是多少？也解释一下地震深度的含义。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "深度",
+          "depth",
+          "震源深度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.69087153673172,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.6377367377281189,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6171602010726929,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.609010636806488,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.6071142554283142,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_005",
+      "query": "帮我查最近 M6.5 地震，并解释 shallow earthquake depth 为什么可能影响震感。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "帮我查最近 M6.5 地震，并解释 shallow earthquake depth 为什么可能影响震感。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "depth",
+          "深度"
+        ],
+        [
+          "shallow",
+          "浅源"
+        ],
+        [
+          "felt",
+          "震感"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.7075527906417847,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.6903443932533264,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6856964826583862,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.6820374131202698,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6605943441390991,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_006",
+      "query": "最近有没有海底地震？顺便解释 tsunami alert。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "最近有没有海底地震？顺便解释 tsunami alert。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami alert",
+          "海啸提示",
+          "海啸预警"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.2,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.6424767374992371,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6407164931297302,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.6226280331611633,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.6170085668563843,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.6104258894920349,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_007",
+      "query": "最近有无 tsunami 相关地震？tsunami warning 是不是确定会发生海啸？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "最近有无 tsunami 相关地震？tsunami warning 是不是确定会发生海啸？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami warning",
+          "海啸预警"
+        ],
+        [
+          "确定会发生海啸",
+          "不应该被理解",
+          "not be understood"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.2,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.7081311941146851,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.7031769752502441,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Future Specific Earthquake Prediction",
+          "score": 0.6759606599807739,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.66852205991745,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.6673425436019897,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_008",
+      "query": "查一下最近日本附近地震，并解释烈度为什么会因地点不同而不同。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "查一下最近日本附近地震，并解释烈度为什么会因地点不同而不同。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "烈度",
+          "intensity"
+        ],
+        [
+          "不同地点",
+          "place to place",
+          "vary"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6274251937866211,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.5988343954086304,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Future Specific Earthquake Prediction",
+          "score": 0.5976626873016357,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.5717273950576782,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_002",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "文档目的",
+          "score": 0.567406415939331,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_009",
+      "query": "最近地震很多，我想先看事件列表，再解释地震深度和震感的关系。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "最近地震很多，我想先看事件列表，再解释地震深度和震感的关系。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "深度",
+          "depth"
+        ],
+        [
+          "震感",
+          "felt"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.7155281901359558,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 0.7054511308670044,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.6582790017127991,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.6513513326644897,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_014",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 0.6351807117462158,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "mixed_doc_010",
+      "query": "给我最近强震统计，并说明 catalog 里的 tsunami alert 应该如何理解。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "给我最近强震统计，并说明 catalog 里的 tsunami alert 应该如何理解。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami alert",
+          "海啸提示"
+        ],
+        [
+          "catalog",
+          "字段",
+          "提示字段"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.6488469839096069,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.6267877221107483,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.623035192489624,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5975492000579834,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.5852041840553284,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hard_001",
+      "query": "不是问预测，我只是想知道震级这个指标到底描述的是能量还是破坏？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "不是问预测，我只是想知道震级这个指标到底描述的是能量还是破坏？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级",
+          "magnitude"
+        ],
+        [
+          "能量",
+          "energy"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.4635976254940033,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.45665356516838074,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.4449954330921173,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_007",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Historical Activity Prediction Claims",
+          "score": 0.43859875202178955,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.4384201765060425,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hard_002",
+      "query": "不看事件列表，单纯解释一下为什么 intensity can vary from place to place。",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "不看事件列表，单纯解释一下为什么 intensity can vary from place to place。"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "intensity",
+          "烈度"
+        ],
+        [
+          "vary from place to place",
+          "place to place",
+          "不同地点"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.42243310809135437,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.4161239266395569,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_013",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Relation to Evaluation",
+          "score": 0.4127803146839142,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_010",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Evidence Usage",
+          "score": 0.40845292806625366,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.4065750539302826,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hard_003",
+      "query": "我看到一个地震 depth 很浅，这里的 depth 是震源到哪里的距离？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "我看到一个地震 depth 很浅，这里的 depth 是震源到哪里的距离？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "depth",
+          "深度"
+        ],
+        [
+          "震源",
+          "hypocenter"
+        ],
+        [
+          "地表",
+          "surface"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.6193650960922241,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.5764912366867065,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 0.54399573802948,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.5325455069541931,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_001",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Earthquake Safety Boundaries",
+          "score": 0.5210725665092468,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hard_004",
+      "query": "海啸提示、海啸预警、tsunami information statement 这些词是不是都需要看官方信息？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "海啸提示、海啸预警、tsunami information statement 这些词是不是都需要看官方信息？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "海啸提示",
+          "海啸预警",
+          "tsunami information statement"
+        ],
+        [
+          "官方",
+          "official"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.7426602244377136,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.6048523783683777,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.597508430480957,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5881097316741943,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_006",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Pseudoscience Prediction Claims",
+          "score": 0.5811748504638672,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hard_005",
+      "query": "震级大、震源浅、距离近、地质条件差，这些和烈度有什么关系？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "震级大、震源浅、距离近、地质条件差，这些和烈度有什么关系？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "烈度",
+          "intensity"
+        ],
+        [
+          "震级",
+          "magnitude"
+        ],
+        [
+          "距离",
+          "distance",
+          "震源距离"
+        ],
+        [
+          "地质条件",
+          "场地条件",
+          "local geology"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.6014436483383179,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.5818641781806946,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.5768866539001465,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.5587236881256104,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5491780042648315,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hard_006",
+      "query": "同一次 earthquake source 的 magnitude 和某地 observed shaking effects 应该怎么区分？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "同一次 earthquake source 的 magnitude 和某地 observed shaking effects 应该怎么区分？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "magnitude",
+          "震级"
+        ],
+        [
+          "observed shaking effects",
+          "intensity",
+          "烈度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.6293771266937256,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5860011577606201,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.5849830508232117,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.5827865600585938,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.5793358087539673,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_001",
+      "query": "event_id 在 SeismoSearch 里有什么作用？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "event_id 在 SeismoSearch 里有什么作用？"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "event_id",
+          "Event ID"
+        ],
+        [
+          "Evidence Pack",
+          "证据追踪"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_catalog_fields_003",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Event ID",
+          "score": 0.671509325504303,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_004",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Local Sample Database",
+          "score": 0.6003697514533997,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_013",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 0.5944923162460327,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 0.5942287445068359,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_003",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Source",
+          "score": 0.5832434892654419,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_002",
+      "query": "time 字段如何支持最近地震查询？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "time 字段如何支持最近地震查询？"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "time",
+          "Time"
+        ],
+        [
+          "最近",
+          "最新",
+          "时间范围"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_catalog_fields_004",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Time",
+          "score": 0.789739727973938,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.677272617816925,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.6484767198562622,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6309217810630798,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.6057260632514954,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_003",
+      "query": "为什么 magnitude >= 6.5 不能靠向量相似度检索？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "为什么 magnitude >= 6.5 不能靠向量相似度检索？"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "magnitude",
+          "震级"
+        ],
+        [
+          ">= 6.5",
+          "6.5"
+        ],
+        [
+          "精确数值过滤",
+          "语义相似度"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.3243072032928467,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.3125682771205902,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.30222898721694946,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_004",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Local Sample Database",
+          "score": 0.2902245819568634,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 0.28953808546066284,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_004",
+      "query": "latitude 和 longitude 后续可以怎么用？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "latitude 和 longitude 后续可以怎么用？"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "latitude",
+          "longitude",
+          "经纬度"
+        ],
+        [
+          "空间过滤",
+          "距离计算",
+          "bbox"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.24454490840435028,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.21293199062347412,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 0.21109893918037415,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.21059927344322205,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 0.20263807475566864,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_005",
+      "query": "tsunami flag 是正式海啸预警吗？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "tsunami flag 是正式海啸预警吗？"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami flag",
+          "海啸"
+        ],
+        [
+          "不等于正式海啸预警",
+          "正式海啸预警"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 0.5916211009025574,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5269476771354675,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.5099865198135376,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 0.5064512491226196,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.5031903386116028,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_001",
+      "query": "SeismoSearch 的 raw processed database 三层数据流程是什么？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "SeismoSearch 的 raw processed database 三层数据流程是什么？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "raw event data",
+          "raw"
+        ],
+        [
+          "processed JSONL",
+          "processed"
+        ],
+        [
+          "DuckDB",
+          "database"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.25,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 0.5860627293586731,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_004",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Local Sample Database",
+          "score": 0.5162464380264282,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_002",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "文档目的",
+          "score": 0.5106367468833923,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_003",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Source",
+          "score": 0.46803322434425354,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.46603652834892273,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_002",
+      "query": "为什么本地样例库不能代表完整全球地震目录？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "为什么本地样例库不能代表完整全球地震目录？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "本地样例",
+          "Local Sample Database"
+        ],
+        [
+          "完整全球地震目录",
+          "时间范围有限"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.25,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.6804354786872864,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 0.6419736742973328,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.6217870116233826,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_004",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Local Sample Database",
+          "score": 0.609592616558075,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 0.5953370928764343,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_003",
+      "query": "processed layer 包含哪些标准字段？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "processed layer 包含哪些标准字段？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Processed layer",
+          "内部统一格式"
+        ],
+        [
+          "event_id",
+          "magnitude",
+          "depth_km"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 0.5449576377868652,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_005",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Raw Layer",
+          "score": 0.45901715755462646,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 0.3583832085132599,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_001",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Seismology Concepts Seed Document",
+          "score": 0.341036319732666,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 0.3233466148376465,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_004",
+      "query": "事件数据进入 Evidence Pack 后应该怎么用？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "事件数据进入 Evidence Pack 后应该怎么用？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Evidence Pack",
+          "event_evidence"
+        ],
+        [
+          "Generator",
+          "历史事件",
+          "未来地震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_010",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Evidence Usage",
+          "score": 0.6867943406105042,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_003",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Source",
+          "score": 0.5489726662635803,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_009",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Quality Considerations",
+          "score": 0.508078932762146,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_013",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Relation to Evaluation",
+          "score": 0.5030834078788757,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_015",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Evidence Pack",
+          "score": 0.4892575740814209,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_005",
+      "query": "为什么 USGS event data 和地震学概念文档要分开检索？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "为什么 USGS event data 和地震学概念文档要分开检索？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "USGS event data",
+          "结构化事件数据"
+        ],
+        [
+          "地震学概念文档",
+          "非结构化文本"
+        ],
+        [
+          "DuckDB",
+          "文档检索",
+          "document QA"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.25,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_002",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "文档目的",
+          "score": 0.8204323649406433,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.787741482257843,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_009",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Quality Considerations",
+          "score": 0.766843318939209,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 0.7572820782661438,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_010",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Evidence Usage",
+          "score": 0.7417422533035278,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_001",
+      "query": "SeismoSearch 不支持哪些未来地震预测问题？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "SeismoSearch 不支持哪些未来地震预测问题？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Unsupported Questions",
+          "不支持"
+        ],
+        [
+          "未来具体地震预测",
+          "明天东京"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.7774651646614075,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Future Specific Earthquake Prediction",
+          "score": 0.763150155544281,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.7619480490684509,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.7601230144500732,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.759013295173645,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_002",
+      "query": "动物异常和地震云为什么不能作为预测依据？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "动物异常和地震云为什么不能作为预测依据？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "动物异常",
+          "地震云"
+        ],
+        [
+          "可靠地震预测依据",
+          "伪科学"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_006",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Pseudoscience Prediction Claims",
+          "score": 0.5995294451713562,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.5594736337661743,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5445341467857361,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Safe Explanation",
+          "score": 0.5020702481269836,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.491920530796051,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_003",
+      "query": "为什么 safety query 不应该调用 event_search？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "为什么 safety query 不应该调用 event_search？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "event_search",
+          "事件查询"
+        ],
+        [
+          "误导",
+          "未来大震预测依据"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_009",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Why Event Search Should Be Avoided",
+          "score": 0.6959604024887085,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_008",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safety Routing Rule",
+          "score": 0.6723127961158752,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_003",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Source",
+          "score": 0.5662594437599182,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_011",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Safety Limitation",
+          "score": 0.5371129512786865,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_013",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 0.5060335993766785,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_004",
+      "query": "安全回答应该包含哪些要点？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "安全回答应该包含哪些要点？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "安全回答",
+          "Safe Response"
+        ],
+        [
+          "不能预测未来具体地震",
+          "官方机构"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safe Response Style",
+          "score": 0.6330185532569885,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.5835520625114441,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.5213409662246704,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.5188726186752319,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_009",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Why Event Search Should Be Avoided",
+          "score": 0.4745851159095764,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_005",
+      "query": "SeismoSearch 能替代官方地震预警吗？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "SeismoSearch 能替代官方地震预警吗？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "不替代",
+          "Not a Replacement"
+        ],
+        [
+          "官方地震预警",
+          "官方地震监测机构"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "文档目的",
+          "score": 0.7919998168945312,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 0.7720069289207458,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.752208411693573,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_013",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 0.7397764325141907,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_014",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 0.7229261994361877,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_001",
+      "query": "seismic hazard 和 earthquake prediction 有什么区别？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "seismic hazard 和 earthquake prediction 有什么区别？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Seismic hazard",
+          "地震危险性"
+        ],
+        [
+          "确定预测",
+          "明天这个地方一定会地震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 0.8530117869377136,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.8384758830070496,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_002",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "文档目的",
+          "score": 0.8355488181114197,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.832560122013092,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.8311414122581482,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_002",
+      "query": "seismic risk 为什么不只取决于地震本身？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "seismic risk 为什么不只取决于地震本身？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Seismic risk",
+          "地震风险"
+        ],
+        [
+          "暴露度",
+          "脆弱性"
+        ],
+        [
+          "建筑物抗震能力",
+          "人口密度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 0.8041805028915405,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.7787206768989563,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.7625003457069397,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.7495300769805908,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Safe Explanation",
+          "score": 0.7335661053657532,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_003",
+      "query": "forecast 和 prediction 的区别是什么？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "forecast 和 prediction 的区别是什么？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Forecast",
+          "forecast"
+        ],
+        [
+          "概率",
+          "不确定性"
+        ],
+        [
+          "确定性预测",
+          "prediction"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.5852298736572266,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 0.5280522704124451,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.5261911153793335,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_001",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard vs Earthquake Prediction",
+          "score": 0.4774523377418518,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.4606381952762604,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_004",
+      "query": "为什么历史地震不能直接预测未来？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "为什么历史地震不能直接预测未来？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "历史地震",
+          "历史事件"
+        ],
+        [
+          "不能直接推出",
+          "不能直接预测"
+        ],
+        [
+          "未来",
+          "大震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.8019953370094299,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Future Specific Earthquake Prediction",
+          "score": 0.6649940013885498,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.6519376039505005,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.6496062278747559,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_013",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.6427328586578369,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_005",
+      "query": "catalog query 和 safety routing 的边界是什么？",
+      "query_mode": "raw",
+      "retriever": "dense",
+      "retrieval_queries": [
+        "catalog query 和 safety routing 的边界是什么？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Catalog query",
+          "历史事件"
+        ],
+        [
+          "safety routing",
+          "event_search"
+        ],
+        [
+          "未来风险",
+          "大震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_008",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safety Routing Rule",
+          "score": 0.5842561721801758,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_013",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 0.5005860924720764,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.44420528411865234,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_011",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Safety Limitation",
+          "score": 0.42616790533065796,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_009",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Why Event Search Should Be Avoided",
+          "score": 0.4178439676761627,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "dense"
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}
