@@ -17,12 +17,14 @@ This script focuses only on retrieval:
 - Does BM25 improve over the deterministic keyword-overlap baseline?
 - Does dense retrieval improve semantic matching over sparse retrieval?
 - Does hybrid retrieval improve over single retrievers?
+- Does hybrid + reranker improve chunk-level ranking?
 
 Supported retrievers:
 - keyword: weighted keyword-overlap retriever from doc_retriever.py;
 - bm25: lightweight deterministic BM25 retriever from bm25_retriever.py;
 - dense: sentence-transformers dense retriever from dense_retriever.py;
-- hybrid: BM25 + dense RRF retriever from hybrid_retriever.py.
+- hybrid: BM25 + dense RRF retriever from hybrid_retriever.py;
+- hybrid_rerank: hybrid retriever + cross-encoder reranker from reranker.py.
 
 Evaluation requirements:
 - expected_source_path_contains:
@@ -47,6 +49,7 @@ from seismosearch.dense_retriever import retrieve_docs_dense
 from seismosearch.doc_retriever import retrieve_docs
 from seismosearch.hybrid_retriever import retrieve_docs_hybrid
 from seismosearch.planner import plan_query
+from seismosearch.reranker import retrieve_docs_hybrid_rerank
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -131,6 +134,12 @@ def run_retriever(
 
     if retriever == "hybrid":
         return retrieve_docs_hybrid(
+            queries=retrieval_queries,
+            top_k=top_k,
+        )
+
+    if retriever == "hybrid_rerank":
+        return retrieve_docs_hybrid_rerank(
             queries=retrieval_queries,
             top_k=top_k,
         )
@@ -405,6 +414,10 @@ def evaluate_sample(
                 "matched_terms": chunk.get("matched_terms", []),
                 "retriever": chunk.get("retriever", retriever),
                 "retriever_ranks": chunk.get("retriever_ranks", {}),
+                "hybrid_rank": chunk.get("hybrid_rank"),
+                "hybrid_score": chunk.get("hybrid_score"),
+                "rerank_score": chunk.get("rerank_score"),
+                "reranker_model_name": chunk.get("reranker_model_name"),
             }
         )
 
@@ -528,7 +541,9 @@ def print_failed_records(records: list[dict[str, Any]]) -> None:
                 f"heading={chunk['heading']} | "
                 f"score={chunk['score']} | "
                 f"matched={chunk['matched_terms']} | "
-                f"retriever_ranks={chunk.get('retriever_ranks', {})}"
+                f"retriever_ranks={chunk.get('retriever_ranks', {})} | "
+                f"hybrid_rank={chunk.get('hybrid_rank')} | "
+                f"rerank_score={chunk.get('rerank_score')}"
             )
 
 
@@ -559,7 +574,13 @@ def main() -> None:
 
     parser.add_argument(
         "--retriever",
-        choices=["keyword", "bm25", "dense", "hybrid"],
+        choices=[
+            "keyword",
+            "bm25",
+            "dense",
+            "hybrid",
+            "hybrid_rerank",
+        ],
         default="keyword",
         help="Retriever to evaluate.",
     )
