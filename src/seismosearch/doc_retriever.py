@@ -82,24 +82,31 @@ def add_unique_term(terms: list[str], term: str) -> None:
 
 def expand_domain_synonyms(terms: list[str]) -> list[str]:
     """
-    Expand simple seismology bilingual synonyms.
+    Expand simple seismology / metadata / safety bilingual synonyms.
 
     This is still a deterministic keyword baseline, not semantic retrieval.
 
-    The goal is to make raw English queries such as
-    "magnitude and intensity difference" able to retrieve Chinese concept chunks
-    containing "震级" and "烈度".
+    Why this is needed:
+    After expanding the corpus from one seismology concept document to multiple
+    domain documents, queries may target catalog fields, USGS metadata, safety
+    boundaries, and hazard-vs-prediction explanations. The deterministic
+    retriever needs explicit domain vocabulary to keep sparse retrieval usable.
     """
     synonym_groups = [
+        # 震级同义词组：用于让 magnitude / 震级 双语查询互相命中。
         [
             "震级",
             "magnitude",
         ],
+
+        # 烈度同义词组：用于让 intensity / seismic intensity / 烈度 互相命中。
         [
             "烈度",
             "intensity",
             "seismic intensity",
         ],
+
+        # 深度同义词组：覆盖 depth / hypocenter / 震源深度。
         [
             "深度",
             "震源深度",
@@ -108,26 +115,178 @@ def expand_domain_synonyms(terms: list[str]) -> list[str]:
             "hypocenter",
             "hypocenter depth",
         ],
+
+        # 海啸同义词组：覆盖 tsunami alert / tsunami warning / 海啸提示 / 海啸预警。
         [
             "海啸",
             "海啸提示",
             "海啸预警",
+            "正式海啸预警",
+            "不等于正式海啸预警",
             "tsunami",
+            "tsunami flag",
             "tsunami alert",
             "tsunami warning",
             "alert",
             "warning",
+            "flag",
         ],
+
+        # 经纬度同义词组：把 latitude / longitude 查询扩展到空间过滤能力。
+        [
+            "latitude",
+            "longitude",
+            "经纬度",
+            "空间过滤",
+            "距离计算",
+            "bbox",
+            "空间范围",
+        ],
+
+        # 结构化查询同义词组：把数值过滤问题拉向 catalog / database 文档。
+        [
+            "结构化查询",
+            "结构化过滤",
+            "精确数值过滤",
+            "数值过滤",
+            "语义相似度",
+            "向量相似度",
+            "向量数据库",
+            "vector database",
+            "structured query",
+            "structured filtering",
+            "numeric filtering",
+            "magnitude >= 6.5",
+            ">= 6.5",
+            "6.5",
+        ],
+
+        # 本地样例库同义词组：用于数据范围和样例库限制问题。
+        [
+            "本地样例库",
+            "本地样例",
+            "local sample database",
+            "完整全球地震目录",
+            "全球地震目录",
+            "时间范围有限",
+            "样例库",
+            "sample database",
+        ],
+
+        # 数据分层同义词组：用于 raw / processed / database pipeline 问题。
+        [
+            "raw",
+            "raw layer",
+            "processed",
+            "processed layer",
+            "processed JSONL",
+            "database",
+            "database layer",
+            "DuckDB",
+            "EventStore",
+            "三层数据",
+            "数据分层",
+            "数据流程",
+        ],
+
+        # 事件证据同义词组：用于 Evidence Pack / event_evidence 问题。
+        [
+            "Evidence Pack",
+            "event_evidence",
+            "事件证据",
+            "证据追踪",
+            "Generator",
+        ],
+
+        # 文档检索同义词组：用于结构化事件数据和文档 QA 的边界问题。
+        [
+            "USGS event data",
+            "结构化事件数据",
+            "地震学概念文档",
+            "非结构化文本",
+            "文档检索",
+            "document retrieval",
+            "document QA",
+            "分开检索",
+        ],
+
+        # 安全边界同义词组：用于 safety routing / 拒答 / 官方信息边界。
+        [
+            "安全回答",
+            "safe response",
+            "safety",
+            "safety query",
+            "safety routing",
+            "safety_check",
+            "不能预测未来具体地震",
+            "未来具体地震预测",
+            "不支持",
+            "明天东京",
+            "官方机构",
+            "官方地震预警",
+            "官方地震监测机构",
+            "不替代",
+            "unsupported questions",
+        ],
+
+        # 伪科学预测同义词组：用于动物异常、地震云、小震频繁等预测诱导。
+        [
+            "动物异常",
+            "地震云",
+            "狗叫",
+            "鱼群异常",
+            "伪科学",
+            "预测依据",
+            "可靠地震预测依据",
+            "前兆",
+            "pseudoscience",
+        ],
+
+        # 历史活动预测诱导同义词组：用于历史地震不能直接预测未来的问题。
+        [
+            "历史地震",
+            "历史事件",
+            "短期地震活动",
+            "最近小震",
+            "不能直接预测",
+            "不能直接推出",
+            "未来",
+            "大震",
+            "未来风险",
+            "historical earthquakes",
+        ],
+
+        # hazard / risk / forecast / prediction 概念组。
+        [
+            "seismic hazard",
+            "地震危险性",
+            "seismic risk",
+            "地震风险",
+            "forecast",
+            "earthquake forecast",
+            "prediction",
+            "earthquake prediction",
+            "概率",
+            "不确定性",
+            "确定性预测",
+            "明天这个地方一定会地震",
+        ],
+
+        # 通用解释类词。
         [
             "区别",
             "difference",
         ],
+
+        # 通用定义类词。
         [
             "定义",
             "含义",
             "意思",
+            "解释",
             "definition",
             "meaning",
+            "explanation",
         ],
     ]
 
@@ -161,8 +320,9 @@ def extract_query_terms(query: str) -> list[str]:
 
     terms: list[str] = []
 
-    # 领域关键词。这里不做中文分词，而是保留若干稳定短语。
+    # 领域关键词。这里不做复杂中文分词，而是保留稳定领域短语。
     domain_terms = [
+        # 基础地震学概念。
         "震级",
         "烈度",
         "区别",
@@ -177,9 +337,132 @@ def extract_query_terms(query: str) -> list[str]:
         "海啸",
         "海啸提示",
         "海啸预警",
+        "正式海啸预警",
+        "不等于正式海啸预警",
         "预警",
         "提示",
+
+        # 结构化事件字段。
+        "event_id",
+        "time",
         "magnitude",
+        "magnitude >= 6.5",
+        ">= 6.5",
+        "6.5",
+        "depth_km",
+        "place",
+        "latitude",
+        "longitude",
+        "经纬度",
+        "event_type",
+        "tsunami flag",
+        "flag",
+
+        # 结构化查询与向量检索边界。
+        "结构化查询",
+        "结构化过滤",
+        "精确数值过滤",
+        "数值过滤",
+        "语义相似度",
+        "向量相似度",
+        "向量数据库",
+        "空间过滤",
+        "距离计算",
+        "bbox",
+        "空间范围",
+
+        # 数据源与数据分层。
+        "USGS",
+        "USGS event data",
+        "raw",
+        "raw layer",
+        "processed",
+        "processed layer",
+        "processed JSONL",
+        "database",
+        "database layer",
+        "DuckDB",
+        "EventStore",
+        "本地样例库",
+        "本地样例",
+        "local sample database",
+        "完整全球地震目录",
+        "全球地震目录",
+        "时间范围有限",
+        "样例库",
+        "三层数据",
+        "数据分层",
+        "数据流程",
+
+        # Evidence Pack 与生成边界。
+        "Evidence Pack",
+        "event_evidence",
+        "事件证据",
+        "证据追踪",
+        "Generator",
+
+        # 文档检索与结构化数据边界。
+        "结构化事件数据",
+        "地震学概念文档",
+        "非结构化文本",
+        "文档检索",
+        "document retrieval",
+        "document QA",
+        "分开检索",
+
+        # Safety routing 与拒答边界。
+        "安全回答",
+        "safe response",
+        "safety",
+        "safety query",
+        "safety routing",
+        "safety_check",
+        "不支持",
+        "unsupported questions",
+        "未来具体地震预测",
+        "不能预测未来具体地震",
+        "明天东京",
+        "官方机构",
+        "官方地震预警",
+        "官方地震监测机构",
+        "不替代",
+
+        # 伪科学预测诱导。
+        "动物异常",
+        "地震云",
+        "狗叫",
+        "鱼群异常",
+        "伪科学",
+        "预测依据",
+        "可靠地震预测依据",
+        "前兆",
+
+        # 历史活动预测诱导。
+        "历史地震",
+        "历史事件",
+        "短期地震活动",
+        "最近小震",
+        "不能直接预测",
+        "不能直接推出",
+        "未来",
+        "大震",
+        "未来风险",
+
+        # hazard / risk / forecast / prediction。
+        "seismic hazard",
+        "地震危险性",
+        "seismic risk",
+        "地震风险",
+        "forecast",
+        "earthquake forecast",
+        "prediction",
+        "earthquake prediction",
+        "概率",
+        "不确定性",
+        "确定性预测",
+        "明天这个地方一定会地震",
+
+        # 英文基础术语。
         "intensity",
         "seismic intensity",
         "seismic",
@@ -195,6 +478,14 @@ def extract_query_terms(query: str) -> list[str]:
         "difference",
         "definition",
         "meaning",
+        "explanation",
+        "vector database",
+        "structured query",
+        "structured filtering",
+        "numeric filtering",
+        "sample database",
+        "pseudoscience",
+        "historical earthquakes",
     ]
 
     for term in domain_terms:
@@ -203,6 +494,7 @@ def extract_query_terms(query: str) -> list[str]:
 
     english_tokens = re.findall(r"[a-zA-Z][a-zA-Z0-9_+-]*", normalized_query)
 
+    # 这些词过于通用，不能作为排序核心。
     stopwords = {
         "the",
         "a",
@@ -226,6 +518,7 @@ def extract_query_terms(query: str) -> list[str]:
         "unrelated",
         "cooking",
         "recipe",
+        "seismosearch",
     }
 
     for token in english_tokens:
@@ -352,10 +645,20 @@ def is_generic_retrieval_term(term: str) -> bool:
         "解释",
         "definition",
         "meaning",
+        "explanation",
         "alert",
         "warning",
         "提示",
         "预警",
+        "time",
+        "place",
+        "database",
+        "data",
+        "event",
+        "prediction",
+        "forecast",
+        "safety",
+        "seismosearch",
     }
 
     return normalize_text(term) in generic_terms
@@ -366,14 +669,13 @@ def term_weight(term: str) -> float:
     Assign deterministic term weights.
 
     Specific Chinese domain concepts receive higher weight because the current
-    user-facing eval set is Chinese-major. This prevents English synonym chunks
-    from outranking directly matched Chinese concept chunks for Chinese queries.
-
-    Generic retrieval terms receive lower weight.
+    user-facing eval set is Chinese-major. Generic retrieval terms receive lower
+    weight so they do not dominate ranking.
     """
     normalized_term = normalize_text(term)
 
-    high_value_chinese_terms = {
+    high_value_terms = {
+        # 基础地震学高价值术语。
         "震级",
         "烈度",
         "深度",
@@ -382,9 +684,97 @@ def term_weight(term: str) -> float:
         "海啸",
         "海啸提示",
         "海啸预警",
+        "正式海啸预警",
+        "不等于正式海啸预警",
+        "tsunami flag",
+
+        # 结构化查询高价值术语。
+        "magnitude >= 6.5",
+        ">= 6.5",
+        "6.5",
+        "精确数值过滤",
+        "数值过滤",
+        "结构化查询",
+        "结构化过滤",
+        "语义相似度",
+        "向量相似度",
+        "向量数据库",
+        "vector database",
+        "structured query",
+        "structured filtering",
+        "numeric filtering",
+        "经纬度",
+        "latitude",
+        "longitude",
+        "空间过滤",
+        "距离计算",
+        "bbox",
+
+        # 数据源和样例库高价值术语。
+        "usgs",
+        "usgs event data",
+        "本地样例库",
+        "本地样例",
+        "local sample database",
+        "完整全球地震目录",
+        "全球地震目录",
+        "时间范围有限",
+        "三层数据",
+        "数据分层",
+        "processed jsonl",
+        "duckdb",
+        "eventstore",
+
+        # Evidence / 文档检索高价值术语。
+        "evidence pack",
+        "event_evidence",
+        "事件证据",
+        "证据追踪",
+        "结构化事件数据",
+        "地震学概念文档",
+        "非结构化文本",
+        "文档检索",
+        "document retrieval",
+        "document qa",
+        "分开检索",
+
+        # 安全边界高价值术语。
+        "安全回答",
+        "safe response",
+        "未来具体地震预测",
+        "不能预测未来具体地震",
+        "不支持",
+        "unsupported questions",
+        "明天东京",
+        "官方机构",
+        "官方地震预警",
+        "官方地震监测机构",
+        "动物异常",
+        "地震云",
+        "伪科学",
+        "预测依据",
+        "可靠地震预测依据",
+        "前兆",
+
+        # 历史活动与 hazard/prediction 高价值术语。
+        "历史地震",
+        "历史事件",
+        "不能直接预测",
+        "不能直接推出",
+        "大震",
+        "未来风险",
+        "地震危险性",
+        "地震风险",
+        "seismic hazard",
+        "seismic risk",
+        "earthquake prediction",
+        "earthquake forecast",
+        "不确定性",
+        "确定性预测",
+        "明天这个地方一定会地震",
     }
 
-    if normalized_term in high_value_chinese_terms:
+    if normalized_term in high_value_terms:
         return 1.8
 
     if is_generic_retrieval_term(normalized_term):

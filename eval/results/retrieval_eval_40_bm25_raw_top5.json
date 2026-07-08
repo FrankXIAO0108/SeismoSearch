@@ -56,16 +56,31 @@
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
-          "score": 6.240661966508923,
+          "score": 7.145329268832295,
           "matched_terms": [
             "震级",
             "意思",
-            "地震"
+            "地震",
+            "解释"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 5.907200326394844,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "含义",
+            "解释"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 4,
           "chunk_id": "usgs_event_metadata_007",
           "source_path": "data/processed/docs/usgs_event_metadata.md",
           "heading": "Database Layer",
@@ -77,7 +92,7 @@
           "retriever": "bm25"
         },
         {
-          "rank": 4,
+          "rank": 5,
           "chunk_id": "seismology_concepts_004",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "地震深度",
@@ -86,19 +101,6 @@
             "震级",
             "地震",
             "magnitude"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 5,
-          "chunk_id": "earthquake_catalog_fields_002",
-          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
-          "heading": "文档目的",
-          "score": 5.166000430372249,
-          "matched_terms": [
-            "震级",
-            "地震",
-            "含义"
           ],
           "retriever": "bm25"
         }
@@ -159,11 +161,12 @@
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
-          "score": 6.856123115752511,
+          "score": 7.760790418075883,
           "matched_terms": [
             "烈度",
             "意思",
-            "地震"
+            "地震",
+            "解释"
           ],
           "retriever": "bm25"
         },
@@ -182,13 +185,14 @@
         },
         {
           "rank": 5,
-          "chunk_id": "earthquake_safety_boundaries_002",
-          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
-          "heading": "文档目的",
-          "score": 1.9811350947152853,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Safe Explanation",
+          "score": 3.6125266275272883,
           "matched_terms": [
             "地震",
-            "定义"
+            "解释",
+            "explanation"
           ],
           "retriever": "bm25"
         }
@@ -996,24 +1000,26 @@
           "chunk_id": "earthquake_catalog_fields_002",
           "source_path": "data/processed/docs/earthquake_catalog_fields.md",
           "heading": "文档目的",
-          "score": 5.847749320999609,
+          "score": 6.588949217022204,
           "matched_terms": [
             "地震",
             "深度",
-            "含义"
+            "含义",
+            "解释"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "usgs_event_metadata_012",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Difference from Document Retrieval",
-          "score": 5.679260376696413,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.461326603314783,
           "matched_terms": [
             "意思",
             "地震",
-            "深度"
+            "深度",
+            "解释"
           ],
           "retriever": "bm25"
         }
@@ -1378,23 +1384,26 @@
           "chunk_id": "earthquake_catalog_fields_002",
           "source_path": "data/processed/docs/earthquake_catalog_fields.md",
           "heading": "文档目的",
-          "score": 5.032501886059842,
+          "score": 6.588949217022205,
           "matched_terms": [
             "解释",
             "地震",
-            "深度"
+            "深度",
+            "含义"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "usgs_event_metadata_012",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Difference from Document Retrieval",
-          "score": 4.578814338108204,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.461326603314783,
           "matched_terms": [
+            "解释",
             "地震",
-            "深度"
+            "深度",
+            "意思"
           ],
           "retriever": "bm25"
         }
@@ -1556,6 +1565,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -1564,17 +1585,6 @@
             "tsunami",
             "tsunami alert",
             "alert"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 3,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         }
@@ -1629,12 +1639,13 @@
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
-          "score": 8.81186000134337,
+          "score": 9.71652730366674,
           "matched_terms": [
             "意思",
             "tsunami",
             "tsunami alert",
-            "alert"
+            "alert",
+            "解释"
           ],
           "retriever": "bm25"
         },
@@ -1643,31 +1654,34 @@
           "chunk_id": "usgs_event_metadata_006",
           "source_path": "data/processed/docs/usgs_event_metadata.md",
           "heading": "Processed Layer",
-          "score": 3.3863550726989056,
+          "score": 7.6903624264538415,
           "matched_terms": [
-            "tsunami"
+            "tsunami",
+            "flag"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "earthquake_safety_boundaries_002",
-          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
-          "heading": "文档目的",
-          "score": 1.7814785264770892,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Safe Explanation",
+          "score": 3.4243575069042507,
           "matched_terms": [
-            "定义"
+            "解释",
+            "explanation"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "usgs_event_metadata_002",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "文档目的",
-          "score": 1.6564473309623629,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 2.7245723913883757,
           "matched_terms": [
-            "含义"
+            "解释",
+            "explanation"
           ],
           "retriever": "bm25"
         }
@@ -1724,6 +1738,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -1732,17 +1758,6 @@
             "tsunami",
             "tsunami alert",
             "alert"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 3,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         }
@@ -1799,6 +1814,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -1807,17 +1834,6 @@
             "tsunami",
             "tsunami alert",
             "alert"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 3,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         }
@@ -1874,6 +1890,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -1883,17 +1911,6 @@
             "tsunami",
             "tsunami alert",
             "alert"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 3,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         },
@@ -1975,6 +1992,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -1983,17 +2012,6 @@
             "tsunami",
             "tsunami alert",
             "alert"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 3,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         }
@@ -2051,6 +2069,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -2063,24 +2093,13 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
+          "rank": 4,
           "chunk_id": "earthquake_catalog_fields_001",
           "source_path": "data/processed/docs/earthquake_catalog_fields.md",
           "heading": "Earthquake Catalog Fields",
           "score": 3.6058789108610765,
           "matched_terms": [
             "catalog"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 4,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         },
@@ -2136,12 +2155,11 @@
           "chunk_id": "seismology_concepts_005",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "海啸提示 / Tsunami Alert",
-          "score": 47.17682144560509,
+          "score": 46.74597875937957,
           "matched_terms": [
             "海啸",
             "海啸预警",
             "预警",
-            "seismosearch",
             "海啸提示",
             "tsunami",
             "tsunami alert",
@@ -2153,27 +2171,26 @@
         },
         {
           "rank": 2,
-          "chunk_id": "earthquake_safety_boundaries_003",
-          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
-          "heading": "Supported Questions",
-          "score": 7.51750483485157,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
           "matched_terms": [
-            "seismosearch",
             "tsunami",
-            "tsunami alert",
-            "alert"
+            "flag"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 3,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 4.153925969256016,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.912147095734422,
           "matched_terms": [
-            "seismosearch",
-            "tsunami"
+            "tsunami",
+            "tsunami alert",
+            "alert"
           ],
           "retriever": "bm25"
         },
@@ -2182,10 +2199,9 @@
           "chunk_id": "earthquake_safety_boundaries_012",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Not a Replacement for Official Sources",
-          "score": 2.2395099189765744,
+          "score": 1.588276444422781,
           "matched_terms": [
-            "预警",
-            "seismosearch"
+            "预警"
           ],
           "retriever": "bm25"
         },
@@ -2194,10 +2210,9 @@
           "chunk_id": "earthquake_safety_boundaries_014",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Relation to Evaluation",
-          "score": 1.6625140246906833,
+          "score": 1.0634860087493807,
           "matched_terms": [
-            "预警",
-            "seismosearch"
+            "预警"
           ],
           "retriever": "bm25"
         }
@@ -2460,12 +2475,13 @@
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
-          "score": 9.910927247473218,
+          "score": 11.810640153082165,
           "matched_terms": [
             "震级",
             "烈度",
             "解释",
-            "地震"
+            "地震",
+            "意思"
           ],
           "retriever": "bm25"
         },
@@ -2474,23 +2490,26 @@
           "chunk_id": "usgs_event_metadata_012",
           "source_path": "data/processed/docs/usgs_event_metadata.md",
           "heading": "Difference from Document Retrieval",
-          "score": 6.55435902598373,
+          "score": 7.6548050645719385,
           "matched_terms": [
             "震级",
             "烈度",
-            "地震"
+            "地震",
+            "意思"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "usgs_event_metadata_007",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Database Layer",
-          "score": 5.617096890245415,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 5.907200326394845,
           "matched_terms": [
             "震级",
-            "magnitude"
+            "解释",
+            "地震",
+            "含义"
           ],
           "retriever": "bm25"
         }
@@ -2647,6 +2666,23 @@
         },
         {
           "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 12.86521088113024,
+          "matched_terms": [
+            "解释",
+            "地震",
+            "6.5",
+            "earthquake",
+            "m6",
+            "深度",
+            "意思"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
@@ -2660,45 +2696,30 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "seismology_concepts_005",
-          "source_path": "data/processed/docs/seismology_concepts.md",
-          "heading": "海啸提示 / Tsunami Alert",
-          "score": 11.629284232553298,
-          "matched_terms": [
-            "地震",
-            "深度",
-            "震源深度",
-            "震源"
-          ],
-          "retriever": "bm25"
-        },
-        {
           "rank": 4,
           "chunk_id": "usgs_event_metadata_012",
           "source_path": "data/processed/docs/usgs_event_metadata.md",
           "heading": "Difference from Document Retrieval",
-          "score": 7.709593224548687,
+          "score": 12.082319506818997,
           "matched_terms": [
             "地震",
+            "6.5",
             "earthquake",
             "m6",
-            "深度"
+            "深度",
+            "意思"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "earthquake_safety_boundaries_003",
-          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
-          "heading": "Supported Questions",
-          "score": 7.07083063839507,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 11.93949453645577,
           "matched_terms": [
-            "解释",
-            "地震",
-            "earthquake",
-            "m6",
-            "深度"
+            "6.5",
+            "向量相似度"
           ],
           "retriever": "bm25"
         }
@@ -2754,13 +2775,14 @@
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
-          "score": 8.007913723951487,
+          "score": 9.907626629560434,
           "matched_terms": [
             "解释",
             "地震",
             "tsunami",
             "tsunami alert",
-            "alert"
+            "alert",
+            "意思"
           ],
           "retriever": "bm25"
         },
@@ -2769,33 +2791,36 @@
           "chunk_id": "usgs_event_metadata_006",
           "source_path": "data/processed/docs/usgs_event_metadata.md",
           "heading": "Processed Layer",
-          "score": 3.3863550726989056,
+          "score": 7.6903624264538415,
           "matched_terms": [
-            "tsunami"
+            "tsunami",
+            "flag"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 4,
-          "chunk_id": "seismic_hazard_vs_prediction_014",
+          "chunk_id": "seismic_hazard_vs_prediction_011",
           "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
-          "heading": "Relation to SeismoSearch",
-          "score": 1.320427974266143,
+          "heading": "Safe Explanation",
+          "score": 3.6125266275272883,
           "matched_terms": [
             "解释",
-            "地震"
+            "地震",
+            "explanation"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "chunk_id": "seismic_hazard_vs_prediction_009",
           "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
-          "heading": "Safe Explanation",
-          "score": 1.2872628683018452,
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 2.91824751978594,
           "matched_terms": [
             "解释",
-            "地震"
+            "地震",
+            "explanation"
           ],
           "retriever": "bm25"
         }
@@ -2852,6 +2877,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -2861,17 +2898,6 @@
             "tsunami",
             "tsunami alert",
             "alert"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 3,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         },
@@ -2958,11 +2984,12 @@
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
-          "score": 5.861077512466935,
+          "score": 7.760790418075883,
           "matched_terms": [
             "烈度",
             "解释",
-            "地震"
+            "地震",
+            "意思"
           ],
           "retriever": "bm25"
         },
@@ -2971,22 +2998,24 @@
           "chunk_id": "usgs_event_metadata_012",
           "source_path": "data/processed/docs/usgs_event_metadata.md",
           "heading": "Difference from Document Retrieval",
-          "score": 4.208403968981784,
+          "score": 5.308850007569993,
           "matched_terms": [
             "烈度",
-            "地震"
+            "地震",
+            "意思"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "seismic_hazard_vs_prediction_014",
+          "chunk_id": "seismic_hazard_vs_prediction_011",
           "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
-          "heading": "Relation to SeismoSearch",
-          "score": 1.320427974266143,
+          "heading": "Safe Explanation",
+          "score": 3.6125266275272883,
           "matched_terms": [
             "解释",
-            "地震"
+            "地震",
+            "explanation"
           ],
           "retriever": "bm25"
         }
@@ -3069,23 +3098,26 @@
           "chunk_id": "earthquake_catalog_fields_002",
           "source_path": "data/processed/docs/earthquake_catalog_fields.md",
           "heading": "文档目的",
-          "score": 5.032501886059842,
+          "score": 6.588949217022205,
           "matched_terms": [
             "解释",
             "地震",
-            "深度"
+            "深度",
+            "含义"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "usgs_event_metadata_012",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Difference from Document Retrieval",
-          "score": 4.578814338108204,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 6.461326603314783,
           "matched_terms": [
+            "解释",
             "地震",
-            "深度"
+            "深度",
+            "意思"
           ],
           "retriever": "bm25"
         }
@@ -3142,6 +3174,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -3154,24 +3198,13 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
+          "rank": 4,
           "chunk_id": "earthquake_catalog_fields_001",
           "source_path": "data/processed/docs/earthquake_catalog_fields.md",
           "heading": "Earthquake Catalog Fields",
           "score": 3.6058789108610765,
           "matched_terms": [
             "catalog"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 4,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         },
@@ -3312,19 +3345,32 @@
           "chunk_id": "seismology_concepts_003",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "Magnitude and Intensity",
-          "score": 26.750622912600633,
+          "score": 24.80598359409076,
           "matched_terms": [
+            "place",
             "intensity",
             "can",
             "vary",
             "from",
-            "place",
             "seismic intensity"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 10.12358222802335,
+          "matched_terms": [
+            "from",
+            "烈度",
+            "意思"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "seismology_concepts_002",
           "source_path": "data/processed/docs/seismology_concepts.md",
           "heading": "震级和烈度的区别",
@@ -3335,38 +3381,27 @@
           "retriever": "bm25"
         },
         {
-          "rank": 3,
-          "chunk_id": "usgs_event_metadata_012",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Difference from Document Retrieval",
-          "score": 9.023136189435142,
-          "matched_terms": [
-            "from",
-            "烈度"
-          ],
-          "retriever": "bm25"
-        },
-        {
           "rank": 4,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
-          "score": 5.669978186573243,
+          "score": 7.5696910921821905,
           "matched_terms": [
             "解释",
-            "烈度"
+            "烈度",
+            "意思"
           ],
           "retriever": "bm25"
         },
         {
           "rank": 5,
-          "chunk_id": "earthquake_safety_boundaries_012",
-          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
-          "heading": "Not a Replacement for Official Sources",
-          "score": 4.95967544931963,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Safe Explanation",
+          "score": 3.4243575069042507,
           "matched_terms": [
             "解释",
-            "place"
+            "explanation"
           ],
           "retriever": "bm25"
         }
@@ -3528,6 +3563,18 @@
         },
         {
           "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.6903624264538415,
+          "matched_terms": [
+            "tsunami",
+            "flag"
+          ],
+          "retriever": "bm25"
+        },
+        {
+          "rank": 3,
           "chunk_id": "earthquake_safety_boundaries_003",
           "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
           "heading": "Supported Questions",
@@ -3536,17 +3583,6 @@
             "tsunami",
             "tsunami alert",
             "alert"
-          ],
-          "retriever": "bm25"
-        },
-        {
-          "rank": 3,
-          "chunk_id": "usgs_event_metadata_006",
-          "source_path": "data/processed/docs/usgs_event_metadata.md",
-          "heading": "Processed Layer",
-          "score": 3.3863550726989056,
-          "matched_terms": [
-            "tsunami"
           ],
           "retriever": "bm25"
         },

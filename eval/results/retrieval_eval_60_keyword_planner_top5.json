@@ -2,16 +2,16 @@
   "retriever": "keyword",
   "query_mode": "planner",
   "top_k": 5,
-  "eval_file": "eval\\retrieval_eval_40.jsonl",
+  "eval_file": "eval\\retrieval_eval_60.jsonl",
   "summary": {
-    "num_samples": 40,
-    "source_hit_at_k": 1.0,
+    "num_samples": 60,
+    "source_hit_at_k": 0.95,
     "exact_term_hit_at_k": 1.0,
-    "any_group_hit_at_k": 1.0,
-    "term_hit_at_k": 1.0,
-    "requirement_hit_at_k": 1.0,
-    "mrr": 1.0,
-    "failed_records": 0
+    "any_group_hit_at_k": 0.9333333333333333,
+    "term_hit_at_k": 0.9333333333333333,
+    "requirement_hit_at_k": 0.9333333333333333,
+    "mrr": 0.8555555555555556,
+    "failed_records": 4
   },
   "records": [
     {
@@ -4326,6 +4326,2132 @@
             "earthquake",
             "震级",
             "地震"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_001",
+      "query": "event_id 在 SeismoSearch 里有什么作用？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "event_id 在 SeismoSearch 里有什么作用？"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "event_id",
+          "Event ID"
+        ],
+        [
+          "Evidence Pack",
+          "证据追踪"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_010",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Evidence Usage",
+          "score": 2.1,
+          "matched_terms": [
+            "event_id"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 2.1,
+          "matched_terms": [
+            "event_id"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_003",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Event ID",
+          "score": 2.1,
+          "matched_terms": [
+            "event_id"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_002",
+      "query": "time 字段如何支持最近地震查询？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "time 字段如何支持最近地震查询？"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "time",
+          "Time"
+        ],
+        [
+          "最近",
+          "最新",
+          "时间范围"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_catalog_fields_004",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Time",
+          "score": 3.7,
+          "matched_terms": [
+            "地震",
+            "time"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 2.8000000000000003,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_010",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Evidence Usage",
+          "score": 1.9000000000000001,
+          "matched_terms": [
+            "地震",
+            "time"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_008",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Why Structured Storage Is Needed",
+          "score": 1.9000000000000001,
+          "matched_terms": [
+            "地震",
+            "time"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 1.0,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_003",
+      "query": "为什么 magnitude >= 6.5 不能靠向量相似度检索？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "为什么 magnitude >= 6.5 不能靠向量相似度检索？",
+        "地震 震级 magnitude 定义",
+        "earthquake magnitude definition"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "magnitude",
+          "震级"
+        ],
+        [
+          ">= 6.5",
+          "6.5"
+        ],
+        [
+          "精确数值过滤",
+          "语义相似度"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 13.8,
+          "matched_terms": [
+            "magnitude",
+            "震级",
+            "地震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 12.899999999999999,
+          "matched_terms": [
+            "magnitude",
+            "6.5",
+            "向量相似度",
+            "震级"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 10.225,
+          "matched_terms": [
+            "6.5",
+            "震级",
+            "地震",
+            "意思",
+            "解释",
+            "earthquake"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 10.0,
+          "matched_terms": [
+            "6.5",
+            "震级",
+            "地震",
+            "意思",
+            "earthquake"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 9.3,
+          "matched_terms": [
+            "magnitude",
+            "震级",
+            "地震",
+            "earthquake"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_004",
+      "query": "latitude 和 longitude 后续可以怎么用？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "latitude 和 longitude 后续可以怎么用？"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "latitude",
+          "longitude",
+          "经纬度"
+        ],
+        [
+          "空间过滤",
+          "距离计算",
+          "bbox"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_008",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Why Structured Storage Is Needed",
+          "score": 7.3,
+          "matched_terms": [
+            "latitude",
+            "longitude"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 7.3,
+          "matched_terms": [
+            "latitude",
+            "longitude"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 2.1,
+          "matched_terms": [
+            "空间范围"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "catalog_field_005",
+      "query": "tsunami flag 是正式海啸预警吗？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "tsunami flag 是正式海啸预警吗？",
+        "地震 海啸 tsunami alert 含义",
+        "earthquake tsunami alert meaning",
+        "earthquake tsunami warning explanation"
+      ],
+      "expected_source_path_contains": "earthquake_catalog_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "tsunami flag",
+          "海啸"
+        ],
+        [
+          "不等于正式海啸预警",
+          "正式海啸预警"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_005",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "海啸提示 / Tsunami Alert",
+          "score": 44.7,
+          "matched_terms": [
+            "海啸",
+            "海啸预警",
+            "预警",
+            "tsunami",
+            "海啸提示",
+            "tsunami alert",
+            "tsunami warning",
+            "alert",
+            "warning",
+            "地震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 7.925000000000001,
+          "matched_terms": [
+            "tsunami",
+            "tsunami alert",
+            "alert",
+            "地震",
+            "意思",
+            "解释",
+            "earthquake"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 4.825,
+          "matched_terms": [
+            "地震",
+            "解释",
+            "earthquake"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Safe Explanation",
+          "score": 4.824999999999999,
+          "matched_terms": [
+            "地震",
+            "解释",
+            "explanation",
+            "earthquake"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 4.824999999999999,
+          "matched_terms": [
+            "地震",
+            "解释",
+            "explanation",
+            "earthquake"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_001",
+      "query": "SeismoSearch 的 raw processed database 三层数据流程是什么？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "SeismoSearch 的 raw processed database 三层数据流程是什么？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "raw event data",
+          "raw"
+        ],
+        [
+          "processed JSONL",
+          "processed"
+        ],
+        [
+          "DuckDB",
+          "database"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_003",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Source",
+          "score": 14.899999999999999,
+          "matched_terms": [
+            "raw",
+            "processed",
+            "processed jsonl",
+            "duckdb",
+            "eventstore"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 12.399999999999999,
+          "matched_terms": [
+            "database",
+            "database layer",
+            "duckdb"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 12.1,
+          "matched_terms": [
+            "processed",
+            "processed layer"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_005",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Raw Layer",
+          "score": 12.1,
+          "matched_terms": [
+            "raw",
+            "raw layer"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 7.3,
+          "matched_terms": [
+            "duckdb",
+            "eventstore"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_002",
+      "query": "为什么本地样例库不能代表完整全球地震目录？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "为什么本地样例库不能代表完整全球地震目录？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "本地样例",
+          "Local Sample Database"
+        ],
+        [
+          "完整全球地震目录",
+          "时间范围有限"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_004",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Local Sample Database",
+          "score": 34.2,
+          "matched_terms": [
+            "地震",
+            "本地样例",
+            "完整全球地震目录",
+            "全球地震目录",
+            "样例库",
+            "local sample database",
+            "时间范围有限",
+            "sample database"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_014",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 10.2,
+          "matched_terms": [
+            "地震",
+            "本地样例库",
+            "本地样例",
+            "样例库"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_009",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Quality Considerations",
+          "score": 10.2,
+          "matched_terms": [
+            "地震",
+            "本地样例库",
+            "本地样例",
+            "样例库"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_002",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "文档目的",
+          "score": 10.2,
+          "matched_terms": [
+            "地震",
+            "本地样例库",
+            "本地样例",
+            "样例库"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_013",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Relation to Evaluation",
+          "score": 3.0,
+          "matched_terms": [
+            "地震",
+            "样例库"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_003",
+      "query": "processed layer 包含哪些标准字段？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "processed layer 包含哪些标准字段？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Processed layer",
+          "内部统一格式"
+        ],
+        [
+          "event_id",
+          "magnitude",
+          "depth_km"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_007",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Database Layer",
+          "score": 18.400000000000002,
+          "matched_terms": [
+            "layer",
+            "database",
+            "database layer",
+            "duckdb"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_006",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Processed Layer",
+          "score": 18.1,
+          "matched_terms": [
+            "processed",
+            "processed layer",
+            "layer"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_005",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Raw Layer",
+          "score": 18.1,
+          "matched_terms": [
+            "layer",
+            "raw",
+            "raw layer"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_003",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Source",
+          "score": 16.900000000000002,
+          "matched_terms": [
+            "processed",
+            "layer",
+            "raw",
+            "processed jsonl",
+            "duckdb",
+            "eventstore"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 7.3,
+          "matched_terms": [
+            "duckdb",
+            "eventstore"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_004",
+      "query": "事件数据进入 Evidence Pack 后应该怎么用？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "事件数据进入 Evidence Pack 后应该怎么用？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Evidence Pack",
+          "event_evidence"
+        ],
+        [
+          "Generator",
+          "历史事件",
+          "未来地震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_015",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Evidence Pack",
+          "score": 26.500000000000004,
+          "matched_terms": [
+            "evidence pack",
+            "evidence",
+            "pack",
+            "event_evidence"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_010",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Evidence Usage",
+          "score": 20.900000000000002,
+          "matched_terms": [
+            "evidence pack",
+            "evidence",
+            "pack",
+            "event_evidence",
+            "事件证据",
+            "generator"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_catalog_fields_003",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Event ID",
+          "score": 14.899999999999999,
+          "matched_terms": [
+            "evidence pack",
+            "evidence",
+            "pack",
+            "事件证据",
+            "证据追踪"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 3.7,
+          "matched_terms": [
+            "事件证据"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "文档目的",
+          "score": 3.7,
+          "matched_terms": [
+            "事件证据"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "metadata_005",
+      "query": "为什么 USGS event data 和地震学概念文档要分开检索？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "为什么 USGS event data 和地震学概念文档要分开检索？"
+      ],
+      "expected_source_path_contains": "usgs_event_metadata.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "USGS event data",
+          "结构化事件数据"
+        ],
+        [
+          "地震学概念文档",
+          "非结构化文本"
+        ],
+        [
+          "DuckDB",
+          "文档检索",
+          "document QA"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Difference from Document Retrieval",
+          "score": 36.550000000000004,
+          "matched_terms": [
+            "地震",
+            "usgs",
+            "usgs event data",
+            "地震学概念文档",
+            "event",
+            "data",
+            "结构化事件数据",
+            "非结构化文本",
+            "document retrieval",
+            "document qa"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_001",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "USGS Event Metadata",
+          "score": 17.650000000000002,
+          "matched_terms": [
+            "usgs",
+            "event",
+            "data"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_013",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Relation to Evaluation",
+          "score": 7.75,
+          "matched_terms": [
+            "地震",
+            "usgs",
+            "event",
+            "data"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_003",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Data Source",
+          "score": 5.949999999999999,
+          "matched_terms": [
+            "地震",
+            "usgs",
+            "event",
+            "data"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_002",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "文档目的",
+          "score": 5.949999999999999,
+          "matched_terms": [
+            "地震",
+            "usgs",
+            "event",
+            "data"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_001",
+      "query": "SeismoSearch 不支持哪些未来地震预测问题？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "SeismoSearch 不支持哪些未来地震预测问题？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Unsupported Questions",
+          "不支持"
+        ],
+        [
+          "未来具体地震预测",
+          "明天东京"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_004",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 40.525000000000006,
+          "matched_terms": [
+            "地震",
+            "不支持",
+            "未来",
+            "safety",
+            "safety routing",
+            "未来具体地震预测",
+            "明天东京",
+            "unsupported questions",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "大震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 32.6,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "未来具体地震预测",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "不能直接推出",
+            "大震",
+            "未来风险",
+            "historical earthquakes"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safe Response Style",
+          "score": 32.425000000000004,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "安全回答",
+            "safe response",
+            "safety",
+            "不能预测未来具体地震",
+            "官方机构",
+            "短期地震活动",
+            "最近小震",
+            "大震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 30.425000000000008,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "safe response",
+            "safety",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "大震",
+            "未来风险"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_007",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Historical Activity Prediction Claims",
+          "score": 23.225,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "safety",
+            "官方机构",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "大震",
+            "未来风险"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_002",
+      "query": "动物异常和地震云为什么不能作为预测依据？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "动物异常和地震云为什么不能作为预测依据？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "动物异常",
+          "地震云"
+        ],
+        [
+          "可靠地震预测依据",
+          "伪科学"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_006",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Pseudoscience Prediction Claims",
+          "score": 32.6,
+          "matched_terms": [
+            "地震",
+            "动物异常",
+            "地震云",
+            "预测依据",
+            "狗叫",
+            "鱼群异常",
+            "伪科学",
+            "可靠地震预测依据",
+            "前兆",
+            "pseudoscience"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_004",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 19.0,
+          "matched_terms": [
+            "地震",
+            "动物异常",
+            "地震云",
+            "预测依据",
+            "伪科学",
+            "前兆"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_metadata_011",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Safety Limitation",
+          "score": 8.2,
+          "matched_terms": [
+            "地震",
+            "动物异常",
+            "前兆"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Safe Explanation",
+          "score": 8.2,
+          "matched_terms": [
+            "地震",
+            "伪科学",
+            "前兆"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_014",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to Evaluation",
+          "score": 8.2,
+          "matched_terms": [
+            "地震",
+            "动物异常",
+            "地震云"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_003",
+      "query": "为什么 safety query 不应该调用 event_search？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "为什么 safety query 不应该调用 event_search？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "event_search",
+          "事件查询"
+        ],
+        [
+          "误导",
+          "未来大震预测依据"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.25,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_004",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 24.825000000000003,
+          "matched_terms": [
+            "safety",
+            "safety routing",
+            "未来具体地震预测",
+            "不支持",
+            "明天东京",
+            "unsupported questions"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safe Response Style",
+          "score": 21.925000000000004,
+          "matched_terms": [
+            "safety",
+            "安全回答",
+            "safe response",
+            "不能预测未来具体地震",
+            "官方机构"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_008",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safety Routing Rule",
+          "score": 17.025000000000002,
+          "matched_terms": [
+            "safety",
+            "safety query",
+            "query",
+            "event_search",
+            "safety routing",
+            "safety_check"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Future Specific Earthquake Prediction",
+          "score": 13.125,
+          "matched_terms": [
+            "safety",
+            "event_search",
+            "不能预测未来具体地震",
+            "未来具体地震预测",
+            "明天东京"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_013",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 11.225,
+          "matched_terms": [
+            "safety",
+            "safety query",
+            "query",
+            "event_search",
+            "safety routing",
+            "safety_check"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_004",
+      "query": "安全回答应该包含哪些要点？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "安全回答应该包含哪些要点？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "安全回答",
+          "Safe Response"
+        ],
+        [
+          "不能预测未来具体地震",
+          "官方机构"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_004",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 24.825000000000003,
+          "matched_terms": [
+            "safety",
+            "safety routing",
+            "未来具体地震预测",
+            "不支持",
+            "明天东京",
+            "unsupported questions"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safe Response Style",
+          "score": 21.925000000000004,
+          "matched_terms": [
+            "安全回答",
+            "safe response",
+            "safety",
+            "不能预测未来具体地震",
+            "官方机构"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_008",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safety Routing Rule",
+          "score": 13.025,
+          "matched_terms": [
+            "safety",
+            "safety query",
+            "safety routing",
+            "safety_check"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Future Specific Earthquake Prediction",
+          "score": 11.125,
+          "matched_terms": [
+            "safety",
+            "不能预测未来具体地震",
+            "未来具体地震预测",
+            "明天东京"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 11.125,
+          "matched_terms": [
+            "safe response",
+            "safety"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "safety_boundary_005",
+      "query": "SeismoSearch 能替代官方地震预警吗？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "SeismoSearch 能替代官方地震预警吗？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "不替代",
+          "Not a Replacement"
+        ],
+        [
+          "官方地震预警",
+          "官方地震监测机构"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_004",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 25.725,
+          "matched_terms": [
+            "地震",
+            "safety",
+            "safety routing",
+            "未来具体地震预测",
+            "不支持",
+            "明天东京",
+            "unsupported questions"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safe Response Style",
+          "score": 23.72500000000001,
+          "matched_terms": [
+            "地震",
+            "预警",
+            "安全回答",
+            "safe response",
+            "safety",
+            "不能预测未来具体地震",
+            "官方机构"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_008",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safety Routing Rule",
+          "score": 13.025,
+          "matched_terms": [
+            "safety",
+            "safety query",
+            "safety routing",
+            "safety_check"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 12.025,
+          "matched_terms": [
+            "地震",
+            "safe response",
+            "safety"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Future Specific Earthquake Prediction",
+          "score": 12.024999999999999,
+          "matched_terms": [
+            "地震",
+            "safety",
+            "不能预测未来具体地震",
+            "未来具体地震预测",
+            "明天东京"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_001",
+      "query": "seismic hazard 和 earthquake prediction 有什么区别？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "seismic hazard 和 earthquake prediction 有什么区别？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Seismic hazard",
+          "地震危险性"
+        ],
+        [
+          "确定预测",
+          "明天这个地方一定会地震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_001",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard vs Earthquake Prediction",
+          "score": 38.775000000000006,
+          "matched_terms": [
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction",
+            "seismic",
+            "earthquake",
+            "hazard"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_003",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard",
+          "score": 31.775000000000006,
+          "matched_terms": [
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction",
+            "seismic",
+            "earthquake",
+            "hazard",
+            "地震危险性",
+            "概率",
+            "明天这个地方一定会地震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 28.475000000000005,
+          "matched_terms": [
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction",
+            "seismic",
+            "earthquake",
+            "hazard",
+            "forecast",
+            "earthquake forecast",
+            "概率",
+            "不确定性",
+            "确定性预测"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_002",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "文档目的",
+          "score": 27.075000000000003,
+          "matched_terms": [
+            "区别",
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction",
+            "seismic",
+            "earthquake",
+            "hazard",
+            "seismic risk",
+            "forecast",
+            "earthquake forecast",
+            "概率"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 25.775000000000002,
+          "matched_terms": [
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction",
+            "seismic",
+            "earthquake",
+            "hazard",
+            "地震危险性",
+            "seismic risk"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_002",
+      "query": "seismic risk 为什么不只取决于地震本身？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "seismic risk 为什么不只取决于地震本身？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Seismic risk",
+          "地震风险"
+        ],
+        [
+          "暴露度",
+          "脆弱性"
+        ],
+        [
+          "建筑物抗震能力",
+          "人口密度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 29.950000000000003,
+          "matched_terms": [
+            "地震",
+            "seismic risk",
+            "seismic",
+            "risk",
+            "seismic hazard",
+            "地震危险性",
+            "prediction",
+            "earthquake prediction"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_001",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard vs Earthquake Prediction",
+          "score": 29.35,
+          "matched_terms": [
+            "seismic",
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_003",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard",
+          "score": 25.950000000000006,
+          "matched_terms": [
+            "地震",
+            "seismic",
+            "seismic hazard",
+            "地震危险性",
+            "prediction",
+            "earthquake prediction",
+            "概率",
+            "明天这个地方一定会地震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 25.950000000000003,
+          "matched_terms": [
+            "地震",
+            "seismic",
+            "seismic hazard",
+            "forecast",
+            "earthquake forecast",
+            "prediction",
+            "earthquake prediction",
+            "概率",
+            "不确定性",
+            "确定性预测"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_002",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "文档目的",
+          "score": 24.35,
+          "matched_terms": [
+            "地震",
+            "seismic risk",
+            "seismic",
+            "risk",
+            "seismic hazard",
+            "forecast",
+            "earthquake forecast",
+            "prediction",
+            "earthquake prediction",
+            "概率"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_003",
+      "query": "forecast 和 prediction 的区别是什么？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "forecast 和 prediction 的区别是什么？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Forecast",
+          "forecast"
+        ],
+        [
+          "概率",
+          "不确定性"
+        ],
+        [
+          "确定性预测",
+          "prediction"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_001",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard vs Earthquake Prediction",
+          "score": 26.425000000000004,
+          "matched_terms": [
+            "prediction",
+            "seismic hazard",
+            "earthquake prediction"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 24.825000000000003,
+          "matched_terms": [
+            "forecast",
+            "prediction",
+            "seismic hazard",
+            "earthquake forecast",
+            "earthquake prediction",
+            "概率",
+            "不确定性",
+            "确定性预测"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_002",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "文档目的",
+          "score": 22.325000000000003,
+          "matched_terms": [
+            "区别",
+            "forecast",
+            "prediction",
+            "seismic hazard",
+            "seismic risk",
+            "earthquake forecast",
+            "earthquake prediction",
+            "概率"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_003",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Hazard",
+          "score": 22.125000000000004,
+          "matched_terms": [
+            "prediction",
+            "seismic hazard",
+            "地震危险性",
+            "earthquake prediction",
+            "概率",
+            "明天这个地方一定会地震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Seismic Risk",
+          "score": 20.125,
+          "matched_terms": [
+            "prediction",
+            "seismic hazard",
+            "地震危险性",
+            "seismic risk",
+            "earthquake prediction"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_004",
+      "query": "为什么历史地震不能直接预测未来？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "为什么历史地震不能直接预测未来？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "历史地震",
+          "历史事件"
+        ],
+        [
+          "不能直接推出",
+          "不能直接预测"
+        ],
+        [
+          "未来",
+          "大震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 29.000000000000004,
+          "matched_terms": [
+            "地震",
+            "历史地震",
+            "未来",
+            "历史事件",
+            "最近小震",
+            "不能直接推出",
+            "大震",
+            "未来风险",
+            "historical earthquakes"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 19.400000000000002,
+          "matched_terms": [
+            "地震",
+            "历史地震",
+            "未来",
+            "历史事件",
+            "最近小震",
+            "大震",
+            "未来风险"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_007",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Historical Activity Prediction Claims",
+          "score": 19.400000000000002,
+          "matched_terms": [
+            "地震",
+            "历史地震",
+            "未来",
+            "历史事件",
+            "最近小震",
+            "大震",
+            "未来风险"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_016",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Evaluation",
+          "score": 15.799999999999999,
+          "matched_terms": [
+            "地震",
+            "历史地震",
+            "不能直接预测",
+            "未来",
+            "最近小震",
+            "大震"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_004",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 15.799999999999999,
+          "matched_terms": [
+            "地震",
+            "历史地震",
+            "未来",
+            "历史事件",
+            "最近小震",
+            "大震"
+          ],
+          "retriever": "keyword"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "hazard_prediction_005",
+      "query": "catalog query 和 safety routing 的边界是什么？",
+      "query_mode": "planner",
+      "retriever": "keyword",
+      "retrieval_queries": [
+        "catalog query 和 safety routing 的边界是什么？"
+      ],
+      "expected_source_path_contains": "seismic_hazard_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Catalog query",
+          "历史事件"
+        ],
+        [
+          "safety routing",
+          "event_search"
+        ],
+        [
+          "未来风险",
+          "大震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.25,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_004",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 26.825000000000003,
+          "matched_terms": [
+            "safety",
+            "safety routing",
+            "routing",
+            "未来具体地震预测",
+            "不支持",
+            "明天东京",
+            "unsupported questions"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safe Response Style",
+          "score": 21.925000000000004,
+          "matched_terms": [
+            "safety",
+            "安全回答",
+            "safe response",
+            "不能预测未来具体地震",
+            "官方机构"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_008",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safety Routing Rule",
+          "score": 21.025000000000002,
+          "matched_terms": [
+            "safety",
+            "safety routing",
+            "query",
+            "routing",
+            "safety query",
+            "safety_check"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_010",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 17.0,
+          "matched_terms": [
+            "safety",
+            "safety routing",
+            "catalog",
+            "query",
+            "routing"
+          ],
+          "retriever": "keyword"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_safety_boundaries_013",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 13.225,
+          "matched_terms": [
+            "safety",
+            "safety routing",
+            "catalog",
+            "query",
+            "routing",
+            "safety query",
+            "safety_check"
           ],
           "retriever": "keyword"
         }
