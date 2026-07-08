@@ -1,23 +1,23 @@
-# Retrieval Eval 60 and Hybrid Retrieval Report
+# retrieval_eval_60 与 Hybrid Retrieval 阶段报告
 
-## 1. Background
+## 1. 阶段背景
 
-This stage extends SeismoSearch document retrieval evaluation from `retrieval_eval_40` to `retrieval_eval_60`.
+本阶段的目标，是把 SeismoSearch 的文档检索评估从 `retrieval_eval_40` 扩展到 `retrieval_eval_60`。
 
-The previous `retrieval_eval_40` mainly focused on the original seismology concept document. After adding four new domain documents, the retrieval corpus now covers:
+之前的 `retrieval_eval_40` 主要围绕原始的地震学概念文档进行评估，检索场景相对集中。后续新增了 4 份领域文档后，RAG 语料库变得更接近真实项目场景，包含：
 
-- earthquake catalog fields;
-- USGS event metadata;
-- earthquake safety boundaries;
-- seismic hazard vs earthquake prediction.
+- 地震目录字段解释；
+- USGS 地震事件元数据说明；
+- 地震安全边界说明；
+- 地震危险性与地震预测的区别。
 
-The goal is to test whether different retrievers can handle a more realistic multi-document domain corpus.
+因此，本阶段重点不是继续追求旧测试集满分，而是观察不同检索器在多文档、多主题、语义重叠的语料库中是否仍然稳定。
 
 ---
 
-## 2. Corpus Expansion
+## 2. 语料库扩展
 
-Added four user-facing domain knowledge documents:
+本阶段新增了 4 份面向用户问答的领域知识文档：
 
 ```text
 data/processed/docs/earthquake_catalog_fields.md
