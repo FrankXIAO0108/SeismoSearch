@@ -45,7 +45,7 @@ from seismosearch.hybrid_retriever import retrieve_docs_hybrid
 
 
 DEFAULT_RERANK_MODEL_NAME = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
-DEFAULT_RERANK_CANDIDATE_K = 30
+DEFAULT_RERANK_CANDIDATE_K = 10
 
 
 def build_rerank_text(chunk: dict[str, Any]) -> str:
