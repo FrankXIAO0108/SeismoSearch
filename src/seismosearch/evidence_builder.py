@@ -31,7 +31,9 @@ from typing import Any
 
 # 新增：Evidence Builder 需要调用 doc_retriever，把文档检索结果转成 doc_evidence。
 from seismosearch.doc_retriever import retrieve_docs
+from seismosearch.hybrid_retriever import retrieve_docs_hybrid
 from seismosearch.planner import plan_query
+from seismosearch.reranker import retrieve_docs_hybrid_rerank
 from seismosearch.tools import (
     event_search_tool,
     event_statistics_tool,
@@ -39,7 +41,60 @@ from seismosearch.tools import (
 )
 
 
-SCHEMA_VERSION = "0.1.0"
+SCHEMA_VERSION = "0.2.0"
+SUPPORTED_DOC_RETRIEVER_MODES = {
+    "keyword",
+    "hybrid",
+    "hybrid_rerank",
+}
+
+
+def normalize_doc_retriever_mode(mode: str) -> str:
+    """Validate one document retriever mode."""
+    if not isinstance(mode, str):
+        raise TypeError("doc_retriever_mode must be a string")
+
+    normalized = mode.strip().lower()
+
+    if normalized not in SUPPORTED_DOC_RETRIEVER_MODES:
+        supported = ", ".join(sorted(SUPPORTED_DOC_RETRIEVER_MODES))
+        raise ValueError(
+            "doc_retriever_mode must be one of: "
+            f"{supported}."
+        )
+
+    return normalized
+
+
+def run_doc_retrieval(
+    queries: str | list[str],
+    top_k: int,
+    mode: str,
+) -> dict[str, Any]:
+    """Run keyword, hybrid, or hybrid-rerank retrieval."""
+    normalized = normalize_doc_retriever_mode(mode)
+
+    if normalized == "hybrid_rerank":
+        result = retrieve_docs_hybrid_rerank(
+            queries=queries,
+            top_k=top_k,
+        )
+    elif normalized == "hybrid":
+        result = retrieve_docs_hybrid(
+            queries=queries,
+            top_k=top_k,
+        )
+    else:
+        result = retrieve_docs(
+            queries=queries,
+            top_k=top_k,
+        )
+
+    result = dict(result)
+    tool_input = dict(result.get("input", {}))
+    tool_input["retriever"] = normalized
+    result["input"] = tool_input
+    return result
 
 
 def utc_now_iso() -> str:
@@ -233,6 +288,16 @@ def build_doc_evidence(
             "text": chunk.get("text"),
             "score": chunk.get("score"),
             "matched_terms": chunk.get("matched_terms", []),
+            "retriever": chunk.get(
+                "retriever",
+                doc_result.get("input", {}).get("retriever"),
+            ),
+            "hybrid_rank": chunk.get("hybrid_rank"),
+            "hybrid_score": chunk.get("hybrid_score"),
+            "rerank_score": chunk.get("rerank_score"),
+            "reranker_model_name": chunk.get(
+                "reranker_model_name"
+            ),
         }
 
         doc_evidence.append(evidence_item)
@@ -343,6 +408,7 @@ def build_evidence_pack(
     event_statistics_params: dict[str, Any] | None = None,
     planner_output: dict[str, Any] | None = None,
     use_planner: bool = True,
+    doc_retriever_mode: str = "keyword",
 ) -> dict[str, Any]:
     """
     Build an Evidence Pack for one user query.
@@ -365,9 +431,13 @@ def build_evidence_pack(
     - event_search_params: optional manual event_search_tool params override;
     - event_statistics_params: optional manual event_statistics_tool params override;
     - planner_output: optional precomputed planner output;
-    - use_planner: whether to call planner.py automatically.
+    - use_planner: whether to call planner.py automatically;
+    - doc_retriever_mode: keyword, hybrid, or hybrid_rerank.
     """
     query_id = query_id or make_query_id()
+    resolved_doc_retriever_mode = normalize_doc_retriever_mode(
+        doc_retriever_mode
+    )
 
     resolved_planner_output = resolve_planner_output(
         user_query=user_query,
@@ -441,9 +511,10 @@ def build_evidence_pack(
     should_run_doc_retrieval = resolved_query_type in {"concept", "mixed"}
 
     if should_run_doc_retrieval:
-        doc_result = retrieve_docs(
+        doc_result = run_doc_retrieval(
             queries=doc_retrieval_queries or [user_query],
             top_k=5,
+            mode=resolved_doc_retriever_mode,
         )
 
         tool_calls.append(build_tool_call_record("doc_retrieval", doc_result))
@@ -467,6 +538,7 @@ def build_evidence_pack(
         "query_id": query_id,
         "user_query": user_query,
         "query_type": resolved_query_type,
+        "doc_retriever_mode": resolved_doc_retriever_mode,
         "created_at_utc": utc_now_iso(),
         "router_output": router_output,
         "tool_calls": tool_calls,

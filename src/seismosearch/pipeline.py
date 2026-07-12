@@ -78,6 +78,7 @@ def run_pipeline(
     include_evidence_pack: bool = True,
     generator_mode: str = "deterministic",
     llm_client: ChatCompletionClient | None = None,
+    doc_retriever_mode: str = "keyword",
 ) -> dict[str, Any]:
     """
     Run SeismoSearch for one natural-language query.
@@ -85,6 +86,11 @@ def run_pipeline(
     generator_mode:
     - deterministic
     - llm
+
+    doc_retriever_mode:
+    - keyword
+    - hybrid
+    - hybrid_rerank
     """
     if not isinstance(user_query, str):
         return _build_error_result(
@@ -126,6 +132,7 @@ def run_pipeline(
         evidence_pack = build_evidence_pack(
             user_query=user_query,
             query_id=query_id,
+            doc_retriever_mode=doc_retriever_mode,
         )
 
         generation_result = _run_generator(
@@ -176,6 +183,9 @@ def run_pipeline(
             ),
             "requested_generator_mode": normalized_generator_mode,
             "generator_mode": actual_generator_mode,
+            "doc_retriever_mode": evidence_pack.get(
+                "doc_retriever_mode"
+            ),
             "generation": generation_metadata,
         }
 
