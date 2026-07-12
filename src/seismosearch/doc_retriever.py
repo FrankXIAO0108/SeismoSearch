@@ -41,6 +41,31 @@ DEFAULT_DOC_DIRS = [
 DEFAULT_TOP_K = 5
 
 
+# ?? Markdown ????????????????????????
+# ????????????????????????????? chunk?
+NON_RETRIEVAL_SECTION_HEADINGS = frozenset(
+    {
+        "example query",
+        "example queries",
+        "示例问题",
+        "示例查询",
+        "source",
+        "sources",
+        "reference",
+        "references",
+        "参考资料",
+        "参考来源",
+        "relation to evaluation",
+        "evaluation notes",
+        "retrieval evaluation",
+        "评测说明",
+        "与评测的关系",
+        "document purpose",
+        "文档目的",
+    }
+)
+
+
 @dataclass
 class DocumentChunk:
     """A local document chunk used for retrieval."""
@@ -56,6 +81,22 @@ class DocumentChunk:
 def normalize_text(text: str) -> str:
     """Normalize text for deterministic keyword matching."""
     return " ".join(str(text).lower().strip().split())
+
+
+def is_non_retrieval_section_heading(heading: str) -> bool:
+    """
+    ?? Markdown ???????????????
+
+    ????????????????????????
+    """
+    normalized_heading = normalize_text(heading).rstrip(
+        " :?-??"
+    )
+
+    return (
+        normalized_heading
+        in NON_RETRIEVAL_SECTION_HEADINGS
+    )
 
 
 def extract_markdown_title(text: str, fallback: str) -> str:
@@ -568,6 +609,10 @@ def split_markdown_into_chunks(
     chunk_index = 1
 
     for heading, lines in sections:
+        # ?????????????????????????
+        if is_non_retrieval_section_heading(heading):
+            continue
+
         section_text = "\n".join(lines).strip()
 
         if not section_text:

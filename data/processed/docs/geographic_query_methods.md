@@ -24,6 +24,10 @@ longitude
 
 ## Bounding Box Query
 
+latitude 和 longitude 后续可以用于空间过滤。
+
+Bounding box，也称 bbox，使用经纬度边界筛选矩形区域内的地震事件。对于“某个区域范围内有哪些地震”这类问题，应将自然语言区域转换为经纬度范围，再执行结构化过滤。
+
 Bounding box 使用四个边界参数：
 
 ```text
