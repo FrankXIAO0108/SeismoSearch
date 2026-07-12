@@ -1,0 +1,22 @@
+{
+  "version": "retrieval_eval_v2",
+  "frozen_at": "2026-07-12",
+  "frozen_base_commit_sha": "a67e49a51ba4a74473b21ce5fd615bcc8bbbf71e",
+  "development_set": "eval/retrieval_eval_60_corpus_v2.jsonl",
+  "holdout_set": "eval/retrieval_holdout_26_v1.jsonl",
+  "primary_metric": "requirement_hit_at_k",
+  "secondary_metrics": [
+    "source_hit_at_k",
+    "exact_term_hit_at_k",
+    "any_group_hit_at_k",
+    "mrr",
+    "failed_records"
+  ],
+  "top_k": 5,
+  "holdout_policy": [
+    "Do not modify holdout records after the first retrieval run.",
+    "Do not tune corpus, planner, synonyms, retrievers, or reranker on holdout failures.",
+    "Use the development set for debugging and tuning.",
+    "Create a new versioned holdout set if the evaluation contract must change."
+  ]
+}
