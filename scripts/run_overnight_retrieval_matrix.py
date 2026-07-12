@@ -51,7 +51,7 @@ RETRIEVAL_EVAL_SCRIPT = (
 DEFAULT_EVAL_FILE = (
     PROJECT_ROOT
     / "eval"
-    / "retrieval_eval_60.jsonl"
+    / "retrieval_eval_60_corpus_v2.jsonl"
 )
 
 # 夜间实验结果根目录。
@@ -386,11 +386,11 @@ def print_final_table(
             f"{run['name']:<35} "
             f"success={run['success']} "
             f"requirement_hit="
-            f"{summary.get('requirement_hit_rate')} "
+            f"{summary.get('requirement_hit_at_k')} "
             f"mrr="
             f"{summary.get('mrr')} "
             f"failed="
-            f"{summary.get('failed_count')} "
+            f"{summary.get('failed_records')} "
             f"duration="
             f"{run['duration_seconds']:.2f}s"
         )

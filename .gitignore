@@ -70,3 +70,7 @@ checkpoints/
 build/
 dist/
 *.egg-info/
+
+# Generated retrieval evaluation outputs
+eval/results/overnight/
+eval/results/retrieval_eval_60_corpus_v2_*.json
