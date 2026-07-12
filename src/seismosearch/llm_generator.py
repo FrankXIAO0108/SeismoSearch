@@ -356,9 +356,13 @@ def validate_llm_generation(
         evidence_context
     )
     declared_ids = set(normalized_used_ids)
-    cited_ids = set(
-        EVIDENCE_ID_PATTERN.findall(answer)
-    )
+    ordered_cited_ids: list[str] = []
+
+    for evidence_id in EVIDENCE_ID_PATTERN.findall(answer):
+        if evidence_id not in ordered_cited_ids:
+            ordered_cited_ids.append(evidence_id)
+
+    cited_ids = set(ordered_cited_ids)
 
     unknown_declared_ids = declared_ids - available_ids
     unknown_cited_ids = cited_ids - available_ids
@@ -375,9 +379,12 @@ def validate_llm_generation(
             f"{sorted(unknown_cited_ids)}"
         )
 
+    validation_warnings: list[str] = []
+
     if declared_ids != cited_ids:
-        raise LLMGenerationValidationError(
-            "used_evidence_ids must exactly match inline citations"
+        normalized_used_ids = ordered_cited_ids
+        validation_warnings.append(
+            "used_evidence_ids_normalized_to_inline_citations"
         )
 
     if available_ids and not cited_ids:
@@ -389,6 +396,7 @@ def validate_llm_generation(
         "answer": answer.strip(),
         "used_evidence_ids": normalized_used_ids,
         "grounding_notes": grounding_notes,
+        "validation_warnings": validation_warnings,
     }
 
 
@@ -475,9 +483,12 @@ def generate_answer_with_llm(
             "grounding_notes": validated_output[
                 "grounding_notes"
             ],
-            "warnings": evidence_pack.get(
-                "warnings",
-                [],
+            "warnings": (
+                list(evidence_pack.get("warnings", []))
+                + validated_output.get(
+                    "validation_warnings",
+                    [],
+                )
             ),
             "answer_constraints": answer_constraints,
             "generator_mode": "llm",

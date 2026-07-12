@@ -22,7 +22,13 @@ The generator must:
 
 from __future__ import annotations
 
+import re
 from typing import Any
+
+
+EVIDENCE_ID_PATTERN = re.compile(
+    r"\[(event_\d{3}|computed_\d{3}|doc_\d{3})\]"
+)
 
 
 def _as_text(value: Any, fallback: str = "unknown") -> str:
@@ -55,6 +61,23 @@ def _get_first_computed_statistics(
 
     first_item = computed_evidence[0]
     return first_item.get("statistics")
+
+
+def _get_first_computed_evidence_id(
+    evidence_pack: dict[str, Any],
+) -> str | None:
+    """Return the citation ID of the first computed evidence item."""
+    computed_evidence = evidence_pack.get("computed_evidence", [])
+
+    if not computed_evidence:
+        return None
+
+    evidence_id = computed_evidence[0].get("evidence_id")
+
+    if evidence_id is None:
+        return None
+
+    return str(evidence_id)
 
 
 def _format_event_item(event: dict[str, Any]) -> str:
@@ -91,6 +114,9 @@ def _render_catalog_answer(evidence_pack: dict[str, Any]) -> str:
     user_query = evidence_pack.get("user_query", "")
     event_evidence = evidence_pack.get("event_evidence", [])
     statistics = _get_first_computed_statistics(evidence_pack)
+    computed_evidence_id = _get_first_computed_evidence_id(
+        evidence_pack
+    )
 
     lines: list[str] = []
 
@@ -123,6 +149,11 @@ def _render_catalog_answer(evidence_pack: dict[str, Any]) -> str:
             f" 至 M{_format_float(magnitude_summary.get('max_magnitude'), digits=1)}，"
             f"平均震级约为 M{_format_float(magnitude_summary.get('avg_magnitude'), digits=2)}。"
         )
+        if computed_evidence_id is not None:
+            lines.append(
+                f"\u7edf\u8ba1\u8bc1\u636e\uff1a[{computed_evidence_id}]"
+            )
+
         lines.append("")
 
     if not event_evidence:
@@ -257,23 +288,12 @@ def _render_mixed_answer(evidence_pack: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def _collect_used_evidence_ids(evidence_pack: dict[str, Any]) -> list[str]:
-    """Collect all evidence IDs available to the deterministic generator."""
+def _collect_used_evidence_ids(answer: str) -> list[str]:
+    """Collect only evidence IDs that are cited in the final answer."""
     used_evidence_ids: list[str] = []
 
-    for item in evidence_pack.get("event_evidence", []):
-        evidence_id = item.get("evidence_id")
-        if evidence_id is not None:
-            used_evidence_ids.append(evidence_id)
-
-    for item in evidence_pack.get("computed_evidence", []):
-        evidence_id = item.get("evidence_id")
-        if evidence_id is not None:
-            used_evidence_ids.append(evidence_id)
-
-    for item in evidence_pack.get("doc_evidence", []):
-        evidence_id = item.get("evidence_id")
-        if evidence_id is not None:
+    for evidence_id in EVIDENCE_ID_PATTERN.findall(answer):
+        if evidence_id not in used_evidence_ids:
             used_evidence_ids.append(evidence_id)
 
     return used_evidence_ids
@@ -307,7 +327,7 @@ def generate_answer(evidence_pack: dict[str, Any]) -> dict[str, Any]:
     else:
         answer = "当前 Evidence Pack 的 query_type 无法识别，因此不能生成可靠回答。"
 
-    used_evidence_ids = _collect_used_evidence_ids(evidence_pack)
+    used_evidence_ids = _collect_used_evidence_ids(answer)
 
     return {
         "status": "ok",
