@@ -1,0 +1,3750 @@
+{
+  "retriever": "hybrid",
+  "query_mode": "planner",
+  "top_k": 5,
+  "eval_file": "eval\\retrieval_holdout_26_v1.jsonl",
+  "summary": {
+    "num_samples": 26,
+    "source_hit_at_k": 0.7692307692307693,
+    "exact_term_hit_at_k": 1.0,
+    "any_group_hit_at_k": 0.6538461538461539,
+    "term_hit_at_k": 0.6538461538461539,
+    "requirement_hit_at_k": 0.6153846153846154,
+    "mrr": 0.5705128205128205,
+    "failed_records": 10
+  },
+  "records": [
+    {
+      "query_id": "holdout_concept_001",
+      "query": "同一场 M7 地震，为什么远处城市的体感可能比近处弱很多？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "同一场 M7 地震，为什么远处城市的体感可能比近处弱很多？"
+      ],
+      "expected_source_path_contains": "seismology_concepts.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级",
+          "magnitude",
+          "M7"
+        ],
+        [
+          "烈度",
+          "intensity",
+          "体感",
+          "震感"
+        ],
+        [
+          "距离",
+          "distance",
+          "地点"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.030309988518943745,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.028665028665028666,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 14
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 0.027031963470319637,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 13,
+            "dense": 15
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "aftershock_foreshock_mainshock_010",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Safety Boundary",
+          "score": 0.02694394213381555,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 19,
+            "dense": 10
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_magnitude_001",
+      "query": "事件的 mag 没有值时，做平均震级统计能把它当成 0 吗？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "事件的 mag 没有值时，做平均震级统计能把它当成 0 吗？",
+        "地震 震级 magnitude 定义",
+        "earthquake magnitude definition"
+      ],
+      "expected_source_path_contains": "magnitude_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "magnitude",
+          "mag",
+          "震级"
+        ],
+        [
+          "null",
+          "没有震级值",
+          "空值"
+        ],
+        [
+          "0",
+          "零级地震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "magnitude_fields_002",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude",
+          "score": 0.03128054740957967,
+          "matched_terms": [
+            "震级",
+            "mag",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 6
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "magnitude_fields_004",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude Is Not Intensity",
+          "score": 0.029513888888888888,
+          "matched_terms": [
+            "震级",
+            "mag",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 12,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.028629032258064516,
+          "matched_terms": [
+            "震级",
+            "mag",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 20,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.027071520029266508,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "意思",
+            "解释",
+            "earthquake"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 17,
+            "dense": 11
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_magnitude_002",
+      "query": "magSource 和 magType 分别记录震级的什么信息？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "magSource 和 magType 分别记录震级的什么信息？",
+        "地震 震级 magnitude 定义",
+        "earthquake magnitude definition"
+      ],
+      "expected_source_path_contains": "quality_and_uncertainty_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "magSource"
+        ],
+        [
+          "magType"
+        ],
+        [
+          "来自哪里",
+          "来源",
+          "source"
+        ],
+        [
+          "震级类型",
+          "类型",
+          "type"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "quality_and_uncertainty_fields_013",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "magSource",
+          "score": 0.03278688524590164,
+          "matched_terms": [
+            "震级",
+            "magsource",
+            "magtype"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "magnitude_fields_002",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude",
+          "score": 0.030309988518943745,
+          "matched_terms": [
+            "震级",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 7
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.029386529386529386,
+          "matched_terms": [
+            "震级",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 14,
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "magnitude_fields_003",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude Type",
+          "score": 0.02928692699490662,
+          "matched_terms": [
+            "震级",
+            "magtype",
+            "magnitude"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 16
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "magnitude_fields_004",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude Is Not Intensity",
+          "score": 0.02854251012145749,
+          "matched_terms": [
+            "震级",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 16,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_geo_001",
+      "query": "查某城市周围 200 公里的地震，应该用 bounding box 还是中心点半径？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "查某城市周围 200 公里的地震，应该用 bounding box 还是中心点半径？"
+      ],
+      "expected_source_path_contains": "geographic_query_methods.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "radius query",
+          "中心点",
+          "半径"
+        ],
+        [
+          "200",
+          "公里",
+          "km"
+        ],
+        [
+          "bounding box",
+          "bbox",
+          "矩形"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "geographic_query_methods_005",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Bounding Box and Radius Comparison",
+          "score": 0.03278688524590164,
+          "matched_terms": [
+            "bounding",
+            "box"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "geographic_query_methods_003",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Bounding Box Query",
+          "score": 0.03200204813108039,
+          "matched_terms": [
+            "地震",
+            "bounding",
+            "box"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "geographic_query_methods_009",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Recommended Region Mapping",
+          "score": 0.03149801587301587,
+          "matched_terms": [
+            "bounding",
+            "box"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "geographic_query_methods_008",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "International Date Line",
+          "score": 0.030330882352941176,
+          "matched_terms": [
+            "bounding",
+            "box"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 8
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.028484848484848488,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 15
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_geo_002",
+      "query": "区域横跨 180 度经线时，普通 longitude BETWEEN 为什么可能漏掉事件？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "区域横跨 180 度经线时，普通 longitude BETWEEN 为什么可能漏掉事件？"
+      ],
+      "expected_source_path_contains": "geographic_query_methods.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "国际日期变更线",
+          "International Date Line",
+          "180"
+        ],
+        [
+          "longitude",
+          "经度"
+        ],
+        [
+          "拆分",
+          "两个 bounding box",
+          "特殊处理"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "geographic_query_methods_003",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Bounding Box Query",
+          "score": 0.031099324975891997,
+          "matched_terms": [
+            "longitude",
+            "latitude",
+            "经纬度",
+            "空间过滤",
+            "bbox"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 8
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "geographic_query_methods_007",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Combining Geographic Filters",
+          "score": 0.031009615384615385,
+          "matched_terms": [
+            "longitude",
+            "latitude",
+            "空间范围"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "geographic_query_methods_004",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Radius Query",
+          "score": 0.030776515151515152,
+          "matched_terms": [
+            "longitude",
+            "latitude"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "location_and_depth_fields_002",
+          "source_path": "data/processed/docs/location_and_depth_fields.md",
+          "heading": "Latitude",
+          "score": 0.0304147465437788,
+          "matched_terms": [
+            "latitude"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "geographic_query_methods_009",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Recommended Region Mapping",
+          "score": 0.030017921146953404,
+          "matched_terms": [
+            "longitude",
+            "latitude"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 12
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_geo_003",
+      "query": "place 文本里没有国家名时，还能直接用 LIKE 查询该国家全部地震吗？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "place 文本里没有国家名时，还能直接用 LIKE 查询该国家全部地震吗？"
+      ],
+      "expected_source_path_contains": "geographic_query_methods.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "place"
+        ],
+        [
+          "不是精确空间边界",
+          "人类可读",
+          "not a geographic filter"
+        ],
+        [
+          "latitude",
+          "longitude",
+          "经纬度",
+          "bounding box"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "geographic_query_methods_006",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Place Is Not a Geographic Filter",
+          "score": 0.031544957774465976,
+          "matched_terms": [
+            "place",
+            "like"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 6
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_011",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Not a Replacement for Official Sources",
+          "score": 0.02886002886002886,
+          "matched_terms": [
+            "地震",
+            "place"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 17
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "geographic_query_methods_002",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Structured Geographic Filtering",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "event_updates_and_revisions_010",
+          "source_path": "data/processed/docs/event_updates_and_revisions.md",
+          "heading": "Query Result Wording",
+          "score": 0.016129032258064516,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "event_identity_and_time_fields_010",
+          "source_path": "data/processed/docs/event_identity_and_time_fields.md",
+          "heading": "Place",
+          "score": 0.016129032258064516,
+          "matched_terms": [
+            "place"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_filter_001",
+      "query": "过去两周、M5 以上且深度不超过 70 公里的事件，应该怎样组合过滤？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "过去两周、M5 以上且深度不超过 70 公里的事件，应该怎样组合过滤？"
+      ],
+      "expected_source_path_contains": "time_magnitude_depth_filters.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "start_time",
+          "end_time",
+          "时间范围",
+          "过去两周"
+        ],
+        [
+          "min_magnitude",
+          "M5",
+          "震级"
+        ],
+        [
+          "max_depth_km",
+          "70",
+          "深度"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "time_magnitude_depth_filters_007",
+          "source_path": "data/processed/docs/time_magnitude_depth_filters.md",
+          "heading": "Combining Filters",
+          "score": 0.031544957774465976,
+          "matched_terms": [
+            "深度",
+            "depth"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "time_magnitude_depth_filters_006",
+          "source_path": "data/processed/docs/time_magnitude_depth_filters.md",
+          "heading": "Depth Filtering",
+          "score": 0.031009615384615385,
+          "matched_terms": [
+            "深度",
+            "depth"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "geographic_query_methods_007",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Combining Geographic Filters",
+          "score": 0.030834914611005692,
+          "matched_terms": [
+            "深度",
+            "depth"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 8,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "time_magnitude_depth_filters_005",
+          "source_path": "data/processed/docs/time_magnitude_depth_filters.md",
+          "heading": "Magnitude Filtering",
+          "score": 0.03036576949620428,
+          "matched_terms": [
+            "m5",
+            "depth"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "quality_and_uncertainty_fields_008",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "depthError",
+          "score": 0.03028233151183971,
+          "matched_terms": [
+            "深度",
+            "震源深度",
+            "震源",
+            "depth"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 12
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_quality_001",
+      "query": "一个事件的 gap 很小，能否据此断定震中位置绝对准确？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "一个事件的 gap 很小，能否据此断定震中位置绝对准确？"
+      ],
+      "expected_source_path_contains": "quality_and_uncertainty_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "gap"
+        ],
+        [
+          "不能单独",
+          "不等于",
+          "不能简单认为"
+        ],
+        [
+          "台站",
+          "station geometry",
+          "位置不确定性"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "quality_and_uncertainty_fields_004",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "gap",
+          "score": 0.03278688524590164,
+          "matched_terms": [
+            "gap"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "quality_and_uncertainty_fields_003",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "nst",
+          "score": 0.028125,
+          "matched_terms": [
+            "gap"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 20
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "quality_and_uncertainty_fields_014",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "Combining Quality Fields",
+          "score": 0.016129032258064516,
+          "matched_terms": [
+            "gap"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "aftershock_foreshock_mainshock_009",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Catalog Interpretation",
+          "score": 0.016129032258064516,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "quality_and_uncertainty_fields_007",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "horizontalError",
+          "score": 0.015873015873015872,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_quality_002",
+      "query": "depth=20 km、depthError=8 km 时，和另一个 22 km 的事件比较要注意什么？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "depth=20 km、depthError=8 km 时，和另一个 22 km 的事件比较要注意什么？",
+        "地震 深度 震源深度",
+        "earthquake depth hypocenter depth"
+      ],
+      "expected_source_path_contains": "quality_and_uncertainty_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "depthError"
+        ],
+        [
+          "20",
+          "22",
+          "深度"
+        ],
+        [
+          "不确定性",
+          "uncertainty",
+          "比较"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "quality_and_uncertainty_fields_008",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "depthError",
+          "score": 0.032018442622950824,
+          "matched_terms": [
+            "depth",
+            "km",
+            "deptherror",
+            "深度",
+            "震源深度",
+            "震源"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.0315136476426799,
+          "matched_terms": [
+            "depth",
+            "km",
+            "深度",
+            "震源",
+            "hypocenter",
+            "地震",
+            "earthquake"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "time_magnitude_depth_filters_006",
+          "source_path": "data/processed/docs/time_magnitude_depth_filters.md",
+          "heading": "Depth Filtering",
+          "score": 0.029030910609857977,
+          "matched_terms": [
+            "depth",
+            "km",
+            "深度",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 16
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.028205128205128206,
+          "matched_terms": [
+            "深度",
+            "震源深度",
+            "震源",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 18
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "geographic_query_methods_004",
+          "source_path": "data/processed/docs/geographic_query_methods.md",
+          "heading": "Radius Query",
+          "score": 0.027313266443701224,
+          "matched_terms": [
+            "km",
+            "地震",
+            "earthquake"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 18,
+            "dense": 9
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_impact_001",
+      "query": "felt 数量很高，是否等于实际受灾人数也很多？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "felt 数量很高，是否等于实际受灾人数也很多？"
+      ],
+      "expected_source_path_contains": "impact_and_review_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "felt"
+        ],
+        [
+          "公众",
+          "震感报告",
+          "public"
+        ],
+        [
+          "受灾人数",
+          "总人数",
+          "人员伤亡"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "impact_and_review_fields_002",
+          "source_path": "data/processed/docs/impact_and_review_fields.md",
+          "heading": "felt",
+          "score": 0.03278688524590164,
+          "matched_terms": [
+            "felt"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "impact_and_review_fields_009",
+          "source_path": "data/processed/docs/impact_and_review_fields.md",
+          "heading": "Magnitude and Impact Fields",
+          "score": 0.03200204813108039,
+          "matched_terms": [
+            "felt"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "impact_and_review_fields_010",
+          "source_path": "data/processed/docs/impact_and_review_fields.md",
+          "heading": "Missing Values",
+          "score": 0.029206349206349208,
+          "matched_terms": [
+            "felt"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 15
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "impact_and_review_fields_008",
+          "source_path": "data/processed/docs/impact_and_review_fields.md",
+          "heading": "sig",
+          "score": 0.016129032258064516,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 0.015625,
+          "matched_terms": [
+            "felt"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_impact_002",
+      "query": "cdi 和 mmi 都是烈度信息，它们的数据来源有什么不同？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "cdi 和 mmi 都是烈度信息，它们的数据来源有什么不同？",
+        "地震 烈度 intensity 定义",
+        "seismic intensity definition"
+      ],
+      "expected_source_path_contains": "impact_and_review_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "cdi"
+        ],
+        [
+          "mmi"
+        ],
+        [
+          "公众报告",
+          "公众震感",
+          "public"
+        ],
+        [
+          "仪器",
+          "模型估计",
+          "instrumental"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "impact_and_review_fields_005",
+          "source_path": "data/processed/docs/impact_and_review_fields.md",
+          "heading": "cdi and mmi",
+          "score": 0.03278688524590164,
+          "matched_terms": [
+            "cdi",
+            "mmi"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.03200204813108039,
+          "matched_terms": [
+            "intensity",
+            "seismic intensity",
+            "seismic"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "impact_and_review_fields_004",
+          "source_path": "data/processed/docs/impact_and_review_fields.md",
+          "heading": "mmi",
+          "score": 0.031009615384615385,
+          "matched_terms": [
+            "烈度",
+            "mmi",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "magnitude_fields_004",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude Is Not Intensity",
+          "score": 0.030536130536130537,
+          "matched_terms": [
+            "烈度",
+            "intensity",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.03007688828584351,
+          "matched_terms": [
+            "烈度",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 6
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_impact_003",
+      "query": "sig 分数高，能否解释为该地区未来发生大地震的概率更高？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "sig 分数高，能否解释为该地区未来发生大地震的概率更高？"
+      ],
+      "expected_source_path_contains": "impact_and_review_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "sig",
+          "显著性分数"
+        ],
+        [
+          "未来大地震概率",
+          "风险概率",
+          "probability"
+        ],
+        [
+          "不应该",
+          "不是",
+          "不能"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.030621785881252923,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "概率",
+            "历史地震",
+            "历史事件",
+            "大震",
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.03047794966520434,
+          "matched_terms": [
+            "解释",
+            "地震",
+            "未来",
+            "历史事件",
+            "seismic hazard",
+            "地震危险性",
+            "prediction",
+            "earthquake prediction"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "early_warning_vs_prediction_006",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.030117753623188408,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "概率",
+            "forecast",
+            "earthquake forecast",
+            "prediction",
+            "不确定性"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 9
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.030090497737556562,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "概率",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "大震",
+            "未来风险"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 8,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.029726775956284153,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "不能直接推出",
+            "大震",
+            "未来风险",
+            "historical earthquakes",
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 15
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_updates_001",
+      "query": "同一个 event_id 昨天是 M5.8、今天变成 M5.9，应当算两次地震吗？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "同一个 event_id 昨天是 M5.8、今天变成 M5.9，应当算两次地震吗？"
+      ],
+      "expected_source_path_contains": "event_updates_and_revisions.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "event_id"
+        ],
+        [
+          "同一个事件",
+          "追踪"
+        ],
+        [
+          "magnitude",
+          "M5.8",
+          "M5.9",
+          "震级"
+        ],
+        [
+          "更新",
+          "调整",
+          "revision"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "event_updates_and_revisions_006",
+          "source_path": "data/processed/docs/event_updates_and_revisions.md",
+          "heading": "Event ID Stability",
+          "score": 0.032018442622950824,
+          "matched_terms": [
+            "地震",
+            "event_id"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "event_identity_and_time_fields_002",
+          "source_path": "data/processed/docs/event_identity_and_time_fields.md",
+          "heading": "Event ID",
+          "score": 0.02946236559139785,
+          "matched_terms": [
+            "地震",
+            "event_id"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 15
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "quality_and_uncertainty_fields_009",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "magError",
+          "score": 0.029211087420042643,
+          "matched_terms": [
+            "地震",
+            "m5"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 10
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_catalog_fields_002",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Event ID",
+          "score": 0.028991596638655463,
+          "matched_terms": [
+            "地震",
+            "event_id"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 8
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "magnitude_fields_005",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude Error",
+          "score": 0.0261986301369863,
+          "matched_terms": [
+            "地震",
+            "m5"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 13,
+            "dense": 20
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_updates_002",
+      "query": "为什么实时目录中完全相同的查询隔几天再跑，结果可能不一样？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "为什么实时目录中完全相同的查询隔几天再跑，结果可能不一样？"
+      ],
+      "expected_source_path_contains": "event_updates_and_revisions.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "相同查询",
+          "查询结果"
+        ],
+        [
+          "新事件",
+          "旧事件被修订",
+          "震级更新",
+          "数据更新"
+        ],
+        [
+          "实时目录",
+          "live official catalog",
+          "后续可能更新"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "event_updates_and_revisions_007",
+          "source_path": "data/processed/docs/event_updates_and_revisions.md",
+          "heading": "Why Query Results May Change",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_database_limitations_003",
+          "source_path": "data/processed/docs/sample_database_limitations.md",
+          "heading": "Fixed Snapshot",
+          "score": 0.016129032258064516,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_database_limitations_004",
+          "source_path": "data/processed/docs/sample_database_limitations.md",
+          "heading": "Live Catalog",
+          "score": 0.015873015873015872,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "time_magnitude_depth_filters_004",
+          "source_path": "data/processed/docs/time_magnitude_depth_filters.md",
+          "heading": "Relative Time Expressions",
+          "score": 0.015625,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "quality_and_uncertainty_fields_010",
+          "source_path": "data/processed/docs/quality_and_uncertainty_fields.md",
+          "heading": "status",
+          "score": 0.015384615384615385,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": [
+        "no_query_terms_extracted"
+      ]
+    },
+    {
+      "query_id": "holdout_sample_001",
+      "query": "本地库没有查到某次地震，可以直接回答现实中从未发生吗？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "本地库没有查到某次地震，可以直接回答现实中从未发生吗？"
+      ],
+      "expected_source_path_contains": "sample_database_limitations.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "本地样例数据库",
+          "当前数据集",
+          "local sample"
+        ],
+        [
+          "未检索到",
+          "没有匹配结果"
+        ],
+        [
+          "现实世界",
+          "事件不存在",
+          "未发生"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Pseudoscience Prediction Claims",
+          "score": 0.030090497737556562,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 8
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_003",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsupported Questions",
+          "score": 0.029910714285714284,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "early_warning_vs_prediction_009",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Historical Activity Does Not Become Prediction",
+          "score": 0.028991596638655463,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 8,
+            "dense": 10
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.02889344262295082,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 20
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_010",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Safety Limitation",
+          "score": 0.026856524873828405,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 13,
+            "dense": 16
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_sample_002",
+      "query": "用当前样例库算出的平均震级，可以当成全球长期平均水平吗？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "用当前样例库算出的平均震级，可以当成全球长期平均水平吗？",
+        "地震 震级 magnitude 定义",
+        "earthquake magnitude definition"
+      ],
+      "expected_source_path_contains": "sample_database_limitations.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "平均震级",
+          "average magnitude"
+        ],
+        [
+          "当前数据快照",
+          "本地样例库"
+        ],
+        [
+          "全球长期统计",
+          "完整全球地震目录"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "magnitude_fields_002",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude",
+          "score": 0.029437229437229435,
+          "matched_terms": [
+            "震级",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 6
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.028283227848101264,
+          "matched_terms": [
+            "样例库",
+            "本地样例库",
+            "本地样例",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 19
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.027598020555767037,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "意思",
+            "解释",
+            "earthquake"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 14,
+            "dense": 11
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_event_metadata_003",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Local Sample Database",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "样例库",
+            "本地样例",
+            "local sample database",
+            "完整全球地震目录",
+            "全球地震目录",
+            "时间范围有限",
+            "sample database",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_identity_001",
+      "query": "两条记录的 place、时间和震级很接近，就能认定是同一个事件吗？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "两条记录的 place、时间和震级很接近，就能认定是同一个事件吗？",
+        "地震 震级 magnitude 定义",
+        "earthquake magnitude definition"
+      ],
+      "expected_source_path_contains": "event_identity_and_time_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "place"
+        ],
+        [
+          "time",
+          "时间"
+        ],
+        [
+          "magnitude",
+          "震级"
+        ],
+        [
+          "event_id"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "magnitude_fields_002",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude",
+          "score": 0.03128054740957967,
+          "matched_terms": [
+            "震级",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 6
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.030017921146953404,
+          "matched_terms": [
+            "震级",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 12,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 0.029726775956284153,
+          "matched_terms": [
+            "place",
+            "magnitude",
+            "earthquake"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 15,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_safety_boundaries_002",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Supported Questions",
+          "score": 0.029236022193768675,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "意思",
+            "解释",
+            "earthquake"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 11
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "magnitude_fields_004",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude Is Not Intensity",
+          "score": 0.029138513513513514,
+          "matched_terms": [
+            "震级",
+            "magnitude",
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 14,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_identity_002",
+      "query": "按地震发生日期筛选时，应该用 time 还是 updated？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "按地震发生日期筛选时，应该用 time 还是 updated？"
+      ],
+      "expected_source_path_contains": "event_identity_and_time_fields.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "time"
+        ],
+        [
+          "updated"
+        ],
+        [
+          "发生时间",
+          "什么时候发生"
+        ],
+        [
+          "更新时间",
+          "最近什么时候被修改"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "event_updates_and_revisions_002",
+          "source_path": "data/processed/docs/event_updates_and_revisions.md",
+          "heading": "Event Time and Update Time",
+          "score": 0.03200204813108039,
+          "matched_terms": [
+            "地震",
+            "time",
+            "updated"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "time_magnitude_depth_filters_002",
+          "source_path": "data/processed/docs/time_magnitude_depth_filters.md",
+          "heading": "Time Range Filtering",
+          "score": 0.03036576949620428,
+          "matched_terms": [
+            "地震",
+            "time"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "event_identity_and_time_fields_005",
+          "source_path": "data/processed/docs/event_identity_and_time_fields.md",
+          "heading": "Updated",
+          "score": 0.03028233151183971,
+          "matched_terms": [
+            "地震",
+            "time",
+            "updated"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 12
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_catalog_fields_003",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Time",
+          "score": 0.029910714285714284,
+          "matched_terms": [
+            "地震",
+            "time"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "event_identity_and_time_fields_004",
+          "source_path": "data/processed/docs/event_identity_and_time_fields.md",
+          "heading": "Time",
+          "score": 0.02946912242686891,
+          "matched_terms": [
+            "地震",
+            "time"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_sequence_001",
+      "query": "刚发生一次小地震，为什么不能马上把它叫作 foreshock？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "刚发生一次小地震，为什么不能马上把它叫作 foreshock？"
+      ],
+      "expected_source_path_contains": "aftershock_foreshock_mainshock.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "foreshock",
+          "前震"
+        ],
+        [
+          "小地震",
+          "small earthquake"
+        ],
+        [
+          "后续",
+          "回溯性",
+          "更大的相关事件"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "aftershock_foreshock_mainshock_003",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Foreshock",
+          "score": 0.03252247488101534,
+          "matched_terms": [
+            "地震",
+            "foreshock"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "aftershock_foreshock_mainshock_006",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "A Small Earthquake Is Not Automatically a Foreshock",
+          "score": 0.03200204813108039,
+          "matched_terms": [
+            "地震",
+            "foreshock"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "aftershock_foreshock_mainshock_010",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Safety Boundary",
+          "score": 0.030798389007344232,
+          "matched_terms": [
+            "地震",
+            "foreshock"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "aftershock_foreshock_mainshock_002",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Mainshock",
+          "score": 0.030776515151515152,
+          "matched_terms": [
+            "地震",
+            "foreshock"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 6
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "aftershock_foreshock_mainshock_009",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Catalog Interpretation",
+          "score": 0.028404512489927477,
+          "matched_terms": [
+            "地震",
+            "foreshock"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 8,
+            "dense": 13
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_sequence_002",
+      "query": "一个最初被当作主震的事件，后来为什么可能改称前震？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "一个最初被当作主震的事件，后来为什么可能改称前震？"
+      ],
+      "expected_source_path_contains": "aftershock_foreshock_mainshock.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "mainshock",
+          "主震"
+        ],
+        [
+          "foreshock",
+          "前震"
+        ],
+        [
+          "后来",
+          "后续事件",
+          "更大"
+        ],
+        [
+          "重新",
+          "回溯性",
+          "classification can change"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "aftershock_foreshock_mainshock_003",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Foreshock",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "aftershock_foreshock_mainshock_006",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "A Small Earthquake Is Not Automatically a Foreshock",
+          "score": 0.016129032258064516,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "aftershock_foreshock_mainshock_010",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Safety Boundary",
+          "score": 0.015873015873015872,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "event_updates_and_revisions_003",
+          "source_path": "data/processed/docs/event_updates_and_revisions.md",
+          "heading": "Preliminary and Reviewed Data",
+          "score": 0.015625,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_swarm_003",
+          "source_path": "data/processed/docs/earthquake_swarm.md",
+          "heading": "Swarm vs Mainshock-Aftershock Sequence",
+          "score": 0.015384615384615385,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": [
+        "no_query_terms_extracted"
+      ]
+    },
+    {
+      "query_id": "holdout_swarm_001",
+      "query": "一段时间里同一区域地震很多，怎样区分地震群和主震—余震序列？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "一段时间里同一区域地震很多，怎样区分地震群和主震—余震序列？"
+      ],
+      "expected_source_path_contains": "earthquake_swarm.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "earthquake swarm",
+          "地震群"
+        ],
+        [
+          "mainshock",
+          "主震"
+        ],
+        [
+          "aftershock",
+          "余震"
+        ],
+        [
+          "没有明显",
+          "单一主震",
+          "占主导"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "aftershock_foreshock_mainshock_010",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Safety Boundary",
+          "score": 0.026153846153846153,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 18,
+            "dense": 15
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "aftershock_foreshock_mainshock_006",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "A Small Earthquake Is Not Automatically a Foreshock",
+          "score": 0.025657894736842105,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 16,
+            "dense": 20
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 0.025478740668614087,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 19,
+            "dense": 18
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_001",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Earthquake Catalog Fields",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_swarm_002",
+      "query": "监测到一组空间集中的小震，能否直接宣布马上会发生更大地震？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "监测到一组空间集中的小震，能否直接宣布马上会发生更大地震？"
+      ],
+      "expected_source_path_contains": "earthquake_swarm.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "空间",
+          "spatial concentration",
+          "地震群"
+        ],
+        [
+          "未来",
+          "马上",
+          "更大地震"
+        ],
+        [
+          "time",
+          "location",
+          "magnitude",
+          "时间",
+          "地点",
+          "震级"
+        ]
+      ],
+      "source_hit": false,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "source_hit",
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "early_warning_vs_prediction_002",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.03055037313432836,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.02976190476190476,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 12
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.02889344262295082,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 20
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "early_warning_vs_prediction_010",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "SeismoSearch Routing",
+          "score": 0.027598020555767037,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 14
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "early_warning_vs_prediction_003",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Early Warning",
+          "score": 0.027222222222222224,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 12,
+            "dense": 15
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_warning_001",
+      "query": "地震预警发出时，地震是还没发生还是已经开始了？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "地震预警发出时，地震是还没发生还是已经开始了？"
+      ],
+      "expected_source_path_contains": "early_warning_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "地震预警",
+          "earthquake early warning",
+          "EEW"
+        ],
+        [
+          "已经开始",
+          "已经发生"
+        ],
+        [
+          "快速检测",
+          "监测系统"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "early_warning_vs_prediction_005",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Warning Time Is Limited",
+          "score": 0.032018442622950824,
+          "matched_terms": [
+            "地震",
+            "预警"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "early_warning_vs_prediction_003",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Early Warning",
+          "score": 0.03177805800756621,
+          "matched_terms": [
+            "地震",
+            "预警"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "early_warning_vs_prediction_004",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Early Warning Is Not Prediction",
+          "score": 0.03128054740957967,
+          "matched_terms": [
+            "地震",
+            "预警"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "early_warning_vs_prediction_010",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "SeismoSearch Routing",
+          "score": 0.030117753623188408,
+          "matched_terms": [
+            "地震",
+            "预警"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 9
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "early_warning_vs_prediction_002",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 0.02871794871794872,
+          "matched_terms": [
+            "地震"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 15,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_hazard_001",
+      "query": "某地区未来十年有较高地震概率，是否等于能确定具体哪一天发生？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "某地区未来十年有较高地震概率，是否等于能确定具体哪一天发生？"
+      ],
+      "expected_source_path_contains": "early_warning_vs_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "概率",
+          "probability",
+          "forecast"
+        ],
+        [
+          "时间范围",
+          "未来十年",
+          "time window"
+        ],
+        [
+          "具体哪一天",
+          "确定某一天",
+          "prediction"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.031099324975891997,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "不能直接推出",
+            "大震",
+            "未来风险",
+            "historical earthquakes",
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 8
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "early_warning_vs_prediction_006",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.031009615384615385,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "概率",
+            "forecast",
+            "earthquake forecast",
+            "prediction",
+            "不确定性"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 5
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_006",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Common Confusion",
+          "score": 0.030679156908665108,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "历史事件",
+            "seismic hazard",
+            "地震危险性",
+            "prediction",
+            "earthquake prediction"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.030330882352941176,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "概率",
+            "历史地震",
+            "历史事件",
+            "大震",
+            "seismic hazard",
+            "prediction",
+            "earthquake prediction"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 8,
+            "dense": 4
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_004",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 0.02928692699490662,
+          "matched_terms": [
+            "地震",
+            "未来",
+            "概率",
+            "seismic hazard",
+            "forecast",
+            "earthquake forecast",
+            "prediction",
+            "earthquake prediction",
+            "不确定性",
+            "确定性预测"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 16
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_safety_001",
+      "query": "地震云和动物异常同时出现，能否提高下周发生大震的预测可信度？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "地震云和动物异常同时出现，能否提高下周发生大震的预测可信度？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "地震云"
+        ],
+        [
+          "动物异常"
+        ],
+        [
+          "不可靠",
+          "伪科学",
+          "可靠地震预测依据"
+        ],
+        [
+          "未来",
+          "下周",
+          "大震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_safety_boundaries_005",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Pseudoscience Prediction Claims",
+          "score": 0.03278688524590164,
+          "matched_terms": [
+            "地震",
+            "动物异常",
+            "地震云",
+            "狗叫",
+            "鱼群异常",
+            "伪科学",
+            "预测依据",
+            "可靠地震预测依据",
+            "前兆",
+            "pseudoscience",
+            "历史地震",
+            "未来"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_safety_boundaries_010",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Unsafe Response Examples",
+          "score": 0.0315136476426799,
+          "matched_terms": [
+            "地震",
+            "大震",
+            "预测依据",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "未来",
+            "未来风险"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 2
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismic_hazard_vs_prediction_012",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Unsafe Answer",
+          "score": 0.029571646010002173,
+          "matched_terms": [
+            "地震",
+            "大震",
+            "历史地震",
+            "历史事件",
+            "未来"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 13,
+            "dense": 3
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.028790389395194696,
+          "matched_terms": [
+            "地震",
+            "大震",
+            "历史事件",
+            "未来",
+            "未来风险"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 8
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.028373015873015873,
+          "matched_terms": [
+            "地震",
+            "大震",
+            "历史地震",
+            "历史事件",
+            "最近小震",
+            "不能直接推出",
+            "未来",
+            "未来风险",
+            "historical earthquakes"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 20
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "holdout_safety_002",
+      "query": "最近小震变多了，SeismoSearch 能否给出下一次 M7 的具体日期和地点？",
+      "query_mode": "planner",
+      "retriever": "hybrid",
+      "retrieval_queries": [
+        "最近小震变多了，SeismoSearch 能否给出下一次 M7 的具体日期和地点？"
+      ],
+      "expected_source_path_contains": "earthquake_safety_boundaries.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "最近小震",
+          "历史活动",
+          "历史事件"
+        ],
+        [
+          "M7",
+          "震级"
+        ],
+        [
+          "具体日期",
+          "时间"
+        ],
+        [
+          "地点"
+        ],
+        [
+          "不能预测",
+          "不支持",
+          "未来具体地震预测"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": false,
+      "term_hit": false,
+      "requirement_hit": false,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [
+        "any_group_hit",
+        "requirement_hit"
+      ],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_009",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Relation to Catalog Query",
+          "score": 0.02946912242686891,
+          "matched_terms": [
+            "历史事件",
+            "未来",
+            "大震",
+            "未来风险"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 11
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": 0.028484848484848488,
+          "matched_terms": [
+            "历史事件",
+            "未来"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 15,
+            "dense": 6
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_012",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Relation to SeismoSearch",
+          "score": 0.026992753623188405,
+          "matched_terms": [
+            "历史事件",
+            "未来",
+            "未来风险"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 20
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismic_hazard_vs_prediction_007",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Historical Earthquakes Do Not Directly Predict Future Earthquakes",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "最近小震",
+            "历史地震",
+            "历史事件",
+            "不能直接推出",
+            "未来",
+            "大震",
+            "未来风险",
+            "historical earthquakes"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "bm25": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "earthquake_catalog_fields_003",
+          "source_path": "data/processed/docs/earthquake_catalog_fields.md",
+          "heading": "Time",
+          "score": 0.01639344262295082,
+          "matched_terms": [
+            "dense_similarity"
+          ],
+          "retriever": "hybrid",
+          "retriever_ranks": {
+            "dense": 1
+          },
+          "hybrid_rank": null,
+          "hybrid_score": null,
+          "rerank_score": null,
+          "reranker_model_name": null
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}
