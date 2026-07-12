@@ -36,6 +36,8 @@ class OpenAICompatibleSettings:
     timeout_seconds: float = 60.0
     temperature: float = 0.0
     max_tokens: int = 1200
+    json_mode: bool = True
+    thinking_mode: str | None = None
 
     @classmethod
     def from_env(cls) -> "OpenAICompatibleSettings":
@@ -71,6 +73,14 @@ class OpenAICompatibleSettings:
             default=1200,
             minimum=1,
         )
+        json_mode = _read_bool_env(
+            "SEISMOSEARCH_LLM_JSON_MODE",
+            default=True,
+        )
+        thinking_mode = _read_optional_choice_env(
+            "SEISMOSEARCH_LLM_THINKING_MODE",
+            choices={"enabled", "disabled"},
+        )
 
         return cls(
             base_url=base_url,
@@ -79,6 +89,8 @@ class OpenAICompatibleSettings:
             timeout_seconds=timeout_seconds,
             temperature=0.0,
             max_tokens=max_tokens,
+            json_mode=json_mode,
+            thinking_mode=thinking_mode,
         )
 
 
@@ -106,6 +118,50 @@ def _read_float_env(
         )
 
     return parsed_value
+
+
+def _read_bool_env(
+    name: str,
+    default: bool,
+) -> bool:
+    """Read a boolean environment variable."""
+    raw_value = os.getenv(name)
+
+    if raw_value is None or not raw_value.strip():
+        return default
+
+    normalized_value = raw_value.strip().lower()
+
+    if normalized_value in {"1", "true", "yes", "on"}:
+        return True
+
+    if normalized_value in {"0", "false", "no", "off"}:
+        return False
+
+    raise LLMClientError(
+        f"{name} must be a boolean, got: {raw_value!r}"
+    )
+
+
+def _read_optional_choice_env(
+    name: str,
+    choices: set[str],
+) -> str | None:
+    """Read an optional normalized choice environment variable."""
+    raw_value = os.getenv(name)
+
+    if raw_value is None or not raw_value.strip():
+        return None
+
+    normalized_value = raw_value.strip().lower()
+
+    if normalized_value not in choices:
+        choices_text = ", ".join(sorted(choices))
+        raise LLMClientError(
+            f"{name} must be one of: {choices_text}."
+        )
+
+    return normalized_value
 
 
 def _read_int_env(
@@ -177,6 +233,16 @@ class OpenAICompatibleChatClient:
             "max_tokens": self.settings.max_tokens,
             "stream": False,
         }
+
+        if self.settings.json_mode:
+            payload["response_format"] = {
+                "type": "json_object",
+            }
+
+        if self.settings.thinking_mode is not None:
+            payload["thinking"] = {
+                "type": self.settings.thinking_mode,
+            }
 
         request = Request(
             url=self._endpoint_url(),
@@ -252,13 +318,22 @@ def _extract_assistant_text(
         )
 
     content = message.get("content")
+    finish_reason = first_choice.get("finish_reason")
+    reasoning_content = message.get("reasoning_content")
+    reasoning_chars = (
+        len(reasoning_content)
+        if isinstance(reasoning_content, str)
+        else 0
+    )
 
     if isinstance(content, str):
         normalized_content = content.strip()
 
         if not normalized_content:
             raise LLMClientError(
-                "LLM response content is empty"
+                "LLM response content is empty; "
+                f"finish_reason={finish_reason!r}; "
+                f"reasoning_content_chars={reasoning_chars}"
             )
 
         return normalized_content

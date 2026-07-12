@@ -30,6 +30,10 @@ EVIDENCE_ID_PATTERN = re.compile(
     r"\[(event_\d{3}|computed_\d{3}|doc_\d{3})\]"
 )
 
+MAX_EVENT_EVIDENCE = 10
+MAX_COMPUTED_EVIDENCE = 3
+MAX_DOC_EVIDENCE = 5
+
 
 class ChatCompletionClient(Protocol):
     """Interface required by the LLM-backed generator."""
@@ -106,21 +110,61 @@ def build_controlled_evidence_context(
         "score",
     )
 
+    raw_event_evidence = [
+        item
+        for item in evidence_pack.get("event_evidence", [])
+        if isinstance(item, dict)
+    ]
+    raw_computed_evidence = [
+        item
+        for item in evidence_pack.get("computed_evidence", [])
+        if isinstance(item, dict)
+    ]
+    raw_doc_evidence = [
+        item
+        for item in evidence_pack.get("doc_evidence", [])
+        if isinstance(item, dict)
+    ]
+
     event_evidence = [
         _select_keys(item, event_keys)
-        for item in evidence_pack.get("event_evidence", [])[:5]
-        if isinstance(item, dict)
+        for item in raw_event_evidence[:MAX_EVENT_EVIDENCE]
     ]
     computed_evidence = [
         _select_keys(item, computed_keys)
-        for item in evidence_pack.get("computed_evidence", [])[:3]
-        if isinstance(item, dict)
+        for item in raw_computed_evidence[
+            :MAX_COMPUTED_EVIDENCE
+        ]
     ]
     doc_evidence = [
         _select_keys(item, document_keys)
-        for item in evidence_pack.get("doc_evidence", [])[:5]
-        if isinstance(item, dict)
+        for item in raw_doc_evidence[:MAX_DOC_EVIDENCE]
     ]
+
+    evidence_summary = {
+        "event_evidence": {
+            "total_count": len(raw_event_evidence),
+            "included_count": len(event_evidence),
+            "truncated": (
+                len(raw_event_evidence) > len(event_evidence)
+            ),
+        },
+        "computed_evidence": {
+            "total_count": len(raw_computed_evidence),
+            "included_count": len(computed_evidence),
+            "truncated": (
+                len(raw_computed_evidence)
+                > len(computed_evidence)
+            ),
+        },
+        "doc_evidence": {
+            "total_count": len(raw_doc_evidence),
+            "included_count": len(doc_evidence),
+            "truncated": (
+                len(raw_doc_evidence) > len(doc_evidence)
+            ),
+        },
+    }
 
     return {
         "query_id": evidence_pack.get("query_id"),
@@ -133,6 +177,7 @@ def build_controlled_evidence_context(
         "event_evidence": event_evidence,
         "computed_evidence": computed_evidence,
         "doc_evidence": doc_evidence,
+        "evidence_summary": evidence_summary,
         "safety_evidence": evidence_pack.get(
             "safety_evidence",
             {},
@@ -185,7 +230,9 @@ def build_llm_messages(
 7. 应使用与 user_query 相同的主要语言回答。
 8. 必须遵守 answer_constraints。
 9. 如果是本地样例库统计，必须明确它不代表完整全球目录。
-10. 只返回一个 JSON 对象，不要使用 Markdown 代码块，也不要输出额外解释。
+10. 检查 evidence_summary：如果 event_evidence.truncated=true，必须明确说明“共 total_count 条，本回答仅展示 included_count 条”，不得暗示已经列出全部结果。
+11. 回答应简洁；同一句事实优先引用最直接的一条证据，避免无必要地连续堆叠多个引用。
+12. 只返回一个 JSON 对象，不要使用 Markdown 代码块，也不要输出额外解释。
 
 返回格式：
 {
