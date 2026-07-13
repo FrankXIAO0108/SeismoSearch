@@ -22,7 +22,7 @@ from typing import Any
 from seismosearch.guardrail import evaluate_safety_query
 
 
-PLANNER_VERSION = "deterministic_0.2.0"
+PLANNER_VERSION = "deterministic_0.3.0"
 
 
 def normalize_query(user_query: str) -> str:
@@ -121,68 +121,169 @@ def detect_safety_intent(
 
     return safety_intent, notes
 
-def has_event_intent(user_query: str, min_magnitude: float | None) -> bool:
+def has_event_intent(
+    user_query: str,
+    min_magnitude: float | None,
+) -> bool:
     """
-    Decide whether the query likely needs structured event tools.
+    Decide whether the query needs structured event tools.
 
-    Concept-only questions should not trigger event search just because they
-    contain seismology terms.
+    The detector supports both direct event-list language and indirect catalog
+    language such as "本地地震目录中最强的几次事件".
     """
-    event_keywords = [
-        "地震有哪些",
-        "地震记录",
-        "地震事件",
-        "最近",
-        "最新",
-        "列出",
-        "查询",
-        "发生过",
-        "earthquakes",
-        "earthquake events",
-        "recent earthquakes",
-        "latest earthquakes",
-        "show earthquakes",
-    ]
-
     if min_magnitude is not None:
         return True
 
     query_lower = user_query.lower()
 
-    return any(keyword.lower() in query_lower for keyword in event_keywords)
+    direct_event_keywords = (
+        "地震有哪些",
+        "有哪些地震",
+        "地震记录",
+        "地震事件",
+        "事件记录",
+        "最近",
+        "最新",
+        "列出",
+        "查找",
+        "查询",
+        "发生过",
+        "最强的几次事件",
+        "最强事件",
+        "最大事件",
+        "最高震级事件",
+        "earthquakes",
+        "earthquake events",
+        "recent earthquakes",
+        "latest earthquakes",
+        "show earthquakes",
+        "list earthquakes",
+        "find earthquakes",
+        "strongest events",
+        "largest events",
+    )
 
+    if any(
+        keyword.lower() in query_lower
+        for keyword in direct_event_keywords
+    ):
+        return True
+
+    catalog_markers = (
+        "地震目录",
+        "事件目录",
+        "目录",
+        "本地库",
+        "样例库",
+        "本地样例库",
+        "catalog",
+        "database",
+        "sample database",
+    )
+    event_selection_markers = (
+        "哪些",
+        "有什么",
+        "几次",
+        "列出",
+        "查找",
+        "查询",
+        "事件",
+        "记录",
+        "发生",
+        "最强",
+        "最大",
+        "最高震级",
+        "多少",
+        "which",
+        "list",
+        "show",
+        "find",
+        "events",
+        "records",
+        "strongest",
+        "largest",
+    )
+
+    has_catalog_context = any(
+        marker.lower() in query_lower
+        for marker in catalog_markers
+    )
+    has_event_selection = any(
+        marker.lower() in query_lower
+        for marker in event_selection_markers
+    )
+
+    return has_catalog_context and has_event_selection
 
 def has_concept_intent(user_query: str) -> bool:
-    """Decide whether the query likely needs document retrieval or explanation."""
-    concept_keywords = [
+    """
+    Decide whether the query needs document retrieval or explanation.
+
+    This intentionally includes relation, field-meaning, and naming language,
+    not only explicit "解释/定义" wording.
+    """
+    query_lower = user_query.lower()
+
+    concept_keywords = (
         "什么是",
         "是什么意思",
+        "代表什么",
+        "含义",
         "区别",
         "为什么",
         "解释",
+        "说明",
         "原理",
         "定义",
+        "不是一回事",
+        "不一样",
+        "如何命名",
+        "怎么命名",
+        "如何分类",
+        "怎么分类",
+        "字段含义",
         "meaning",
         "difference",
         "explain",
         "definition",
         "why",
+        "describe",
+        "not the same",
+        "how are",
+        "how is",
         "震级和烈度",
         "烈度",
+        "mmi",
+        "modified mercalli",
+        "magnitude vs intensity",
+        "seismic intensity",
         "地震深度",
         "震源深度",
+        "深源地震",
+        "浅源地震",
+        "地表影响",
+        "地表震感",
+        "surface shaking",
+        "earthquake depth",
+        "前震",
+        "主震",
+        "余震",
+        "foreshock",
+        "mainshock",
+        "aftershock",
+        "reviewed",
+        "automatic",
+        "审核状态",
+        "自动状态",
         "海啸",
         "tsunami",
         "alert",
-        "magnitude vs intensity",
-        "seismic intensity",
-        "earthquake depth",
-    ]
+    )
 
-    query_lower = user_query.lower()
-
-    return any(keyword.lower() in query_lower for keyword in concept_keywords)
-
+    return any(
+        keyword.lower() in query_lower
+        for keyword in concept_keywords
+    )
 
 def infer_order_by(user_query: str) -> tuple[str, bool, list[str]]:
     """
@@ -258,12 +359,16 @@ def build_event_params(
     return event_search_params, event_statistics_params, notes
 
 
-def build_doc_retrieval_queries(user_query: str) -> tuple[list[str], list[str]]:
+def build_doc_retrieval_queries(
+    user_query: str,
+) -> tuple[list[str], list[str]]:
     """
-    Build retrieval-oriented query rewrites for doc_retriever.py.
+    Build retrieval-oriented query rewrites for document retrieval.
 
-    The first query remains close to the user query.
-    Additional queries expand domain terms in Chinese and English.
+    The original query is retained. Additional focused rewrites isolate
+    concept clauses from mixed catalog-plus-concept questions.
+
+    Existing stable rewrites are preserved for backward compatibility.
     """
     notes: list[str] = []
     queries: list[str] = []
@@ -271,33 +376,139 @@ def build_doc_retrieval_queries(user_query: str) -> tuple[list[str], list[str]]:
     normalized_query = normalize_query(user_query)
     queries.append(normalized_query)
 
-    query_lower = user_query.lower()
+    query_lower = normalized_query.lower()
 
-    if "震级" in user_query or "magnitude" in query_lower:
+    has_magnitude = (
+        "震级" in normalized_query
+        or "magnitude" in query_lower
+    )
+
+    has_intensity = (
+        "烈度" in normalized_query
+        or "intensity" in query_lower
+        or "mmi" in query_lower
+        or "modified mercalli" in query_lower
+    )
+
+    if has_magnitude:
         queries.append("地震 震级 magnitude 定义")
         queries.append("earthquake magnitude definition")
 
-    if "烈度" in user_query or "intensity" in query_lower:
-        queries.append("地震 烈度 intensity 定义")
-        queries.append("seismic intensity definition")
+    if has_intensity:
+        queries.append("地震 烈度 MMI intensity 定义")
+        queries.append(
+            "Modified Mercalli Intensity MMI definition"
+        )
 
-    if "震级" in user_query and "烈度" in user_query:
+    if (
+        has_magnitude
+        and has_intensity
+    ) or "不是一回事" in normalized_query:
         queries.append("震级 烈度 区别")
         queries.append("seismic magnitude vs intensity")
+        queries.append(
+            "MMI 烈度 magnitude 震级 区别 地点影响"
+        )
+        queries.append(
+            "Modified Mercalli Intensity versus earthquake magnitude"
+        )
 
-    if "深度" in user_query or "depth" in query_lower:
+    depth_markers = (
+        "深度",
+        "震源深度",
+        "深源地震",
+        "浅源地震",
+        "地表影响",
+        "地表震感",
+        "地面影响",
+        "surface shaking",
+        "surface impact",
+        "depth",
+        "deep earthquake",
+        "shallow earthquake",
+    )
+
+    if any(
+        marker.lower() in query_lower
+        for marker in depth_markers
+    ):
         queries.append("地震 深度 震源深度")
         queries.append("earthquake depth hypocenter depth")
+        queries.append(
+            "深源地震 浅源地震 震源深度 地表震感 影响因素"
+        )
+        queries.append(
+            "earthquake focal depth surface shaking "
+            "intensity distance geology buildings"
+        )
 
-    if "海啸" in user_query or "tsunami" in query_lower:
+    sequence_markers = (
+        "前震",
+        "主震",
+        "余震",
+        "foreshock",
+        "mainshock",
+        "aftershock",
+        "如何命名",
+        "怎么命名",
+    )
+
+    if any(
+        marker.lower() in query_lower
+        for marker in sequence_markers
+    ):
+        queries.append(
+            "前震 主震 余震 定义 命名 回顾性 分类变化"
+        )
+        queries.append(
+            "foreshock mainshock aftershock definitions "
+            "retrospective classification"
+        )
+
+    review_markers = (
+        "reviewed",
+        "automatic",
+        "审核状态",
+        "自动状态",
+        "人工审核",
+        "自动生成",
+    )
+
+    if any(
+        marker.lower() in query_lower
+        for marker in review_markers
+    ):
+        queries.append(
+            "reviewed automatic 地震事件状态 人工审核 自动生成"
+        )
+        queries.append(
+            "earthquake event reviewed automatic status meaning"
+        )
+
+    if (
+        "海啸" in normalized_query
+        or "tsunami" in query_lower
+    ):
         queries.append("地震 海啸 tsunami alert 含义")
         queries.append("earthquake tsunami alert meaning")
         queries.append("earthquake tsunami warning explanation")
+        queries.append(
+            "地震目录 tsunami flag 海啸字段 含义"
+        )
+        queries.append(
+            "earthquake catalog tsunami flag meaning"
+        )
+        queries.append(
+            "tsunami flag does not guarantee a tsunami"
+        )
 
     deduplicated_queries = list(dict.fromkeys(queries))
 
     if len(deduplicated_queries) > 1:
-        notes.append("Expanded user query into multiple document retrieval queries.")
+        notes.append(
+            "Expanded user query into focused bilingual "
+            "document retrieval queries."
+        )
 
     return deduplicated_queries, notes
 
