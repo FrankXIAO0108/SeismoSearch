@@ -1,0 +1,22 @@
+{
+  "holdout_name": "end_to_end_holdout_20_v2",
+  "version": "2.0.0",
+  "frozen": true,
+  "num_samples": 20,
+  "category_counts": {
+    "catalog": 5,
+    "concept": 5,
+    "mixed": 5,
+    "safety": 5
+  },
+  "sha256": "f80118962f0f19ef7600cb48ca8cfbb55890c36cfda983821bbab69926b99a65",
+  "evaluation_contract_version": "2.0.0",
+  "source_snapshot_commit": "b37c4085c8ec9c45c9185ff08fc8cc1f1e7341da",
+  "created_date": "2026-07-13",
+  "independence_notes": [
+    "All query strings are distinct from End-to-End Holdout V1.",
+    "V2 must be committed before any planner, retriever, generator, or end-to-end evaluation is run on it.",
+    "After the first evaluation, V2 records and gold labels must not be edited.",
+    "Any later corrected or expanded evaluation set must use a new version."
+  ]
+}
