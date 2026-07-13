@@ -1,0 +1,21 @@
+{
+    "name":  "SeismoSearch End-to-End Holdout V1",
+    "holdout_file":  "eval/end_to_end_holdout_20_v1.jsonl",
+    "num_samples":  20,
+    "query_type_counts":  {
+                              "catalog":  5,
+                              "concept":  5,
+                              "mixed":  5,
+                              "safety":  5
+                          },
+    "frozen_at":  "2026-07-13",
+    "frozen_from_git_sha":  "9582d98eb383d0c4d9a27103f4f2135b39828dfb",
+    "policy":  [
+                   "Commit holdout before first evaluation.",
+                   "Do not edit V1 after observing results.",
+                   "Do not tune planner, corpus, retrieval, prompts, or generator against V1 failures.",
+                   "Create a versioned V2 only if the evaluation contract is objectively invalid.",
+                   "Preserve and report V1 results.",
+                   "Report first-pass LLM success separately from retry-adjusted success."
+               ]
+}
