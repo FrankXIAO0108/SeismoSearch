@@ -457,6 +457,41 @@ def build_evidence_pack(
     else:
         resolved_query_type = infer_query_type(user_query, safety_result)
 
+    # Unified Safety Gate is authoritative. Even a manually injected or stale
+    # planner output cannot route a safety query into event/doc tools.
+    safety_labels = safety_result.get("safety_labels", {})
+    safety_triggered = bool(
+        safety_labels.get("prediction_inducement", False)
+    )
+
+    if safety_triggered:
+        resolved_query_type = "safety"
+
+        if resolved_planner_output is not None:
+            resolved_planner_output = dict(
+                resolved_planner_output
+            )
+            resolved_planner_output["query_type"] = "safety"
+            resolved_planner_output["safety_intent"] = (
+                safety_result.get("safety_intent")
+            )
+
+            planner_warnings = list(
+                resolved_planner_output.get("warnings", [])
+            )
+
+            if (
+                "safety_gate_overrode_planner_query_type"
+                not in planner_warnings
+            ):
+                planner_warnings.append(
+                    "safety_gate_overrode_planner_query_type"
+                )
+
+            resolved_planner_output["warnings"] = (
+                planner_warnings
+            )
+
     router_output = build_router_output(
         resolved_query_type=resolved_query_type,
         planner_output=resolved_planner_output,

@@ -19,8 +19,10 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from seismosearch.guardrail import evaluate_safety_query
 
-PLANNER_VERSION = "deterministic_0.1.0"
+
+PLANNER_VERSION = "deterministic_0.2.0"
 
 
 def normalize_query(user_query: str) -> str:
@@ -96,161 +98,28 @@ def parse_year_range(user_query: str) -> tuple[str | None, str | None, list[str]
     return start_time, end_time, notes
 
 
-def detect_safety_intent(user_query: str) -> tuple[str | None, list[str]]:
+def detect_safety_intent(
+    user_query: str,
+) -> tuple[str | None, list[str]]:
     """
-    Detect unsafe earthquake-prediction or pseudoscience-prediction requests.
+    Detect safety intent through the unified deterministic gate.
 
-    This is safety-intent normalization, not factual answering.
-
-    If triggered, downstream tools should NOT use historical event search to
-    imply a future earthquake prediction.
-
-    Supported safety intents:
-    - future_specific_earthquake_prediction:
-      direct requests about whether / when a future earthquake will happen.
-    - pseudoscience_prediction_claim:
-      requests that infer future earthquakes from unreliable signs, such as
-      animal anomalies, dog barking, fish anomalies, earthquake clouds, or
-      earthquake-omen claims.
-    - historical_activity_prediction_claim:
-      requests that infer future large earthquakes or future risk from recent
-      small earthquakes, frequent earthquakes, or historical earthquake records.
+    Planner, safety_check_tool, and Evidence Builder now share the same
+    authoritative assessment.
     """
-    notes: list[str] = []
+    assessment = evaluate_safety_query(user_query)
+    safety_intent = assessment.get("safety_intent")
+    matched_rules = assessment.get("matched_rules", [])
 
-    normalized = normalize_query(user_query)
-
-    historical_activity_prediction_patterns = [
-        r"小震.*大震",
-        r"小震.*大地震",
-        r"小震很多.*大震",
-        r"小震很多.*大地震",
-        r"最近小震.*大震",
-        r"最近小震.*大地震",
-        r"频繁地震.*大震",
-        r"频繁地震.*大地震",
-        r"地震频繁.*大震",
-        r"地震频繁.*大地震",
-        r"最近.*地震.*大震",
-        r"最近.*地震.*大地震",
-        r"是不是说明.*大震",
-        r"是不是说明.*大地震",
-        r"说明.*大震.*要来",
-        r"说明.*大地震.*要来",
-        r"大震要来了",
-        r"大地震要来了",
-        r"根据.*历史地震.*预测",
-        r"历史地震.*预测.*风险",
-        r"历史地震.*预测.*下周",
-        r"历史地震.*预测.*未来",
-        r"历史地震.*未来.*风险",
-        r"地震.*很多.*更危险",
-        r"地震.*很多.*危险",
-        r"地震.*很多.*风险",
-        r"最近.*地震.*很多.*更危险",
-        r"最近.*地震.*很多.*危险",
-        r"最近.*地震.*很多.*风险",
-        r"近期.*地震.*很多.*更危险",
-        r"近期.*地震.*很多.*风险",
-        r"地震.*频繁.*更危险",
-        r"地震.*频繁.*风险",
-        r"foreshock",
-        r"small earthquakes.*big earthquake",
-        r"many small earthquakes",
-        r"frequent earthquakes.*big earthquake",
-        r"historical earthquakes.*predict",
-        r"earthquake history.*predict",
+    notes = [
+        (
+            "Unified safety gate detected "
+            f"{safety_intent} with rule '{rule_name}'."
+        )
+        for rule_name in matched_rules
     ]
 
-    for pattern in historical_activity_prediction_patterns:
-        if re.search(pattern, normalized, flags=re.IGNORECASE):
-            safety_intent = "historical_activity_prediction_claim"
-            notes.append(
-                f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
-            )
-            return safety_intent, notes
-
-    pseudoscience_patterns = [
-        r"动物异常.*地震",
-        r"动物反常.*地震",
-        r"动物.*异常.*地震",
-        r"动物.*反常.*地震",
-        r"动物.*预兆.*地震",
-        r"动物.*前兆.*地震",
-        r"狗.*叫.*地震",
-        r"狗.*叫.*前兆",
-        r"狗.*地震前兆",
-        r"猫.*异常.*地震",
-        r"猫.*反常.*地震",
-        r"鱼群.*异常.*地震",
-        r"鱼群异常.*地震",
-        r"鱼群.*要地震",
-        r"地震云.*地震",
-        r"地震云.*说明",
-        r"地震云.*预示",
-        r"异常现象.*地震",
-        r"地震前兆",
-        r"地震预兆",
-        r"预兆.*地震",
-        r"征兆.*地震",
-        r"是不是说明.*要地震",
-        r"是不是说明.*马上.*地震",
-        r"说明.*马上.*地震",
-        r"马上要地震",
-        r"要地震了",
-        r"earthquake cloud",
-        r"animal.*earthquake",
-        r"dog.*earthquake",
-        r"fish.*earthquake",
-        r"earthquake omen",
-        r"earthquake precursor",
-    ]
-
-    for pattern in pseudoscience_patterns:
-        if re.search(pattern, normalized, flags=re.IGNORECASE):
-            safety_intent = "pseudoscience_prediction_claim"
-            notes.append(
-                f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
-            )
-            return safety_intent, notes
-
-    future_prediction_patterns = [
-        r"明天.*会不会.*地震",
-        r"明天.*会不会发生.*地震",
-        r"未来.*会不会.*地震",
-        r"什么时候.*地震",
-        r"会不会发生.*大地震",
-        r"会不会.*大地震",
-        r"预测.*地震",
-        r"预测.*大地震",
-        r"今年.*还会不会.*地震",
-        r"今年.*还会不会.*大地震",
-        r"今年.*会不会.*大地震",
-        r"提前.*知道.*地震",
-        r"提前.*知道.*大地震",
-        r"提前.*预测.*地震",
-        r"提前.*预测.*大地震",
-        r"有没有办法.*提前.*知道.*地震",
-        r"有没有办法.*提前.*知道.*大地震",
-        r"有没有办法.*知道.*大地震",
-        r"能不能.*提前.*知道.*地震",
-        r"能不能.*提前.*知道.*大地震",
-        r"will there be an earthquake",
-        r"when will an earthquake happen",
-        r"earthquake prediction",
-        r"predict.*earthquake",
-    ]
-
-    for pattern in future_prediction_patterns:
-        if re.search(pattern, normalized, flags=re.IGNORECASE):
-            safety_intent = "future_specific_earthquake_prediction"
-            notes.append(
-                f"Detected safety intent: {safety_intent} with pattern '{pattern}'."
-            )
-            return safety_intent, notes
-
-    return None, notes
-
+    return safety_intent, notes
 
 def has_event_intent(user_query: str, min_magnitude: float | None) -> bool:
     """
