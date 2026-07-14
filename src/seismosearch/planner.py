@@ -22,7 +22,7 @@ from typing import Any
 from seismosearch.guardrail import evaluate_safety_query
 
 
-PLANNER_VERSION = "deterministic_0.3.1"
+PLANNER_VERSION = "deterministic_0.3.2"
 
 
 def normalize_query(user_query: str) -> str:
@@ -502,9 +502,55 @@ def build_doc_retrieval_queries(
         or "modified mercalli" in query_lower
     )
 
-    if has_magnitude:
+    magnitude_update_markers = (
+        "改动",
+        "变化",
+        "改变",
+        "调整",
+        "更新",
+        "修订",
+        "重新处理",
+        "之后",
+        "后续",
+        "后来",
+        "还会改",
+        "会改",
+        "可能改",
+        "revision",
+        "revised",
+        "revise",
+        "updated",
+        "update",
+        "changed",
+        "change",
+        "after review",
+        "reprocess",
+    )
+    has_magnitude_update_intent = (
+        has_magnitude
+        and any(
+            marker.lower() in query_lower
+            for marker in magnitude_update_markers
+        )
+    )
+
+    if has_magnitude and not has_magnitude_update_intent:
         queries.append("地震 震级 magnitude 定义")
         queries.append("earthquake magnitude definition")
+
+    if has_magnitude_update_intent:
+        queries.append(
+            "地震事件更新 修订 magnitude 震级变化 "
+            "新增台站数据 波形重新处理 人工复核 数据源合并"
+        )
+        queries.append(
+            "Earthquake Event Updates and Revisions "
+            "magnitude revision event record update"
+        )
+        queries.append(
+            "reviewed event magnitude can change after review "
+            "station data waveform reprocessing source merge"
+        )
 
     if has_intensity:
         queries.append("地震 烈度 MMI intensity 定义")
