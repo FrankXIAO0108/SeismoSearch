@@ -47,12 +47,9 @@ def test_deterministic_generator_declares_only_inline_citations() -> None:
     """Deterministic metadata must match citations visible in the answer."""
     result = generate_answer(_concept_pack())
 
-    assert result["used_evidence_ids"] == [
-        "doc_001",
-        "doc_002",
-    ]
+    assert result["used_evidence_ids"] == ["doc_001"]
     assert "[doc_001]" in result["answer"]
-    assert "[doc_002]" in result["answer"]
+    assert "[doc_002]" not in result["answer"]
 
 
 def test_llm_validator_normalizes_safe_metadata_mismatch() -> None:

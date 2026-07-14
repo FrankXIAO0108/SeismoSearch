@@ -255,6 +255,11 @@ def _extract_query_technical_terms(user_query: str) -> list[str]:
     for raw_term in raw_terms:
         normalized = raw_term.lower()
 
+        # Magnitude thresholds such as M6 are query filters, not
+        # document field identifiers for multi-chunk selection.
+        if re.fullmatch(r"m\d+(?:\.\d+)?", normalized):
+            continue
+
         if normalized in stopwords:
             continue
 
