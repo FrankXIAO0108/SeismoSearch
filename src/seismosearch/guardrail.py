@@ -15,7 +15,7 @@ from __future__ import annotations
 from typing import Any
 
 
-SAFETY_GATE_VERSION = "deterministic_safety_gate_0.2.0"
+SAFETY_GATE_VERSION = "deterministic_safety_gate_0.2.1"
 
 
 # 直接的未来具体地震预测表达。
@@ -232,6 +232,8 @@ def evaluate_safety_query(query: str) -> dict[str, Any]:
             "地震",
             "小震",
             "大震",
+            "强震",
+            "强烈地震",
             "震级",
             "m5",
             "m6",
