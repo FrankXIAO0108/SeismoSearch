@@ -20,6 +20,11 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from seismosearch.evaluation_terms import (
+    TERM_MATCH_CONTRACT_VERSION,
+    find_missing_required_terms,
+)
+
 
 CITATION_PATTERN = re.compile(
     r"\[(event_\d{3}|computed_\d{3}|doc_\d{3})\]"
@@ -178,16 +183,13 @@ def check_reference_citation_support(
     cited_doc_text = _combine_cited_doc_text(
         cited_doc_items
     )
-    normalized_cited_doc_text = cited_doc_text.lower()
-
     missing_doc_terms: list[str] = []
 
     if doc_required:
-        missing_doc_terms = [
-            term
-            for term in normalized_required_terms
-            if term.lower() not in normalized_cited_doc_text
-        ]
+        missing_doc_terms = find_missing_required_terms(
+            cited_doc_text,
+            normalized_required_terms,
+        )
 
     source_path_match: bool | None = None
 
@@ -224,4 +226,8 @@ def check_reference_citation_support(
         "missing_doc_terms": missing_doc_terms,
         "expected_source_path_contains": expected_source,
         "source_path_match": source_path_match,
+        "term_match_contract_version": (
+            TERM_MATCH_CONTRACT_VERSION
+        ),
+        "citation_support_contract_version": "2.1.0",
     }
