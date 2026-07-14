@@ -218,12 +218,189 @@ def _render_safety_answer(evidence_pack: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def _extract_query_technical_terms(user_query: str) -> list[str]:
+    """
+    Extract explicit ASCII technical identifiers from a concept query.
+
+    Examples include horizontalError, depthError, magSource, magType, event_id,
+    MMI, and magnitude. Chinese-only questions keep the existing top-ranked
+    evidence fallback.
+    """
+    raw_terms = re.findall(
+        r"(?<![A-Za-z0-9_])[A-Za-z][A-Za-z0-9_]{1,}(?![A-Za-z0-9_])",
+        user_query,
+    )
+    stopwords = {
+        "a",
+        "an",
+        "and",
+        "are",
+        "can",
+        "does",
+        "for",
+        "how",
+        "is",
+        "of",
+        "or",
+        "the",
+        "to",
+        "versus",
+        "vs",
+        "what",
+        "why",
+    }
+
+    terms: list[str] = []
+
+    for raw_term in raw_terms:
+        normalized = raw_term.lower()
+
+        if normalized in stopwords:
+            continue
+
+        if normalized not in terms:
+            terms.append(normalized)
+
+    return terms
+
+
+def _score_doc_for_technical_term(
+    doc: dict[str, Any],
+    technical_term: str,
+) -> int:
+    """
+    Score how directly one document chunk addresses a technical identifier.
+
+    Heading matches are strongest because chunks are organized by field name.
+    Title, source path, and body matches provide progressively weaker signals.
+    """
+    heading = _as_text(
+        doc.get("heading"),
+        fallback="",
+    ).lower()
+    doc_title = _as_text(
+        doc.get("doc_title"),
+        fallback="",
+    ).lower()
+    source_path = _as_text(
+        doc.get("source_path"),
+        fallback="",
+    ).lower()
+    text = _as_text(
+        doc.get("text"),
+        fallback="",
+    ).lower()
+
+    score = 0
+
+    if heading == technical_term:
+        score += 100
+    elif technical_term in heading:
+        score += 60
+
+    if technical_term in doc_title:
+        score += 20
+
+    if technical_term in source_path:
+        score += 10
+
+    if technical_term in text:
+        score += 15
+
+    return score
+
+
+def _select_relevant_doc_evidence(
+    user_query: str,
+    doc_evidence: list[dict[str, Any]],
+    max_docs: int = 3,
+) -> list[dict[str, Any]]:
+    """
+    Select document chunks actually used by the deterministic answer.
+
+    For queries naming multiple technical fields, choose the best chunk for
+    each field and deduplicate the result. For Chinese-only or unmatched
+    queries, preserve the previous top-1 fallback.
+    """
+    if not doc_evidence:
+        return []
+
+    technical_terms = _extract_query_technical_terms(
+        user_query
+    )
+
+    if not technical_terms:
+        return [doc_evidence[0]]
+
+    selected_by_id: dict[str, dict[str, Any]] = {}
+
+    for technical_term in technical_terms:
+        best_doc: dict[str, Any] | None = None
+        best_score = 0
+        best_rank = float("inf")
+
+        for doc in doc_evidence:
+            score = _score_doc_for_technical_term(
+                doc,
+                technical_term,
+            )
+            rank_value = doc.get("rank")
+
+            try:
+                rank = float(rank_value)
+            except (TypeError, ValueError):
+                rank = float("inf")
+
+            if (
+                score > best_score
+                or (
+                    score == best_score
+                    and score > 0
+                    and rank < best_rank
+                )
+            ):
+                best_doc = doc
+                best_score = score
+                best_rank = rank
+
+        if best_doc is None or best_score <= 0:
+            continue
+
+        evidence_id = _as_text(
+            best_doc.get("evidence_id")
+        )
+        selected_by_id.setdefault(
+            evidence_id,
+            best_doc,
+        )
+
+        if len(selected_by_id) >= max_docs:
+            break
+
+    if not selected_by_id:
+        return [doc_evidence[0]]
+
+    selected_docs = list(selected_by_id.values())
+    selected_docs.sort(
+        key=lambda item: (
+            item.get("rank")
+            if isinstance(
+                item.get("rank"),
+                (int, float),
+            )
+            else float("inf")
+        )
+    )
+    return selected_docs
+
+
 def _render_concept_answer(evidence_pack: dict[str, Any]) -> str:
     """
-    Render an answer for concept questions.
+    Render a concept answer from document chunks selected for actual use.
 
-    If doc_evidence exists, answer strictly from retrieved document evidence.
-    If doc_evidence is missing, refuse to fabricate an explanation.
+    Explicit multi-field questions may use multiple chunks. Candidate chunks
+    that are not selected are not cited and therefore are not reported as used
+    evidence.
     """
     user_query = evidence_pack.get("user_query", "")
     doc_evidence = evidence_pack.get("doc_evidence", [])
@@ -236,7 +413,9 @@ def _render_concept_answer(evidence_pack: dict[str, Any]) -> str:
 
     if not doc_evidence:
         lines.append("当前 Evidence Pack 中没有 doc_evidence。")
-        lines.append("为了避免无依据生成，这一版 Generator 不会编造地震学概念解释。")
+        lines.append(
+            "为了避免无依据生成，这一版 Generator 不会编造地震学概念解释。"
+        )
 
         if warnings:
             lines.append("")
@@ -244,28 +423,47 @@ def _render_concept_answer(evidence_pack: dict[str, Any]) -> str:
 
         return "\n".join(lines)
 
+    selected_docs = _select_relevant_doc_evidence(
+        user_query=user_query,
+        doc_evidence=doc_evidence,
+    )
+
     lines.append("根据当前检索到的文档证据，可以回答如下：")
     lines.append("")
 
-    top_doc = doc_evidence[0]
-    top_doc_id = _as_text(top_doc.get("evidence_id"))
-    top_text = _as_text(top_doc.get("text"), fallback="")
+    selected_ids: list[str] = []
 
-    lines.append(top_text)
+    for index, doc in enumerate(selected_docs):
+        evidence_id = _as_text(
+            doc.get("evidence_id")
+        )
+        text = _as_text(
+            doc.get("text"),
+            fallback="",
+        )
+
+        selected_ids.append(evidence_id)
+        lines.append(text)
+        lines.append(f"证据：[{evidence_id}]")
+
+        if index < len(selected_docs) - 1:
+            lines.append("")
+
     lines.append("")
+    lines.append("实际引用文档证据：")
 
-    lines.append("引用证据：")
-    lines.append(_format_doc_item(top_doc))
-
-    if len(doc_evidence) > 1:
-        lines.append("")
-        lines.append("其他候选文档证据：")
-
-        for doc in doc_evidence[1:3]:
-            lines.append(_format_doc_item(doc))
+    for doc in selected_docs:
+        lines.append(_format_doc_item(doc))
 
     lines.append("")
-    lines.append(f"以上解释仅基于 Evidence Pack 中的文档证据 [{top_doc_id}]，未使用外部未检索知识。")
+    citation_text = "、".join(
+        f"[{evidence_id}]"
+        for evidence_id in selected_ids
+    )
+    lines.append(
+        "以上解释仅基于 Evidence Pack 中实际选用的文档证据 "
+        f"{citation_text}，未使用外部未检索知识。"
+    )
 
     return "\n".join(lines)
 
