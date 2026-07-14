@@ -22,7 +22,7 @@ from typing import Any
 from seismosearch.guardrail import evaluate_safety_query
 
 
-PLANNER_VERSION = "deterministic_0.3.0"
+PLANNER_VERSION = "deterministic_0.3.1"
 
 
 def normalize_query(user_query: str) -> str:
@@ -128,92 +128,204 @@ def has_event_intent(
     """
     Decide whether the query needs structured event tools.
 
-    The detector supports both direct event-list language and indirect catalog
-    language such as "本地地震目录中最强的几次事件".
+    The detector combines three signals instead of relying on one exact phrase:
+    catalog scope, event object, and selection/ranking intent.
     """
     if min_magnitude is not None:
         return True
 
     query_lower = user_query.lower()
 
-    direct_event_keywords = (
+    explanation_markers = (
+        "什么是",
+        "是什么意思",
+        "代表什么",
+        "含义",
+        "区别",
+        "为什么",
+        "解释",
+        "定义",
+        "meaning",
+        "difference",
+        "explain",
+        "definition",
+        "why",
+    )
+    has_explanation_request = any(
+        marker.lower() in query_lower
+        for marker in explanation_markers
+    )
+
+    explicit_catalog_phrases = (
         "地震有哪些",
         "有哪些地震",
-        "地震记录",
-        "地震事件",
-        "事件记录",
-        "最近",
-        "最新",
-        "列出",
-        "查找",
-        "查询",
-        "发生过",
-        "最强的几次事件",
-        "最强事件",
-        "最大事件",
-        "最高震级事件",
-        "earthquakes",
-        "earthquake events",
-        "recent earthquakes",
-        "latest earthquakes",
+        "哪些地震",
+        "哪些事件",
+        "事件有哪些",
+        "哪些记录",
+        "记录有哪些",
+        "列出地震",
+        "列出事件",
+        "列出记录",
+        "查找地震",
+        "查找事件",
+        "查找记录",
+        "查询地震",
+        "查询事件",
+        "查询记录",
+        "找出地震",
+        "找出事件",
+        "找出记录",
+        "发生过哪些",
         "show earthquakes",
         "list earthquakes",
         "find earthquakes",
-        "strongest events",
-        "largest events",
+        "show events",
+        "list events",
+        "find events",
     )
 
     if any(
-        keyword.lower() in query_lower
-        for keyword in direct_event_keywords
+        phrase.lower() in query_lower
+        for phrase in explicit_catalog_phrases
     ):
         return True
 
-    catalog_markers = (
+    standalone_catalog_entities = (
+        "地震记录",
+        "事件记录",
+        "earthquake records",
+        "earthquake events",
+    )
+
+    if (
+        not has_explanation_request
+        and any(
+            phrase.lower() in query_lower
+            for phrase in standalone_catalog_entities
+        )
+    ):
+        return True
+
+    event_object_markers = (
+        "地震",
+        "强震",
+        "事件",
+        "记录",
+        "earthquake",
+        "event",
+        "record",
+    )
+    has_event_object = any(
+        marker.lower() in query_lower
+        for marker in event_object_markers
+    )
+
+    direct_selection_actions = (
+        "列出",
+        "查找",
+        "查询",
+        "找出",
+        "看看",
+        "展示",
+        "给我",
+        "show",
+        "list",
+        "find",
+    )
+    has_direct_selection_action = any(
+        marker.lower() in query_lower
+        for marker in direct_selection_actions
+    )
+
+    if (
+        has_event_object
+        and has_direct_selection_action
+        and not has_explanation_request
+    ):
+        return True
+
+    recent_markers = (
+        "最近",
+        "最新",
+        "近期",
+        "recent",
+        "latest",
+    )
+
+    if (
+        has_event_object
+        and any(
+            marker.lower() in query_lower
+            for marker in recent_markers
+        )
+        and not has_explanation_request
+    ):
+        return True
+
+    catalog_scope_markers = (
         "地震目录",
         "事件目录",
         "目录",
         "本地库",
         "样例库",
         "本地样例库",
+        "本地样本",
+        "样本库",
+        "样本",
+        "样例数据",
+        "当前样例数据",
+        "本地数据",
         "catalog",
         "database",
         "sample database",
+        "sample data",
+        "local sample",
     )
-    event_selection_markers = (
+    selection_markers = (
         "哪些",
         "有什么",
         "几次",
+        "几条",
+        "哪次",
+        "哪几次",
         "列出",
         "查找",
         "查询",
-        "事件",
-        "记录",
+        "找出",
+        "看看",
         "发生",
         "最强",
         "最大",
-        "最高震级",
+        "最高",
+        "震级最高",
+        "震级最大",
         "多少",
         "which",
         "list",
         "show",
         "find",
-        "events",
-        "records",
         "strongest",
         "largest",
+        "highest",
+        "top",
     )
 
-    has_catalog_context = any(
+    has_catalog_scope = any(
         marker.lower() in query_lower
-        for marker in catalog_markers
+        for marker in catalog_scope_markers
     )
-    has_event_selection = any(
+    has_selection_intent = any(
         marker.lower() in query_lower
-        for marker in event_selection_markers
+        for marker in selection_markers
     )
 
-    return has_catalog_context and has_event_selection
+    return (
+        has_catalog_scope
+        and has_event_object
+        and has_selection_intent
+    )
+
 
 def has_concept_intent(user_query: str) -> bool:
     """
