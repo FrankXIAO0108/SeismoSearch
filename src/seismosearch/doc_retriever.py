@@ -272,7 +272,9 @@ def expand_domain_synonyms(terms: list[str]) -> list[str]:
 
         # 伪科学预测同义词组：用于动物异常、地震云、小震频繁等预测诱导。
         [
+            "动物",
             "动物异常",
+            "动物行为",
             "地震云",
             "狗叫",
             "鱼群异常",
@@ -280,7 +282,24 @@ def expand_domain_synonyms(terms: list[str]) -> list[str]:
             "预测依据",
             "可靠地震预测依据",
             "前兆",
+            "P 波",
+            "p wave",
             "pseudoscience",
+        ],
+
+        # 一般性防震准备与震后安全信息。
+        [
+            "防震准备",
+            "应急准备",
+            "earthquake preparedness",
+            "摇晃停止",
+            "受损建筑",
+            "余震",
+            "燃气",
+            "电气",
+            "火灾",
+            "Drop Cover Hold On",
+            "保护头颈",
         ],
 
         # 历史活动预测诱导同义词组：用于历史地震不能直接预测未来的问题。
@@ -469,7 +488,9 @@ def extract_query_terms(query: str) -> list[str]:
         "不替代",
 
         # 伪科学预测诱导。
+        "动物",
         "动物异常",
+        "动物行为",
         "地震云",
         "狗叫",
         "鱼群异常",
@@ -477,6 +498,20 @@ def extract_query_terms(query: str) -> list[str]:
         "预测依据",
         "可靠地震预测依据",
         "前兆",
+        "P 波",
+
+        # 一般性防震准备与震后安全。
+        "防震准备",
+        "应急准备",
+        "earthquake preparedness",
+        "摇晃停止",
+        "受损建筑",
+        "余震",
+        "燃气",
+        "电气",
+        "火灾",
+        "Drop Cover Hold On",
+        "保护头颈",
 
         # 历史活动预测诱导。
         "历史地震",

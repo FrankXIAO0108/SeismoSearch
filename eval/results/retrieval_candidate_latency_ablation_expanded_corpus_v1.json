@@ -1,0 +1,116 @@
+{
+  "eval_file": "eval\\retrieval_eval_60_corpus_v2.jsonl",
+  "query_mode": "planner",
+  "top_k": 5,
+  "candidate_k_values": [
+    10,
+    20,
+    30
+  ],
+  "warmup": {
+    "hybrid_first_call_seconds": 16.223906800034456,
+    "reranker_first_call_seconds_after_hybrid": 7.558186999987811
+  },
+  "results": [
+    {
+      "config_name": "hybrid",
+      "quality": {
+        "num_samples": 60,
+        "source_hit_at_k": 0.9,
+        "exact_term_hit_at_k": 1.0,
+        "any_group_hit_at_k": 0.9666666666666667,
+        "term_hit_at_k": 0.9666666666666667,
+        "requirement_hit_at_k": 0.8833333333333333,
+        "mrr": 0.5758333333333333,
+        "failed_records": 7
+      },
+      "latency": {
+        "mean_seconds": 2.359527369996067,
+        "median_seconds": 2.3433727999799885,
+        "p95_seconds": 2.6687794950034003,
+        "max_seconds": 3.65120899991598,
+        "min_seconds": 2.0278703999938443,
+        "total_seconds": 141.57164219976403,
+        "mean_query_variants": 3.6666666666666665
+      },
+      "failed_query_ids": [
+        "concept_001",
+        "concept_005",
+        "concept_008",
+        "concept_010",
+        "mixed_doc_001",
+        "hard_001",
+        "safety_boundary_001"
+      ]
+    },
+    {
+      "config_name": "hybrid_rerank_k10",
+      "quality": {
+        "num_samples": 60,
+        "source_hit_at_k": 1.0,
+        "exact_term_hit_at_k": 1.0,
+        "any_group_hit_at_k": 1.0,
+        "term_hit_at_k": 1.0,
+        "requirement_hit_at_k": 1.0,
+        "mrr": 0.8658333333333333,
+        "failed_records": 0
+      },
+      "latency": {
+        "mean_seconds": 3.4300025233261597,
+        "median_seconds": 3.1584963999921456,
+        "p95_seconds": 5.45785696497187,
+        "max_seconds": 7.478572100051679,
+        "min_seconds": 2.3688527999911457,
+        "total_seconds": 205.8001513995696,
+        "mean_query_variants": 3.6666666666666665
+      },
+      "failed_query_ids": []
+    },
+    {
+      "config_name": "hybrid_rerank_k20",
+      "quality": {
+        "num_samples": 60,
+        "source_hit_at_k": 1.0,
+        "exact_term_hit_at_k": 1.0,
+        "any_group_hit_at_k": 1.0,
+        "term_hit_at_k": 1.0,
+        "requirement_hit_at_k": 1.0,
+        "mrr": 0.9,
+        "failed_records": 0
+      },
+      "latency": {
+        "mean_seconds": 4.842167506659947,
+        "median_seconds": 4.47487480007112,
+        "p95_seconds": 8.225045124982715,
+        "max_seconds": 10.217169799958356,
+        "min_seconds": 2.516579399933107,
+        "total_seconds": 290.5300503995968,
+        "mean_query_variants": 3.6666666666666665
+      },
+      "failed_query_ids": []
+    },
+    {
+      "config_name": "hybrid_rerank_k30",
+      "quality": {
+        "num_samples": 60,
+        "source_hit_at_k": 1.0,
+        "exact_term_hit_at_k": 1.0,
+        "any_group_hit_at_k": 1.0,
+        "term_hit_at_k": 1.0,
+        "requirement_hit_at_k": 1.0,
+        "mrr": 0.888888888888889,
+        "failed_records": 0
+      },
+      "latency": {
+        "mean_seconds": 5.264492363346895,
+        "median_seconds": 4.724678399972618,
+        "p95_seconds": 8.556160295015433,
+        "max_seconds": 10.304010499967262,
+        "min_seconds": 2.581629400025122,
+        "total_seconds": 315.86954180081375,
+        "mean_query_variants": 3.6666666666666665
+      },
+      "failed_query_ids": []
+    }
+  ]
+}

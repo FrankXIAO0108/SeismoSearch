@@ -43,6 +43,7 @@ data/duckdb/*
 *.parquet
 *.feather
 *.arrow
+data/processed/events_catalog_*.jsonl
 
 # Runtime outputs
 outputs/

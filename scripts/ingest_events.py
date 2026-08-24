@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -81,6 +82,7 @@ def build_usgs_query_url(
     endtime: str,
     min_magnitude: float,
     limit: int,
+    event_type: str | None = None,
 ) -> str:
     """Build a USGS Event API query URL."""
     params = {
@@ -92,12 +94,21 @@ def build_usgs_query_url(
         "orderby": "time",
     }
 
+    if event_type:
+        params["eventtype"] = event_type
+
     query_string = urllib.parse.urlencode(params)
     return f"{USGS_EVENT_API}?{query_string}"
 
 
-def download_json(url: str) -> dict[str, Any]:
-    """Download JSON from URL using Python standard library."""
+def download_json(
+    url: str,
+    max_attempts: int = 4,
+) -> dict[str, Any]:
+    """Download JSON with bounded retries for transient network failures."""
+    if max_attempts <= 0:
+        raise ValueError("max_attempts must be positive")
+
     request = urllib.request.Request(
         url,
         headers={
@@ -106,11 +117,34 @@ def download_json(url: str) -> dict[str, Any]:
         },
     )
 
-    try:
-        with urllib.request.urlopen(request, timeout=60) as response:
-            raw_bytes = response.read()
-    except urllib.error.URLError as exc:
-        raise RuntimeError(f"Failed to download USGS data: {exc}") from exc
+    raw_bytes: bytes | None = None
+
+    for attempt in range(1, max_attempts + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                raw_bytes = response.read()
+            break
+        except urllib.error.HTTPError as exc:
+            raise RuntimeError(
+                f"USGS request failed with HTTP {exc.code}: {exc.reason}"
+            ) from exc
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+            if attempt >= max_attempts:
+                raise RuntimeError(
+                    "Failed to download USGS data after "
+                    f"{max_attempts} attempts: {exc}"
+                ) from exc
+
+            delay_seconds = 2 ** (attempt - 1)
+            print(
+                f"[WARN] Transient download failure; retrying in "
+                f"{delay_seconds}s ({attempt}/{max_attempts}): {exc}",
+                file=sys.stderr,
+            )
+            time.sleep(delay_seconds)
+
+    if raw_bytes is None:
+        raise RuntimeError("USGS download did not return a response body")
 
     try:
         return json.loads(raw_bytes.decode("utf-8"))
@@ -296,6 +330,15 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
+        "--event-type",
+        default="earthquake",
+        help=(
+            "USGS event type filter. Use an empty value to include all "
+            "catalog event types."
+        ),
+    )
+
+    parser.add_argument(
         "--raw-input",
         type=Path,
         default=None,
@@ -337,6 +380,7 @@ def main() -> int:
             endtime=args.endtime,
             min_magnitude=args.min_magnitude,
             limit=args.limit,
+            event_type=args.event_type or None,
         )
         print(f"Downloading USGS events from: {url}")
         payload = download_json(url)

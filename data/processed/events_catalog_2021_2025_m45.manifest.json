@@ -1,0 +1,115 @@
+{
+  "schema_version": "event_catalog_snapshot_v1",
+  "created_at_utc": "2026-08-23T13:22:35.459257Z",
+  "source": {
+    "organization": "U.S. Geological Survey",
+    "service": "FDSN Event Web Service",
+    "api_documentation": "https://earthquake.usgs.gov/fdsnws/event/1/"
+  },
+  "query": {
+    "start": "2021-01-01",
+    "end_exclusive": "2026-01-01",
+    "min_magnitude": 4.5,
+    "window_days": 180,
+    "request_limit": 20000,
+    "ordering": "time",
+    "event_type": "earthquake"
+  },
+  "artifact": {
+    "path": "data/processed/events_catalog_2021_2025_m45.jsonl",
+    "sha256": "7d95954d347f5ae1add17ac080a4260c836652df777271eca361c92b7de94793",
+    "size_bytes": 79017839
+  },
+  "quality": {
+    "raw_feature_count": 39320,
+    "normalized_before_dedup": 39320,
+    "duplicate_count": 0,
+    "normalized_count": 39320,
+    "dropped_invalid_count": 0,
+    "reviewed_count": 39320,
+    "missing_magnitude_count": 0,
+    "event_time_min": "2021-01-01T00:40:35.586000Z",
+    "event_time_max": "2025-12-31T23:04:28.213000Z",
+    "magnitude_min": 4.5,
+    "magnitude_max": 8.8
+  },
+  "windows": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-06-30",
+      "raw_feature_count": 4427,
+      "normalized_count": 4427,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2021-01-01_2021-06-30.geojson"
+    },
+    {
+      "start": "2021-06-30",
+      "end": "2021-12-27",
+      "raw_feature_count": 4421,
+      "normalized_count": 4421,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2021-06-30_2021-12-27.geojson"
+    },
+    {
+      "start": "2021-12-27",
+      "end": "2022-06-25",
+      "raw_feature_count": 3975,
+      "normalized_count": 3975,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2021-12-27_2022-06-25.geojson"
+    },
+    {
+      "start": "2022-06-25",
+      "end": "2022-12-22",
+      "raw_feature_count": 3715,
+      "normalized_count": 3715,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2022-06-25_2022-12-22.geojson"
+    },
+    {
+      "start": "2022-12-22",
+      "end": "2023-06-20",
+      "raw_feature_count": 3649,
+      "normalized_count": 3649,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2022-12-22_2023-06-20.geojson"
+    },
+    {
+      "start": "2023-06-20",
+      "end": "2023-12-17",
+      "raw_feature_count": 3877,
+      "normalized_count": 3877,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2023-06-20_2023-12-17.geojson"
+    },
+    {
+      "start": "2023-12-17",
+      "end": "2024-06-14",
+      "raw_feature_count": 3438,
+      "normalized_count": 3438,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2023-12-17_2024-06-14.geojson"
+    },
+    {
+      "start": "2024-06-14",
+      "end": "2024-12-11",
+      "raw_feature_count": 2852,
+      "normalized_count": 2852,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2024-06-14_2024-12-11.geojson"
+    },
+    {
+      "start": "2024-12-11",
+      "end": "2025-06-09",
+      "raw_feature_count": 3492,
+      "normalized_count": 3492,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2024-12-11_2025-06-09.geojson"
+    },
+    {
+      "start": "2025-06-09",
+      "end": "2025-12-06",
+      "raw_feature_count": 4995,
+      "normalized_count": 4995,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2025-06-09_2025-12-06.geojson"
+    },
+    {
+      "start": "2025-12-06",
+      "end": "2026-01-01",
+      "raw_feature_count": 479,
+      "normalized_count": 479,
+      "raw_path": "data/raw/events/catalog_2021_2025_m45/usgs_2025-12-06_2026-01-01.geojson"
+    }
+  ]
+}

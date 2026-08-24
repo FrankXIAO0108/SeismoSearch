@@ -1,0 +1,2349 @@
+{
+  "retriever": "hybrid_rerank",
+  "query_mode": "planner",
+  "top_k": 5,
+  "eval_file": "eval\\retrieval_expansion_dev_v1.jsonl",
+  "doc_dirs": [
+    "data\\processed\\docs",
+    "data\\processed\\docs_expansion_v1"
+  ],
+  "summary": {
+    "num_samples": 16,
+    "source_hit_at_k": 1.0,
+    "exact_term_hit_at_k": 1.0,
+    "any_group_hit_at_k": 1.0,
+    "term_hit_at_k": 1.0,
+    "requirement_hit_at_k": 1.0,
+    "mrr": 0.6875,
+    "failed_records": 0
+  },
+  "records": [
+    {
+      "query_id": "exp_prediction_001",
+      "query": "地震预警是在地震发生前预测，还是地震已经开始后探测？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "地震预警是在地震发生前预测，还是地震已经开始后探测？"
+      ],
+      "expected_source_path_contains": "usgs_prediction_forecast_early_warning.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "预警",
+          "early warning"
+        ],
+        [
+          "已经开始",
+          "探测"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_prediction_forecast_early_warning_005",
+          "source_path": "data/processed/docs_expansion_v1/usgs_prediction_forecast_early_warning.md",
+          "heading": "Early Warning",
+          "score": 10.482710838317871,
+          "matched_terms": [
+            "地震",
+            "预警",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 3
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03149801587301587,
+          "rerank_score": 10.482710838317871,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "early_warning_vs_prediction_003",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Early Warning",
+          "score": 9.615099906921387,
+          "matched_terms": [
+            "地震",
+            "预警",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 2
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.03128054740957967,
+          "rerank_score": 9.615099906921387,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "early_warning_vs_prediction_004",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Early Warning Is Not Prediction",
+          "score": 5.411186695098877,
+          "matched_terms": [
+            "地震",
+            "预警",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 8,
+            "dense": 6
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.029857397504456328,
+          "rerank_score": 5.411186695098877,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "early_warning_vs_prediction_002",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 3.8873398303985596,
+          "matched_terms": [
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 18,
+            "dense": 1
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.02921395544346364,
+          "rerank_score": 3.8873398303985596,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismic_hazard_vs_prediction_005",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Earthquake Prediction",
+          "score": 1.2881641387939453,
+          "matched_terms": [
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 15,
+            "dense": 9
+          },
+          "hybrid_rank": 7,
+          "hybrid_score": 0.02782608695652174,
+          "rerank_score": 1.2881641387939453,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_prediction_002",
+      "query": "earthquake forecast、长期 probability 和具体 prediction 有什么区别？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "earthquake forecast、长期 probability 和具体 prediction 有什么区别？"
+      ],
+      "expected_source_path_contains": "usgs_prediction_forecast_early_warning.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "forecast"
+        ],
+        [
+          "probability",
+          "长期概率"
+        ],
+        [
+          "prediction",
+          "预测"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_008",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Difference Between Hazard Explanation and Prediction",
+          "score": 6.813329696655273,
+          "matched_terms": [
+            "区别",
+            "prediction",
+            "earthquake",
+            "seismic hazard",
+            "地震危险性",
+            "earthquake prediction",
+            "概率",
+            "difference",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 17
+          },
+          "hybrid_rank": 8,
+          "hybrid_score": 0.028371628371628373,
+          "rerank_score": 6.813329696655273,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_prediction_forecast_early_warning_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_prediction_forecast_early_warning.md",
+          "heading": "Long-term Probability",
+          "score": 6.403231620788574,
+          "matched_terms": [
+            "forecast",
+            "prediction",
+            "earthquake",
+            "probability",
+            "地震危险性",
+            "earthquake prediction",
+            "概率",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 4
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.030776515151515152,
+          "rerank_score": 6.403231620788574,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_prediction_forecast_early_warning_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_prediction_forecast_early_warning.md",
+          "heading": "Prediction",
+          "score": 5.991340160369873,
+          "matched_terms": [
+            "forecast",
+            "prediction",
+            "earthquake",
+            "probability",
+            "earthquake prediction",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 29,
+            "dense": 1
+          },
+          "hybrid_rank": 10,
+          "hybrid_score": 0.027629397679130595,
+          "rerank_score": 5.991340160369873,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "early_warning_vs_prediction_007",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Probability",
+          "score": 5.6504316329956055,
+          "matched_terms": [
+            "prediction",
+            "earthquake",
+            "probability",
+            "概率",
+            "确定性预测",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 8,
+            "dense": 6
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.029857397504456328,
+          "rerank_score": 5.6504316329956055,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "early_warning_vs_prediction_006",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Earthquake Forecast",
+          "score": 5.606899261474609,
+          "matched_terms": [
+            "forecast",
+            "earthquake forecast",
+            "prediction",
+            "earthquake",
+            "概率",
+            "不确定性",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 7
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.030798389007344232,
+          "rerank_score": 5.606899261474609,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_animals_001",
+      "query": "为什么动物行为不能作为可靠的地震预测信号？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "为什么动物行为不能作为可靠的地震预测信号？"
+      ],
+      "expected_source_path_contains": "usgs_animals_and_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "动物",
+          "animal"
+        ],
+        [
+          "可靠",
+          "可重复"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_animals_and_prediction_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "Anecdotes Are Not Reliable Predictors",
+          "score": 7.013070583343506,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 16,
+            "dense": 1
+          },
+          "hybrid_rank": 6,
+          "hybrid_score": 0.029551337359792925,
+          "rerank_score": 7.013070583343506,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_prediction_forecast_early_warning_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_prediction_forecast_early_warning.md",
+          "heading": "Prediction",
+          "score": 6.181503772735596,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "动物行为",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 7
+          },
+          "hybrid_rank": 7,
+          "hybrid_score": 0.02900988017658188,
+          "rerank_score": 6.181503772735596,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_animals_and_prediction_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "False Positives and Missing Precursors",
+          "score": 4.701918125152588,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "动物异常",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 2
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.031054405392392875,
+          "rerank_score": 4.701918125152588,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_animals_and_prediction_005",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "Safe Response",
+          "score": 3.465273141860962,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "动物异常",
+            "前兆",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 3
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03149801587301587,
+          "rerank_score": 3.465273141860962,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_animals_and_prediction_003",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "Seconds-before-shaking Behavior",
+          "score": 2.7849090099334717,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "p 波",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 4
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.030117753623188408,
+          "rerank_score": 2.7849090099334717,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_animals_002",
+      "query": "动物比人早几秒感觉到震动，是否等于能提前几天地震预测？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "动物比人早几秒感觉到震动，是否等于能提前几天地震预测？"
+      ],
+      "expected_source_path_contains": "usgs_animals_and_prediction.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "P 波",
+          "p wave"
+        ],
+        [
+          "几秒",
+          "很短"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_animals_and_prediction_003",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "Seconds-before-shaking Behavior",
+          "score": 5.671415328979492,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "p 波",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 1
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.030886196246139225,
+          "rerank_score": 5.671415328979492,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_prediction_forecast_early_warning_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_prediction_forecast_early_warning.md",
+          "heading": "Prediction",
+          "score": -2.957385778427124,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "动物行为",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 8
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.028790389395194696,
+          "rerank_score": -2.957385778427124,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_animals_and_prediction_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "Anecdotes Are Not Reliable Predictors",
+          "score": -3.452317953109741,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 16,
+            "dense": 4
+          },
+          "hybrid_rank": 6,
+          "hybrid_score": 0.028782894736842105,
+          "rerank_score": -3.452317953109741,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_animals_and_prediction_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "False Positives and Missing Precursors",
+          "score": -3.4725191593170166,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "动物异常",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 2
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.031054405392392875,
+          "rerank_score": -3.4725191593170166,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_animals_and_prediction_005",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "Safe Response",
+          "score": -3.60579252243042,
+          "matched_terms": [
+            "地震",
+            "动物",
+            "动物异常",
+            "前兆",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 3
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03149801587301587,
+          "rerank_score": -3.60579252243042,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_rate_001",
+      "query": "最近记录到的地震变多，能直接说明全球地震活动增强吗？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "最近记录到的地震变多，能直接说明全球地震活动增强吗？"
+      ],
+      "expected_source_path_contains": "usgs_seismicity_rate_context.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "监测",
+          "仪器",
+          "台站"
+        ],
+        [
+          "目录",
+          "catalog"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismic_hazard_vs_prediction_011",
+          "source_path": "data/processed/docs/seismic_hazard_vs_prediction.md",
+          "heading": "Example Safe Answer",
+          "score": 0.5462868213653564,
+          "matched_terms": [
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 25
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.02815814850530376,
+          "rerank_score": 0.5462868213653564,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_seismicity_rate_context_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_seismicity_rate_context.md",
+          "heading": "Short-term Fluctuation",
+          "score": 0.29995617270469666,
+          "matched_terms": [
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 35,
+            "dense": 1
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.026919758412424506,
+          "rerank_score": 0.29995617270469666,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "early_warning_vs_prediction_009",
+          "source_path": "data/processed/docs/early_warning_vs_prediction.md",
+          "heading": "Historical Activity Does Not Become Prediction",
+          "score": -0.7241351008415222,
+          "matched_terms": [
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 8,
+            "dense": 22
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.02690100430416069,
+          "rerank_score": -0.7241351008415222,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "earthquake_swarm_011",
+          "source_path": "data/processed/docs/earthquake_swarm.md",
+          "heading": "Safe Interpretation",
+          "score": -0.8251115679740906,
+          "matched_terms": [
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 37,
+            "dense": 7
+          },
+          "hybrid_rank": 10,
+          "hybrid_score": 0.02523465148484382,
+          "rerank_score": -0.8251115679740906,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_metadata_012",
+          "source_path": "data/processed/docs/usgs_event_metadata.md",
+          "heading": "Limitations",
+          "score": -4.826019763946533,
+          "matched_terms": [
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 26,
+            "dense": 3
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.027500922849760058,
+          "rerank_score": -4.826019763946533,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_rate_002",
+      "query": "比较两个年份的地震数量时，为什么必须保持震级阈值和空间范围一致？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "比较两个年份的地震数量时，为什么必须保持震级阈值和空间范围一致？",
+        "地震 震级 magnitude 定义",
+        "earthquake magnitude definition"
+      ],
+      "expected_source_path_contains": "usgs_seismicity_rate_context.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "震级阈值"
+        ],
+        [
+          "空间范围"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_seismicity_rate_context_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_seismicity_rate_context.md",
+          "heading": "Comparable Counting",
+          "score": 3.8251051902770996,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "空间范围",
+            "earthquake",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 20,
+            "dense": 14
+          },
+          "hybrid_rank": 7,
+          "hybrid_score": 0.026013513513513515,
+          "rerank_score": 3.8251051902770996,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "magnitude_fields_002",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude",
+          "score": 3.8175833225250244,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 16,
+            "dense": 13
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.026856524873828405,
+          "rerank_score": 3.8175833225250244,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_magnitude_scales_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+          "heading": "Moment Magnitude",
+          "score": 3.6211326122283936,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "earthquake",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 29,
+            "dense": 1
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.027629397679130595,
+          "rerank_score": 3.6211326122283936,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_magnitude_scales_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+          "heading": "Local Magnitude",
+          "score": 2.958968162536621,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "earthquake",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 15,
+            "dense": 3
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.029206349206349208,
+          "rerank_score": 2.958968162536621,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 1.605132818222046,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 31,
+            "dense": 6
+          },
+          "hybrid_rank": 6,
+          "hybrid_score": 0.026140526140526144,
+          "rerank_score": 1.605132818222046,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_magnitude_001",
+      "query": "ML、Mb、Ms 和 Mw 分别是什么，为什么不能完全等价？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "ML、Mb、Ms 和 Mw 分别是什么，为什么不能完全等价？"
+      ],
+      "expected_source_path_contains": "usgs_magnitude_scales.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "ML"
+        ],
+        [
+          "Mb"
+        ],
+        [
+          "Ms"
+        ],
+        [
+          "Mw"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_magnitude_scales_003",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+          "heading": "Body-wave and Surface-wave Magnitudes",
+          "score": 4.428191184997559,
+          "matched_terms": [
+            "mb",
+            "ms",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 16
+          },
+          "hybrid_rank": 6,
+          "hybrid_score": 0.028782894736842105,
+          "rerank_score": 4.428191184997559,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_magnitude_scales_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+          "heading": "Moment Magnitude",
+          "score": -1.6140637397766113,
+          "matched_terms": [
+            "mw",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 7
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.030309988518943745,
+          "rerank_score": -1.6140637397766113,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "magnitude_fields_003",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude Type",
+          "score": -2.378304958343506,
+          "matched_terms": [
+            "ml",
+            "mb",
+            "mw",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03278688524590164,
+          "rerank_score": -2.378304958343506,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": -3.291046142578125,
+          "matched_terms": [
+            "ml",
+            "mb",
+            "mw",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 34
+          },
+          "hybrid_rank": 8,
+          "hybrid_score": 0.0265113137453563,
+          "rerank_score": -3.291046142578125,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_magnitude_scales_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+          "heading": "Local Magnitude",
+          "score": -4.06486701965332,
+          "matched_terms": [
+            "ml",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 5
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.02946912242686891,
+          "rerank_score": -4.06486701965332,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_magnitude_002",
+      "query": "为什么大地震通常使用 moment magnitude 而不是简单称为里氏震级？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "为什么大地震通常使用 moment magnitude 而不是简单称为里氏震级？",
+        "地震 震级 magnitude 定义",
+        "earthquake magnitude definition"
+      ],
+      "expected_source_path_contains": "usgs_magnitude_scales.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "moment magnitude",
+          "Mw"
+        ],
+        [
+          "饱和",
+          "稳定"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "magnitude_fields_002",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude",
+          "score": 3.8175833225250244,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 13
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.0293236301369863,
+          "rerank_score": 3.8175833225250244,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_magnitude_scales_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+          "heading": "Moment Magnitude",
+          "score": 3.6211326122283936,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "moment",
+            "earthquake",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03278688524590164,
+          "rerank_score": 3.6211326122283936,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_magnitude_scales_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+          "heading": "Local Magnitude",
+          "score": 2.958968162536621,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "earthquake",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 3
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.031746031746031744,
+          "rerank_score": 2.958968162536621,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 1.605132818222046,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 16,
+            "dense": 6
+          },
+          "hybrid_rank": 6,
+          "hybrid_score": 0.028309409888357256,
+          "rerank_score": 1.605132818222046,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_magnitude_and_intensity_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_and_intensity.md",
+          "heading": "Magnitude Describes the Source",
+          "score": 1.5820820331573486,
+          "matched_terms": [
+            "震级",
+            "地震",
+            "magnitude",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 4
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.031009615384615385,
+          "rerank_score": 1.5820820331573486,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_intensity_001",
+      "query": "同一场地震为什么不同城市的烈度可以不同？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "同一场地震为什么不同城市的烈度可以不同？",
+        "地震 烈度 MMI intensity 定义",
+        "Modified Mercalli Intensity MMI definition"
+      ],
+      "expected_source_path_contains": "usgs_magnitude_and_intensity.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "烈度",
+          "intensity"
+        ],
+        [
+          "距离",
+          "地质",
+          "建筑"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_magnitude_and_intensity_003",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_and_intensity.md",
+          "heading": "Intensity Describes Local Effects",
+          "score": 4.974498271942139,
+          "matched_terms": [
+            "烈度",
+            "地震",
+            "intensity",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 4
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.031754032258064516,
+          "rerank_score": 4.974498271942139,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "impact_and_review_fields_004",
+          "source_path": "data/processed/docs/impact_and_review_fields.md",
+          "heading": "mmi",
+          "score": 3.7456724643707275,
+          "matched_terms": [
+            "烈度",
+            "地震",
+            "mmi",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 3,
+            "dense": 1
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.032266458495966696,
+          "rerank_score": 3.7456724643707275,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 2.856297492980957,
+          "matched_terms": [
+            "烈度",
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 15
+          },
+          "hybrid_rank": 7,
+          "hybrid_score": 0.028258706467661692,
+          "rerank_score": 2.856297492980957,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_magnitude_and_intensity_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_and_intensity.md",
+          "heading": "Modified Mercalli Intensity",
+          "score": 2.7638919353485107,
+          "matched_terms": [
+            "地震",
+            "intensity",
+            "modified",
+            "mercalli",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 2
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03252247488101534,
+          "rerank_score": 2.7638919353485107,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "magnitude_fields_004",
+          "source_path": "data/processed/docs/magnitude_fields.md",
+          "heading": "Magnitude Is Not Intensity",
+          "score": 2.7538211345672607,
+          "matched_terms": [
+            "烈度",
+            "地震",
+            "intensity",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 5,
+            "dense": 6
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.030536130536130537,
+          "rerank_score": 2.7538211345672607,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_intensity_002",
+      "query": "Modified Mercalli Intensity 和 magnitude 衡量的是同一个量吗？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "Modified Mercalli Intensity 和 magnitude 衡量的是同一个量吗？",
+        "地震 震级 magnitude 定义",
+        "earthquake magnitude definition",
+        "地震 烈度 MMI intensity 定义",
+        "Modified Mercalli Intensity MMI definition",
+        "震级 烈度 区别",
+        "seismic magnitude vs intensity",
+        "MMI 烈度 magnitude 震级 区别 地点影响",
+        "Modified Mercalli Intensity versus earthquake magnitude"
+      ],
+      "expected_source_path_contains": "usgs_magnitude_and_intensity.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "Modified Mercalli",
+          "MMI"
+        ],
+        [
+          "震级",
+          "magnitude"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.5,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_002",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "震级和烈度的区别",
+          "score": 10.004531860351562,
+          "matched_terms": [
+            "magnitude",
+            "震级",
+            "烈度",
+            "地震",
+            "区别",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 9
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.030621785881252923,
+          "rerank_score": 10.004531860351562,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_magnitude_and_intensity_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_and_intensity.md",
+          "heading": "Modified Mercalli Intensity",
+          "score": 9.713711738586426,
+          "matched_terms": [
+            "magnitude",
+            "intensity",
+            "modified",
+            "mercalli",
+            "震级",
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03278688524590164,
+          "rerank_score": 9.713711738586426,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 7.3724493980407715,
+          "matched_terms": [
+            "magnitude",
+            "intensity",
+            "seismic intensity",
+            "earthquake",
+            "seismic",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 8
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.030330882352941176,
+          "rerank_score": 7.3724493980407715,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "impact_and_review_fields_004",
+          "source_path": "data/processed/docs/impact_and_review_fields.md",
+          "heading": "mmi",
+          "score": 4.420064926147461,
+          "matched_terms": [
+            "magnitude",
+            "烈度",
+            "地震",
+            "mmi",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 2
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.03128054740957967,
+          "rerank_score": 4.420064926147461,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_magnitude_scales_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+          "heading": "Moment Magnitude",
+          "score": 3.6211326122283936,
+          "matched_terms": [
+            "magnitude",
+            "震级",
+            "地震",
+            "earthquake",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 29,
+            "dense": 3
+          },
+          "hybrid_rank": 10,
+          "hybrid_score": 0.027108970929195647,
+          "rerank_score": 3.6211326122283936,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_location_001",
+      "query": "地震台网如何根据多个台站的到时估计震源位置？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "地震台网如何根据多个台站的到时估计震源位置？"
+      ],
+      "expected_source_path_contains": "usgs_event_location_and_depth.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "台站",
+          "台网"
+        ],
+        [
+          "到时"
+        ],
+        [
+          "速度模型"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "usgs_event_location_and_depth_003",
+          "source_path": "data/processed/docs_expansion_v1/usgs_event_location_and_depth.md",
+          "heading": "Locating an Event",
+          "score": 8.635763168334961,
+          "matched_terms": [
+            "地震",
+            "震源",
+            "深度",
+            "depth",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 1
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03131881575727918,
+          "rerank_score": 8.635763168334961,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_location_and_depth_004",
+          "source_path": "data/processed/docs_expansion_v1/usgs_event_location_and_depth.md",
+          "heading": "Location Uncertainty",
+          "score": 1.8924453258514404,
+          "matched_terms": [
+            "深度",
+            "depth",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 14,
+            "dense": 2
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.02964254577157803,
+          "rerank_score": 1.8924453258514404,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_swarm_010",
+          "source_path": "data/processed/docs/earthquake_swarm.md",
+          "heading": "Swarm and SeismoSearch",
+          "score": -0.6665737628936768,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 25,
+            "dense": 33
+          },
+          "hybrid_rank": 10,
+          "hybrid_score": 0.022517394054395953,
+          "rerank_score": -0.6665737628936768,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_prediction_forecast_early_warning_005",
+          "source_path": "data/processed/docs_expansion_v1/usgs_prediction_forecast_early_warning.md",
+          "heading": "Early Warning",
+          "score": -1.0484592914581299,
+          "matched_terms": [
+            "地震",
+            "震源",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 21
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.0264301860545992,
+          "rerank_score": -1.0484592914581299,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_event_location_and_depth_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_event_location_and_depth.md",
+          "heading": "Hypocenter and Epicenter",
+          "score": -1.390040397644043,
+          "matched_terms": [
+            "深度",
+            "depth",
+            "hypocenter",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 12
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.029513888888888888,
+          "rerank_score": -1.390040397644043,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_location_002",
+      "query": "目录里的地震深度为什么偶尔会是 0 km 或负数？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "目录里的地震深度为什么偶尔会是 0 km 或负数？",
+        "地震 深度 震源深度",
+        "earthquake depth hypocenter depth",
+        "深源地震 浅源地震 震源深度 地表震感 影响因素",
+        "earthquake focal depth surface shaking intensity distance geology buildings"
+      ],
+      "expected_source_path_contains": "usgs_event_location_and_depth.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "0 km",
+          "负深度"
+        ],
+        [
+          "分辨率",
+          "参考面"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "seismology_concepts_004",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "地震深度",
+          "score": 6.516605377197266,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "km",
+            "震源",
+            "depth",
+            "hypocenter",
+            "earthquake",
+            "surface",
+            "distance",
+            "geology",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 3
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03200204813108039,
+          "rerank_score": 6.516605377197266,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "usgs_event_location_and_depth_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_event_location_and_depth.md",
+          "heading": "Hypocenter and Epicenter",
+          "score": 5.680549621582031,
+          "matched_terms": [
+            "深度",
+            "depth",
+            "hypocenter",
+            "earthquake",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 7,
+            "dense": 2
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.031054405392392875,
+          "rerank_score": 5.680549621582031,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_event_location_and_depth_005",
+          "source_path": "data/processed/docs_expansion_v1/usgs_event_location_and_depth.md",
+          "heading": "Zero or Negative Depth",
+          "score": 5.448087215423584,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "km",
+            "震源",
+            "depth",
+            "earthquake",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 1
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.031544957774465976,
+          "rerank_score": 5.448087215423584,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "seismology_concepts_003",
+          "source_path": "data/processed/docs/seismology_concepts.md",
+          "heading": "Magnitude and Intensity",
+          "score": 1.6273725032806396,
+          "matched_terms": [
+            "depth",
+            "earthquake",
+            "intensity",
+            "shaking",
+            "distance",
+            "geology",
+            "seismic intensity",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 22
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.027820121951219513,
+          "rerank_score": 1.6273725032806396,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_magnitude_and_intensity_003",
+          "source_path": "data/processed/docs_expansion_v1/usgs_magnitude_and_intensity.md",
+          "heading": "Intensity Describes Local Effects",
+          "score": 0.725526750087738,
+          "matched_terms": [
+            "地震",
+            "深度",
+            "震源深度",
+            "震源",
+            "intensity",
+            "shaking",
+            "烈度",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 29
+          },
+          "hybrid_rank": 6,
+          "hybrid_score": 0.027629397679130595,
+          "rerank_score": 0.725526750087738,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_sequence_001",
+      "query": "为什么一场小地震不能在事发当时就确定叫 foreshock？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "为什么一场小地震不能在事发当时就确定叫 foreshock？",
+        "前震 主震 余震 定义 命名 回顾性 分类变化",
+        "foreshock mainshock aftershock definitions retrospective classification"
+      ],
+      "expected_source_path_contains": [
+        "usgs_earthquake_sequences.md",
+        "aftershock_foreshock_mainshock.md"
+      ],
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "foreshock",
+          "前震"
+        ],
+        [
+          "回顾",
+          "之后"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "aftershock_foreshock_mainshock_006",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "A Small Earthquake Is Not Automatically a Foreshock",
+          "score": 8.4492826461792,
+          "matched_terms": [
+            "地震",
+            "foreshock",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 16,
+            "dense": 4
+          },
+          "hybrid_rank": 9,
+          "hybrid_score": 0.028782894736842105,
+          "rerank_score": 8.4492826461792,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "aftershock_foreshock_mainshock_003",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Foreshock",
+          "score": 7.449503421783447,
+          "matched_terms": [
+            "地震",
+            "foreshock",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 15,
+            "dense": 1
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.029726775956284153,
+          "rerank_score": 7.449503421783447,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "aftershock_foreshock_mainshock_004",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Aftershock",
+          "score": 4.56483793258667,
+          "matched_terms": [
+            "地震",
+            "foreshock",
+            "余震",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 14
+          },
+          "hybrid_rank": 10,
+          "hybrid_score": 0.028665028665028666,
+          "rerank_score": 4.56483793258667,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "aftershock_foreshock_mainshock_002",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Mainshock",
+          "score": 4.422685146331787,
+          "matched_terms": [
+            "地震",
+            "foreshock",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 9
+          },
+          "hybrid_rank": 8,
+          "hybrid_score": 0.028985507246376812,
+          "rerank_score": 4.422685146331787,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "aftershock_foreshock_mainshock_005",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Mainshock Classification Can Change",
+          "score": 3.74554443359375,
+          "matched_terms": [
+            "foreshock",
+            "解释",
+            "mainshock",
+            "aftershock",
+            "classification",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 6
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03128054740957967,
+          "rerank_score": 3.74554443359375,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_sequence_002",
+      "query": "earthquake swarm 与 mainshock-aftershock sequence 的结构有什么区别？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "earthquake swarm 与 mainshock-aftershock sequence 的结构有什么区别？",
+        "前震 主震 余震 定义 命名 回顾性 分类变化",
+        "foreshock mainshock aftershock definitions retrospective classification"
+      ],
+      "expected_source_path_contains": "usgs_earthquake_sequences.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "swarm",
+          "地震群"
+        ],
+        [
+          "mainshock",
+          "主震"
+        ],
+        [
+          "aftershock",
+          "余震"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "earthquake_swarm_003",
+          "source_path": "data/processed/docs/earthquake_swarm.md",
+          "heading": "Swarm vs Mainshock-Aftershock Sequence",
+          "score": 9.906232833862305,
+          "matched_terms": [
+            "earthquake",
+            "swarm",
+            "mainshock-aftershock",
+            "sequence",
+            "余震",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03278688524590164,
+          "rerank_score": 9.906232833862305,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "earthquake_swarm_002",
+          "source_path": "data/processed/docs/earthquake_swarm.md",
+          "heading": "Earthquake Swarm",
+          "score": 7.426877975463867,
+          "matched_terms": [
+            "earthquake",
+            "swarm",
+            "sequence",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 3
+          },
+          "hybrid_rank": 3,
+          "hybrid_score": 0.030158730158730156,
+          "rerank_score": 7.426877975463867,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "usgs_earthquake_sequences_002",
+          "source_path": "data/processed/docs_expansion_v1/usgs_earthquake_sequences.md",
+          "heading": "Relative Sequence Labels",
+          "score": 5.1775336265563965,
+          "matched_terms": [
+            "swarm",
+            "sequence",
+            "余震",
+            "foreshock",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 4,
+            "dense": 8
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.030330882352941176,
+          "rerank_score": 5.1775336265563965,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "usgs_earthquake_sequences_005",
+          "source_path": "data/processed/docs_expansion_v1/usgs_earthquake_sequences.md",
+          "heading": "Swarm",
+          "score": 4.87265157699585,
+          "matched_terms": [
+            "swarm",
+            "foreshock",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 16,
+            "dense": 2
+          },
+          "hybrid_rank": 6,
+          "hybrid_score": 0.02928692699490662,
+          "rerank_score": 4.87265157699585,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "aftershock_foreshock_mainshock_004",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Aftershock",
+          "score": 4.56483793258667,
+          "matched_terms": [
+            "余震",
+            "foreshock",
+            "mainshock",
+            "aftershock",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 11,
+            "dense": 12
+          },
+          "hybrid_rank": 10,
+          "hybrid_score": 0.02797339593114241,
+          "rerank_score": 4.56483793258667,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_preparedness_001",
+      "query": "平时可以做哪些一般性的家庭防震准备？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "平时可以做哪些一般性的家庭防震准备？"
+      ],
+      "expected_source_path_contains": "fema_earthquake_preparedness.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "固定",
+          "重物"
+        ],
+        [
+          "Drop",
+          "保护头颈"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "fema_earthquake_preparedness_002",
+          "source_path": "data/processed/docs_expansion_v1/fema_earthquake_preparedness.md",
+          "heading": "Prepare Before an Earthquake",
+          "score": 3.28552508354187,
+          "matched_terms": [
+            "earthquake preparedness",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 1
+          },
+          "hybrid_rank": 4,
+          "hybrid_score": 0.030679156908665108,
+          "rerank_score": 3.28552508354187,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "fema_earthquake_preparedness_005",
+          "source_path": "data/processed/docs_expansion_v1/fema_earthquake_preparedness.md",
+          "heading": "System Boundary",
+          "score": -0.9789910316467285,
+          "matched_terms": [
+            "earthquake preparedness",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 7
+          },
+          "hybrid_rank": 6,
+          "hybrid_score": 0.029418126757516764,
+          "rerank_score": -0.9789910316467285,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "earthquake_safety_boundaries_009",
+          "source_path": "data/processed/docs/earthquake_safety_boundaries.md",
+          "heading": "Safe Response Style",
+          "score": -2.08423113822937,
+          "matched_terms": [
+            "dense_similarity",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "dense": 5
+          },
+          "hybrid_rank": 9,
+          "hybrid_score": 0.015384615384615385,
+          "rerank_score": -2.08423113822937,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "fema_earthquake_preparedness_003",
+          "source_path": "data/processed/docs_expansion_v1/fema_earthquake_preparedness.md",
+          "heading": "During Shaking",
+          "score": -3.071536064147949,
+          "matched_terms": [
+            "earthquake preparedness",
+            "保护头颈",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 2
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.03225806451612903,
+          "rerank_score": -3.071536064147949,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "usgs_animals_and_prediction_005",
+          "source_path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+          "heading": "Safe Response",
+          "score": -4.135056018829346,
+          "matched_terms": [
+            "应急准备",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 6,
+            "dense": 6
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.030303030303030304,
+          "rerank_score": -4.135056018829346,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "query_id": "exp_preparedness_002",
+      "query": "地震摇晃停止后应该注意受损建筑和哪些后续风险？",
+      "query_mode": "planner",
+      "retriever": "hybrid_rerank",
+      "retrieval_queries": [
+        "地震摇晃停止后应该注意受损建筑和哪些后续风险？"
+      ],
+      "expected_source_path_contains": "fema_earthquake_preparedness.md",
+      "must_contain_terms": [],
+      "must_contain_any_groups": [
+        [
+          "受损建筑"
+        ],
+        [
+          "余震"
+        ],
+        [
+          "燃气",
+          "电气",
+          "火灾"
+        ]
+      ],
+      "source_hit": true,
+      "exact_term_hit": true,
+      "any_group_hit": true,
+      "term_hit": true,
+      "requirement_hit": true,
+      "reciprocal_rank": 1.0,
+      "failed_checks": [],
+      "top_chunks": [
+        {
+          "rank": 1,
+          "chunk_id": "fema_earthquake_preparedness_004",
+          "source_path": "data/processed/docs_expansion_v1/fema_earthquake_preparedness.md",
+          "heading": "After Shaking",
+          "score": 6.648858070373535,
+          "matched_terms": [
+            "受损建筑",
+            "earthquake preparedness",
+            "余震",
+            "燃气",
+            "电气",
+            "火灾",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "hybrid_rank": 1,
+          "hybrid_score": 0.03278688524590164,
+          "rerank_score": 6.648858070373535,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "fema_earthquake_preparedness_002",
+          "source_path": "data/processed/docs_expansion_v1/fema_earthquake_preparedness.md",
+          "heading": "Prepare Before an Earthquake",
+          "score": -0.6604637503623962,
+          "matched_terms": [
+            "earthquake preparedness",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 10,
+            "dense": 28
+          },
+          "hybrid_rank": 5,
+          "hybrid_score": 0.02564935064935065,
+          "rerank_score": -0.6604637503623962,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "fema_earthquake_preparedness_003",
+          "source_path": "data/processed/docs_expansion_v1/fema_earthquake_preparedness.md",
+          "heading": "During Shaking",
+          "score": -2.842360019683838,
+          "matched_terms": [
+            "earthquake preparedness",
+            "保护头颈",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 2,
+            "dense": 12
+          },
+          "hybrid_rank": 2,
+          "hybrid_score": 0.030017921146953404,
+          "rerank_score": -2.842360019683838,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "fema_earthquake_preparedness_005",
+          "source_path": "data/processed/docs_expansion_v1/fema_earthquake_preparedness.md",
+          "heading": "System Boundary",
+          "score": -4.780359268188477,
+          "matched_terms": [
+            "earthquake preparedness",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 9,
+            "dense": 38
+          },
+          "hybrid_rank": 9,
+          "hybrid_score": 0.024696835255841466,
+          "rerank_score": -4.780359268188477,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "aftershock_foreshock_mainshock_010",
+          "source_path": "data/processed/docs/aftershock_foreshock_mainshock.md",
+          "heading": "Safety Boundary",
+          "score": -5.607662200927734,
+          "matched_terms": [
+            "地震",
+            "cross_encoder_rerank"
+          ],
+          "retriever": "hybrid_rerank",
+          "retriever_ranks": {
+            "bm25": 31,
+            "dense": 10
+          },
+          "hybrid_rank": 7,
+          "hybrid_score": 0.025274725274725275,
+          "rerank_score": -5.607662200927734,
+          "reranker_model_name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}

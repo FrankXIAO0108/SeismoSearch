@@ -78,13 +78,28 @@ def load_embedding_model(model_name: str = DEFAULT_DENSE_MODEL_NAME):
     """
     try:
         from sentence_transformers import SentenceTransformer
+        from huggingface_hub import snapshot_download
     except ImportError as error:
         raise ImportError(
             "sentence-transformers is required for dense retrieval. "
             "Install it with: python -m pip install sentence-transformers"
         ) from error
 
-    return SentenceTransformer(model_name)
+    resolved_model_name = model_name
+
+    # Passing a repository ID to recent Transformers versions can trigger a
+    # remote metadata request even when all model files are already cached.
+    # Resolve the cached snapshot to a local path first so warm/offline runs
+    # are reproducible. Fall back to the repository ID for the first download.
+    try:
+        resolved_model_name = snapshot_download(
+            repo_id=model_name,
+            local_files_only=True,
+        )
+    except Exception:
+        resolved_model_name = model_name
+
+    return SentenceTransformer(resolved_model_name)
 
 
 def encode_texts(

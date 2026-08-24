@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -32,6 +33,7 @@ DEFAULT_SCHEMA_PATH = Path("schemas/events_schema.sql")
 DEFAULT_INPUT_PATH = Path("data/processed/events_sample_1000.jsonl")
 DEFAULT_DB_PATH = Path("data/duckdb/seismosearch.duckdb")
 DEFAULT_TABLE_NAME = "events"
+TABLE_NAME_PATTERN = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -176,6 +178,88 @@ def insert_records(
     return len(rows)
 
 
+def validate_table_name(table_name: str) -> None:
+    """Reject unsafe SQL identifiers supplied through the CLI."""
+    if not TABLE_NAME_PATTERN.fullmatch(table_name):
+        raise ValueError(
+            "table name must contain only letters, numbers, and underscores"
+        )
+
+
+def inspect_jsonl_source(
+    connection: duckdb.DuckDBPyConnection,
+    input_path: Path,
+) -> int:
+    """Validate a normalized JSONL source without loading it into Python."""
+    if not input_path.exists():
+        raise FileNotFoundError(
+            f"Input JSONL file does not exist: {input_path}"
+        )
+
+    source_sql = (
+        "read_json_auto(?, format='newline_delimited', union_by_name=true)"
+    )
+    required_fields = [
+        "event_id",
+        "source",
+        "event_time_utc",
+        "longitude",
+        "latitude",
+        "ingest_time_utc",
+        "raw_format",
+        "raw_record_json",
+    ]
+    null_predicate = " OR ".join(
+        f"{field} IS NULL" for field in required_fields
+    )
+    total_rows, unique_ids, missing_required = connection.execute(
+        f"""
+        SELECT
+            COUNT(*),
+            COUNT(DISTINCT event_id),
+            COUNT(*) FILTER (WHERE {null_predicate})
+        FROM {source_sql}
+        """,
+        [str(input_path)],
+    ).fetchone()
+
+    if total_rows == 0:
+        raise ValueError("Input JSONL contains no records.")
+    if missing_required > 0:
+        raise ValueError(
+            f"Found {missing_required} records with missing required fields."
+        )
+    if unique_ids != total_rows:
+        raise ValueError(
+            f"Found {total_rows - unique_ids} duplicate event_id values."
+        )
+    return int(total_rows)
+
+
+def insert_records_from_jsonl(
+    connection: duckdb.DuckDBPyConnection,
+    table_name: str,
+    input_path: Path,
+) -> int:
+    """Bulk-load normalized JSONL through DuckDB's native JSON reader."""
+    validate_table_name(table_name)
+    total_rows = inspect_jsonl_source(connection, input_path)
+    connection.execute(f"DELETE FROM {table_name}")
+    connection.execute(
+        f"""
+        INSERT INTO {table_name} BY NAME
+        SELECT *
+        FROM read_json_auto(
+            ?,
+            format='newline_delimited',
+            union_by_name=true
+        )
+        """,
+        [str(input_path)],
+    )
+    return total_rows
+
+
 def print_database_summary(
     connection: duckdb.DuckDBPyConnection,
     table_name: str,
@@ -262,11 +346,7 @@ def main() -> int:
 
     try:
         print(f"Loading records from: {args.input}")
-        records = load_jsonl(args.input)
-
-        print(f"Loaded records: {len(records)}")
-        validate_required_fields(records)
-        validate_event_ids(records)
+        validate_table_name(args.table)
 
         args.db.parent.mkdir(parents=True, exist_ok=True)
 
@@ -278,7 +358,11 @@ def main() -> int:
             execute_schema(connection, args.schema)
 
             print(f"Inserting records into table: {args.table}")
-            inserted_count = insert_records(connection, args.table, records)
+            inserted_count = insert_records_from_jsonl(
+                connection,
+                args.table,
+                args.input,
+            )
 
             print(f"Inserted records: {inserted_count}")
             print_database_summary(connection, args.table)

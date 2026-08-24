@@ -81,13 +81,24 @@ def load_reranker_model(model_name: str = DEFAULT_RERANK_MODEL_NAME):
     """
     try:
         from sentence_transformers import CrossEncoder
+        from huggingface_hub import snapshot_download
     except ImportError as error:
         raise ImportError(
             "sentence-transformers is required for reranking. "
             "Install it with: python -m pip install sentence-transformers"
         ) from error
 
-    return CrossEncoder(model_name)
+    resolved_model_name = model_name
+
+    try:
+        resolved_model_name = snapshot_download(
+            repo_id=model_name,
+            local_files_only=True,
+        )
+    except Exception:
+        resolved_model_name = model_name
+
+    return CrossEncoder(resolved_model_name)
 
 
 def score_candidates_with_reranker(

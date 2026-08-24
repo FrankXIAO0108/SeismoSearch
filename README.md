@@ -128,6 +128,7 @@ data/raw/
 data/processed/
     归一化事件 JSONL
     面向用户回答的 Markdown 文档
+    可选的版本化扩展语料
 
 data/duckdb/
     可复现生成的本地 DuckDB 运行时文件
@@ -142,6 +143,12 @@ data/processed/docs/
 评测报告、进度文档、数据卡和项目管理文档不会进入用户回答语料，避免 corpus contamination。
 
 样例事件库不是完整全球地震目录。Catalog 回答必须明确本地样例范围，不能把样例统计描述成全球完整统计。
+
+### 3.1 Data Expansion V1
+
+项目现提供一个可重建的大规模事件快照：2021-01-01 至 2025-12-31、全球 M4.5+ earthquake，共 39,320 条。大文件和 DuckDB 均为可再生运行时产物，Git 只保留构建脚本、来源和质量 Manifest。
+
+同时新增 8 篇 USGS/FEMA 来源的版本化文档，位于 `data/processed/docs_expansion_v1/`。它们默认不混入原有语料：扩容不等于无条件上线，合并前仍需要独立盲测。详见 [`docs/data_expansion_v1.md`](docs/data_expansion_v1.md)。
 
 ---
 
@@ -323,13 +330,13 @@ DuckDB 文件是可复现运行时产物，不需要提交到 Git。
 ### 9.3 跑测试
 
 ```powershell
-pytest -q
+python -m pytest -q
 ```
 
 当前本地全量回归结果：
 
 ```text
-154 passed
+167 passed
 ```
 
 ### 9.4 运行 Deterministic Pipeline

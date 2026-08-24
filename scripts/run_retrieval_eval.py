@@ -112,36 +112,42 @@ def run_retriever(
     retriever: str,
     retrieval_queries: list[str],
     top_k: int,
+    doc_dirs: list[Path] | None = None,
 ) -> dict[str, Any]:
     """Run the selected retriever."""
     if retriever == "keyword":
         return retrieve_docs(
             queries=retrieval_queries,
             top_k=top_k,
+            doc_dirs=doc_dirs,
         )
 
     if retriever == "bm25":
         return retrieve_docs_bm25(
             queries=retrieval_queries,
             top_k=top_k,
+            doc_dirs=doc_dirs,
         )
 
     if retriever == "dense":
         return retrieve_docs_dense(
             queries=retrieval_queries,
             top_k=top_k,
+            doc_dirs=doc_dirs,
         )
 
     if retriever == "hybrid":
         return retrieve_docs_hybrid(
             queries=retrieval_queries,
             top_k=top_k,
+            doc_dirs=doc_dirs,
         )
 
     if retriever == "hybrid_rerank":
         return retrieve_docs_hybrid_rerank(
             queries=retrieval_queries,
             top_k=top_k,
+            doc_dirs=doc_dirs,
         )
 
     raise ValueError(f"Unsupported retriever: {retriever}")
@@ -174,7 +180,7 @@ def chunks_to_combined_text(chunks: list[dict[str, Any]]) -> str:
 
 def check_source_hit(
     chunks: list[dict[str, Any]],
-    expected_source_path_contains: str | None,
+    expected_source_path_contains: str | list[str] | None,
 ) -> bool:
     """
     Check whether any returned chunk comes from the expected source path.
@@ -184,10 +190,15 @@ def check_source_hit(
     if expected_source_path_contains is None:
         return True
 
+    if isinstance(expected_source_path_contains, str):
+        expected_sources = [expected_source_path_contains]
+    else:
+        expected_sources = expected_source_path_contains
+
     for chunk in chunks:
         source_path = str(chunk.get("source_path", ""))
 
-        if expected_source_path_contains in source_path:
+        if any(expected in source_path for expected in expected_sources):
             return True
 
     return False
@@ -295,7 +306,7 @@ def check_term_hit(
 
 def chunk_satisfies_requirements(
     chunk: dict[str, Any],
-    expected_source_path_contains: str | None,
+    expected_source_path_contains: str | list[str] | None,
     must_contain_terms: list[str],
     must_contain_any_groups: list[list[str]],
 ) -> bool:
@@ -310,7 +321,15 @@ def chunk_satisfies_requirements(
     if expected_source_path_contains is not None:
         source_path = str(chunk.get("source_path", ""))
 
-        if expected_source_path_contains not in source_path:
+        if isinstance(expected_source_path_contains, str):
+            expected_sources = [expected_source_path_contains]
+        else:
+            expected_sources = expected_source_path_contains
+
+        if not any(
+            expected in source_path
+            for expected in expected_sources
+        ):
             return False
 
     if not check_exact_terms_in_text(
@@ -330,7 +349,7 @@ def chunk_satisfies_requirements(
 
 def compute_reciprocal_rank(
     chunks: list[dict[str, Any]],
-    expected_source_path_contains: str | None,
+    expected_source_path_contains: str | list[str] | None,
     must_contain_terms: list[str],
     must_contain_any_groups: list[list[str]],
 ) -> float:
@@ -356,6 +375,7 @@ def evaluate_sample(
     query_mode: str,
     retriever: str,
     top_k: int,
+    doc_dirs: list[Path] | None = None,
 ) -> dict[str, Any]:
     """Evaluate one retrieval sample."""
     retrieval_queries = build_retrieval_queries(
@@ -367,6 +387,7 @@ def evaluate_sample(
         retriever=retriever,
         retrieval_queries=retrieval_queries,
         top_k=top_k,
+        doc_dirs=doc_dirs,
     )
 
     chunks = retrieval_result.get("chunks", [])
@@ -592,6 +613,17 @@ def main() -> None:
         help="Number of retrieved chunks to evaluate.",
     )
 
+    parser.add_argument(
+        "--doc-dir",
+        action="append",
+        type=Path,
+        default=None,
+        help=(
+            "Document directory to search. Repeat to evaluate a versioned "
+            "multi-directory corpus. Defaults to the runtime baseline corpus."
+        ),
+    )
+
     args = parser.parse_args()
 
     samples = load_jsonl(args.eval_file)
@@ -602,6 +634,7 @@ def main() -> None:
             query_mode=args.query_mode,
             retriever=args.retriever,
             top_k=args.top_k,
+            doc_dirs=args.doc_dir,
         )
         for sample in samples
     ]
@@ -613,6 +646,11 @@ def main() -> None:
         "query_mode": args.query_mode,
         "top_k": args.top_k,
         "eval_file": str(args.eval_file),
+        "doc_dirs": (
+            [str(path) for path in args.doc_dir]
+            if args.doc_dir is not None
+            else None
+        ),
         "summary": summary,
         "records": records,
     }

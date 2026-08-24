@@ -1,0 +1,55 @@
+{
+  "schema_version": "doc_corpus_manifest_v1",
+  "created_at": "2026-08-23",
+  "batch": "official_source_expansion_v1",
+  "documents": [
+    {
+      "path": "data/processed/docs_expansion_v1/usgs_prediction_forecast_early_warning.md",
+      "organization": "U.S. Geological Survey",
+      "topics": ["prediction", "forecast", "probability", "early_warning"],
+      "source_count": 2
+    },
+    {
+      "path": "data/processed/docs_expansion_v1/usgs_animals_and_prediction.md",
+      "organization": "U.S. Geological Survey",
+      "topics": ["animals", "pseudoscience", "prediction"],
+      "source_count": 2
+    },
+    {
+      "path": "data/processed/docs_expansion_v1/usgs_seismicity_rate_context.md",
+      "organization": "U.S. Geological Survey",
+      "topics": ["catalog_completeness", "seismicity_rate", "statistics"],
+      "source_count": 1
+    },
+    {
+      "path": "data/processed/docs_expansion_v1/usgs_magnitude_scales.md",
+      "organization": "U.S. Geological Survey",
+      "topics": ["magnitude", "richter", "moment_magnitude"],
+      "source_count": 2
+    },
+    {
+      "path": "data/processed/docs_expansion_v1/usgs_magnitude_and_intensity.md",
+      "organization": "U.S. Geological Survey",
+      "topics": ["magnitude", "intensity", "mmi"],
+      "source_count": 2
+    },
+    {
+      "path": "data/processed/docs_expansion_v1/usgs_event_location_and_depth.md",
+      "organization": "U.S. Geological Survey",
+      "topics": ["hypocenter", "epicenter", "depth", "uncertainty"],
+      "source_count": 2
+    },
+    {
+      "path": "data/processed/docs_expansion_v1/usgs_earthquake_sequences.md",
+      "organization": "U.S. Geological Survey",
+      "topics": ["foreshock", "mainshock", "aftershock", "swarm"],
+      "source_count": 2
+    },
+    {
+      "path": "data/processed/docs_expansion_v1/fema_earthquake_preparedness.md",
+      "organization": "Federal Emergency Management Agency",
+      "topics": ["preparedness", "response", "safety"],
+      "source_count": 1
+    }
+  ]
+}

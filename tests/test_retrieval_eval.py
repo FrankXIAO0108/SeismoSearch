@@ -37,6 +37,23 @@ def load_retrieval_eval_runner() -> ModuleType:
 runner = load_retrieval_eval_runner()
 
 
+def test_source_hit_accepts_equivalent_source_list() -> None:
+    """A gold requirement may allow multiple equivalent source documents."""
+    chunks = [
+        {
+            "source_path": "data/processed/docs/legacy_source.md",
+        }
+    ]
+
+    assert runner.check_source_hit(
+        chunks=chunks,
+        expected_source_path_contains=[
+            "new_official_source.md",
+            "legacy_source.md",
+        ],
+    )
+
+
 def test_any_group_hit_accepts_bilingual_aliases() -> None:
     """Alias groups should allow Chinese evidence for English concepts."""
     chunks = [
