@@ -1,89 +1,89 @@
 # SeismoSearch
 
-> A tool-augmented RAG system for earthquake catalog search, seismology QA, evidence-grounded answers, and safety-bounded risk communication.
+> 面向地震目录查询与地震学知识问答的工具增强型 RAG 系统，支持证据约束回答、安全边界控制和可复现评测。
 
-SeismoSearch combines structured event tools with document retrieval. It is designed for questions where a language model alone is not reliable enough: exact filtering belongs to DuckDB, domain explanations belong to the document retriever, and every generated answer is constrained by an auditable Evidence Pack.
+SeismoSearch 将结构化事件工具与文档检索结合起来：精确筛选和统计交给 DuckDB，领域解释交给文档检索，最终回答统一基于可审计的 Evidence Pack 生成。
 
-## What it does
+本项目不预测未来地震，也不替代官方监测、预警或应急指导。
 
-| Query type | Example | Execution path |
+## 项目能力
+
+| 问题类型 | 示例 | 执行路径 |
 |---|---|---|
-| `catalog` | List M6.5+ events in a time range | Planner → DuckDB event tools |
-| `concept` | Explain magnitude, intensity, depth, or catalog fields | Planner → document retrieval |
-| `mixed` | List events and explain their possible impact | Event tools + document retrieval |
-| `safety` | Ask for a future earthquake prediction | Safety gate → bounded refusal |
+| `catalog` | 查询某时间范围内的 M6.5+ 地震 | Planner → DuckDB 事件工具 |
+| `concept` | 解释震级、烈度、深度或目录字段 | Planner → 文档检索 |
+| `mixed` | 查询地震事件并解释其影响差异 | 事件工具 + 文档检索 |
+| `safety` | 要求预测未来地震 | Safety Gate → 有边界的拒答 |
 
-The system does not predict future earthquakes and does not replace official monitoring or emergency guidance.
-
-## Architecture
+## 系统架构
 
 ```text
-User query
+用户问题
     │
     ▼
-Safety Gate
+统一安全门
     │
     ▼
-Deterministic Planner
+确定性 Planner
     │
-    ├── Event tools ─────── DuckDB search and statistics
-    ├── Document tools ──── keyword / BM25 / dense / hybrid / rerank
-    └── Safety tool ─────── prediction and pseudoscience boundary
+    ├── 事件工具 ─────── DuckDB 查询与统计
+    ├── 文档工具 ─────── Keyword / BM25 / Dense / Hybrid / Rerank
+    └── 安全工具 ─────── 预测诱导与伪科学边界识别
     │
     ▼
 Evidence Pack
     │
-    ├── Deterministic generator
-    └── OpenAI-compatible LLM generator
+    ├── 确定性 Generator
+    └── OpenAI-compatible LLM Generator
     │
     ▼
-Citation and contract evaluation
+引用校验与契约评测
 ```
 
-## Core design
+## 核心设计
 
-### Deterministic planning
+### 确定性规划
 
-`src/seismosearch/planner.py` parses query type, time ranges, magnitude thresholds, document query rewrites, and tool parameters without handing routing control to an LLM.
+`src/seismosearch/planner.py` 负责识别问题类型、解析时间范围和震级阈值、生成文档检索 Query Rewrite，并生成工具参数。路由过程不依赖 LLM，便于复现、调试和回归测试。
 
-### Structured event tools
+### 结构化事件工具
 
-`event_search` and `event_statistics` query normalized historical events by time, magnitude, depth, geographic bounds, event type, review status, and ordering. DuckDB is used for exact filtering and aggregation rather than semantic retrieval.
+`event_search` 和 `event_statistics` 支持按时间、震级、深度、经纬度、事件类型、审核状态和排序条件查询历史事件。精确过滤和聚合使用 DuckDB，不让向量检索猜测数值答案。
 
-### Hybrid document retrieval
+### 混合文档检索
 
-The document layer supports keyword matching, BM25, dense embeddings, reciprocal-rank fusion, and CrossEncoder reranking. The default corpus is limited to `data/processed/docs/` to avoid contaminating answers with project notes or evaluation artifacts.
+文档层支持关键词、BM25、Dense Embedding、RRF 融合和 CrossEncoder 重排。默认只检索 `data/processed/docs/`，避免项目笔记和评测文件污染回答语料。
 
-### Evidence-constrained generation
+### Evidence Pack 与受约束生成
 
-`Evidence Pack` separates planner output, tool calls, event evidence, computed statistics, document evidence, safety labels, and answer constraints. The LLM generator receives only a controlled evidence context, must return strict JSON, and can cite only existing evidence IDs. Validation failures fall back to deterministic generation.
+Evidence Pack 统一组织 Planner 输出、工具调用、事件证据、统计证据、文档证据、安全标签和回答约束。LLM Generator 只能读取受控证据上下文，必须返回严格 JSON，并且只能引用真实存在的证据 ID；校验失败时回退到确定性生成器。
 
-### Safety boundary
+### 安全边界
 
-The unified safety gate runs before downstream retrieval. Prediction-inducing and pseudoscientific queries are short-circuited and receive bounded alternatives instead of event searches or unsupported forecasts.
+统一 Safety Gate 在后续检索之前执行。对于未来具体地震预测、动物异常预测、地震云和历史小震推断等问题，系统会短路处理，不继续调用事件查询或 LLM 生成。
 
-## Data
+## 数据
 
-The repository includes a small default sample for local execution:
+仓库包含用于本地运行的默认样例：
 
 ```text
 data/processed/events_sample_1000.jsonl
 data/processed/docs/
 ```
 
-An optional reproducible expansion is available through the USGS FDSN Event Web Service:
+同时提供可重建的 USGS 事件数据扩展：
 
-- 39,320 global earthquake events from 2021–2025;
-- M4.5+ with `eventtype=earthquake`;
-- duplicate, invalid, and missing-magnitude checks;
-- 8 additional USGS/FEMA reference documents;
-- provenance and SHA-256 recorded in `data/processed/events_catalog_2021_2025_m45.manifest.json`.
+- 2021–2025 年全球地震事件；
+- M4.5+，并过滤 `eventtype=earthquake`；
+- 归一化、重复、无效记录和缺失震级检查；
+- 8 篇 USGS/FEMA 参考文档；
+- 查询参数、窗口统计和 SHA-256 记录在 `data/processed/events_catalog_2021_2025_m45.manifest.json`。
 
-The large JSONL snapshot and DuckDB runtime file are generated artifacts and are intentionally not committed. See [`data_card.md`](data_card.md) and [`docs/data_expansion_v1.md`](docs/data_expansion_v1.md).
+大体积 JSONL 和 DuckDB 文件属于生成产物，不直接提交到 Git。详见 [`data_card.md`](data_card.md) 和 [`docs/data_expansion_v1.md`](docs/data_expansion_v1.md)。
 
-## Quick start
+## 快速开始
 
-Windows PowerShell:
+Windows PowerShell：
 
 ```powershell
 git clone https://github.com/FrankXIAO0108/SeismoSearch.git
@@ -100,15 +100,15 @@ python .\scripts\build_event_db.py
 python -m pytest -q
 ```
 
-Run a deterministic example without an LLM:
+不依赖 LLM 的确定性示例：
 
 ```powershell
 python -c "import json; from seismosearch.pipeline import run_pipeline; result=run_pipeline('震级和烈度有什么区别？', generator_mode='deterministic', doc_retriever_mode='keyword'); print(json.dumps(result, ensure_ascii=False, indent=2))"
 ```
 
-To use dense or CrossEncoder retrieval, install `sentence-transformers`. The first run downloads the configured models; subsequent runs can resolve local cached snapshots.
+使用 Dense 或 CrossEncoder 检索时，再安装 `sentence-transformers`。首次运行会下载配置的模型，之后可以使用本地缓存。
 
-## Optional catalog expansion
+## 可选事件数据扩展
 
 ```powershell
 python .\scripts\build_event_catalog_snapshot.py `
@@ -125,33 +125,33 @@ python .\scripts\build_event_db.py `
   --db data\duckdb\seismosearch_catalog_2021_2025_m45.duckdb
 ```
 
-The expanded database is not automatically used by the default pipeline; this prevents a data update from silently changing the baseline evaluation environment.
+扩展数据库不会自动替换默认运行库，避免数据更新悄悄改变基线评测环境。
 
-## Evaluation
+## 评测
 
-The project evaluates both individual retrieval and the full pipeline:
+项目同时评测检索模块和完整流程：
 
-- retrieval source, term, requirement, and reciprocal-rank metrics;
-- query type and tool selection;
-- event and document evidence support;
-- citation validity and citation support;
-- safety refusal behavior;
-- deterministic versus LLM generation with fallback behavior.
+- Source、Term、Requirement Hit@K 和 MRR；
+- Query Type 与 Tool Selection；
+- 事件证据和文档证据支持度；
+- 引用 ID 有效性与引用内容支持度；
+- 安全拒答行为；
+- Deterministic Generator 与 LLM Generator 的回退行为。
 
-The current local test suite passes 167 tests. The expansion development set reaches Requirement Hit@5 = 1.0 on 16 queries; this is an iteration set, not an independent blind benchmark. Historical holdout artifacts are retained under `eval/` for reproducibility and failure analysis.
+当前本地测试套件为 `167 passed`。扩展开发集 16 个问题的 Requirement Hit@5 为 1.0；这是用于迭代的开发集，不是独立盲测成绩。冻结评测输入和结果保存在 `eval/`。
 
-## Repository layout
+## 仓库结构
 
 ```text
-src/seismosearch/      Runtime modules: planner, tools, retrieval, evidence, generation
-schemas/               Event, document, evaluation, and evidence contracts
-data/processed/        Default event sample and user-facing knowledge corpus
-scripts/               Data ingestion, database construction, and evaluation entry points
-eval/                  Frozen inputs and evaluation results
-tests/                 Unit, integration, safety, citation, and pipeline tests
-docs/                  Focused data and holdout references
+src/seismosearch/      Planner、工具、检索、证据和生成模块
+schemas/               事件、文档、评测和证据数据契约
+data/processed/        默认事件样例和用户侧知识语料
+scripts/               数据导入、数据库构建和评测入口
+eval/                  冻结评测输入与结果
+tests/                 单元、集成、安全、引用和 Pipeline 测试
+docs/                  数据与 Holdout 说明
 ```
 
-## Scope and limitations
+## 项目边界
 
-This repository is a research-oriented, reproducible RAG prototype. It does not provide multi-tenant permissions, high availability, production monitoring, online freshness guarantees, or a complete global earthquake catalog. Its value is the explicit separation of routing, tools, retrieval, evidence, generation, safety, and evaluation so that each failure mode can be inspected independently.
+SeismoSearch 是一个面向研究和验证的 RAG 工程原型，不提供多租户权限、高可用、生产监控、在线数据新鲜度保障或完整全球地震目录。项目重点是把路由、工具、检索、证据、生成、安全和评测拆成可独立检查的模块。
